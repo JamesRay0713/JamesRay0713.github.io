@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>网络连接相关 - 分你一半</title>
+
+  
+    <meta name="description" content="汇总不同场景下主机之间的远程连接方法、代理服务等；探索更全能快捷的远程开发方式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络连接相关">
+<meta property="og:url" content="https://taddream.site/post/toolkit02-about-network-connection/">
+<meta property="og:site_name" content="分你一半">
+<meta property="og:description" content="汇总不同场景下主机之间的远程连接方法、代理服务等；探索更全能快捷的远程开发方式。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://taddream.site/assets/posts/%E4%B8%8B%E8%BD%BDcode-CLI.png">
+<meta property="og:image" content="https://taddream.site/assets/posts/vscode%E6%9E%84%E5%BB%BA%E8%BF%9C%E7%A8%8B%E9%80%9A%E9%81%93.jpg">
+<meta property="og:image" content="https://taddream.site/assets/posts/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5tunnels.png">
+<meta property="article:published_time" content="2023-11-22T17:14:20.000Z">
+<meta property="article:modified_time" content="2023-12-26T10:29:51.375Z">
+<meta property="article:author" content="James Ray">
+<meta property="article:tag" content="ssh">
+<meta property="article:tag" content="port forwarding">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://taddream.site/assets/posts/%E4%B8%8B%E8%BD%BDcode-CLI.png">
+  
+  
+  
+  <meta name="keywords" content="ssh,port forwarding">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="分你一半" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="/assets/build_site_images/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%872.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">分你一半</div><div class="sub normal cap">tadpole in dreams ~~</div><div class="sub hover cap" style="opacity:0"> turning in circles</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/explore/">探索</a><a class="nav-item" href="/social/">社交</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">网络连接相关</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%EF%BC%9A%E6%9C%8D%E5%8A%A1%E3%80%81%E5%AE%A2%E6%88%B7%E4%B8%A4%E7%AB%AF%E5%8F%AF%E7%9B%B4%E8%BF%9E%E8%AE%BF%E9%97%AE"><span class="toc-text">1. 远程连接：服务、客户两端可直连访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%A1%AE%E4%BF%9D%E5%AE%89%E8%A3%85openssh-server"><span class="toc-text">1.1 服务端确保安装openssh-server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%85%8D%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95%E2%80%94%E2%80%94%E9%85%8D%E5%AF%86%E9%92%A5"><span class="toc-text">1.2 免密码登录——配密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B8%BB%E6%9C%BA"><span class="toc-text">1.3 登录服务端主机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="toc-text">1.4 常见问题排查</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E3%80%81%E5%AE%A2%E6%88%B7%E4%B8%A4%E7%AB%AF%E4%B8%8D%E5%8F%AF%E7%9B%B4%E8%BF%9E%E8%AE%BF%E9%97%AE"><span class="toc-text">2. 远程连接服务、客户两端不可直连访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%BD%93%E6%8B%A5%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%AC%E7%BD%91IP%E6%97%B6-e-g-%E4%BA%91%E6%9C%8D"><span class="toc-text">2.1 当拥有一个公网IP时(e.g.云服)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%A92-1-1-%E6%96%B9%E6%B3%951-%E8%BF%9C%E7%A8%8B%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91-%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="toc-text">🚩2.1.1 方法1: 远程端口转发&#x2F;内网穿透</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%BD%93%E6%97%A0%E5%85%AC%E7%BD%91IP%E6%97%B6"><span class="toc-text">2.2 当无公网IP时</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-%E5%8F%AF%E8%A7%86%E5%8C%96%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%E8%BD%AF%E4%BB%B6"><span class="toc-text">2.2.1 可视化内网穿透软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%A9%BF%E9%80%8F%E5%B7%A5%E5%85%B7"><span class="toc-text">2.2.2 命令行穿透工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%BD%93%E6%9C%8D%E5%8A%A1%E7%AB%AFIP%E4%B8%8D%E5%9B%BA%E5%AE%9A%E6%97%B6"><span class="toc-text">2.3 当服务端IP不固定时</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%A0%B4qiang%E8%AE%BF%E9%97%AE%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">3. 破qiang访问互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%8F%AA%E6%83%B3%E8%AE%BF%E9%97%AE%E7%89%B9%E5%AE%9A%E7%9A%84%E5%A4%96%E9%83%A8%E7%BD%91%E7%AB%99"><span class="toc-text">3.1 只想访问特定的外部网站</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%951%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%9C%AC%E5%9C%B0hosts%E6%96%87%E4%BB%B6"><span class="toc-text">法1：修改本地hosts文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%952%EF%BC%9A%E4%BF%AE%E6%94%B9DNS"><span class="toc-text">法2：修改DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%953%EF%BC%9A%E5%80%9F%E5%8A%A9github520%E9%A1%B9%E7%9B%AE"><span class="toc-text">法3：借助github520项目</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%954%EF%BC%9A%E9%92%88%E5%AF%B9github%E7%BD%91%E7%AB%99%E5%8F%AF%E7%94%A8ssh%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="toc-text">法4：针对github网站可用ssh密钥对</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%955%EF%BC%9A%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-text">法5：配置代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B3%956%EF%BC%9A%E5%80%9F%E5%8A%A9gitee"><span class="toc-text">法6：借助gitee</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%9D%E6%BB%91%E8%AE%BF%E9%97%AE%E6%89%80%E6%9C%89%E5%A4%96%E7%BD%91"><span class="toc-text">3.2 丝滑访问所有外网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-VPN%E8%BD%AF%E4%BB%B6"><span class="toc-text">3.2.1 VPN软件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-%E4%BB%A3%E7%90%86%E5%95%86"><span class="toc-text">3.2.2 代理商</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E8%87%AA%E9%80%A0%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">3.2.3 自造代理服务器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-VScode%E5%BC%BA%E5%A4%A7%E7%9A%84%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94-Remote-Tunnels"><span class="toc-text">4. VScode强大的远程开发工具—— Remote Tunnels</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%8E%9F%E7%90%86"><span class="toc-text">工具原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8"><span class="toc-text">如何使用</span></a></li></ol></li></ol></div></div></widget>
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/flight-ticket-crawler/"><span class="title">一个特价机票的优选工具</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a></div></widget>
+
+
+
+<widget class="widget-wrapper markdown"><div class="widget-header cap theme dis-select"><span class="name">可觅知音</span></div><div class="widget-body fs14"><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/build_site_images/my_wechat.jpg" alt="微信: JamesRay0713"></p>
+</div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700665441051" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7724" data-darkreader-inline-fill="" width="200" height="200"><path d="M950.857143 512q0 143.428571-83.714286 258T650.857143 928.571429q-15.428571 2.857143-22.571429-4t-7.142857-17.142858v-120.571428q0-55.428571-29.714286-81.142857 32.571429-3.428571 58.571429-10.285715t53.714286-22.285714 46.285714-38 30.285714-60T792 489.142857q0-69.142857-45.142857-117.714286 21.142857-52-4.571429-116.571428-16-5.142857-46.285714 6.285714t-52.571429 25.142857l-21.714285 13.714286q-53.142857-14.857143-109.714286-14.857143t-109.714286 14.857143q-9.142857-6.285714-24.285714-15.428571T330.285714 262.571429 281.142857 254.857143q-25.142857 64.571429-4 116.571428-45.142857 48.571429-45.142857 117.714286 0 48.571429 11.714286 85.714286t30 60 46 38.285714 53.714285 22.285714 58.571429 10.285715q-22.857143 20.571429-28 58.857143-12 5.714286-25.714286 8.571428t-32.571428 2.857143-37.428572-12.285714T276.571429 728q-10.857143-18.285714-27.714286-29.714286t-28.285714-13.714285l-11.428572-1.714286q-12 0-16.571428 2.571428t-2.857143 6.571429 5.142857 8 7.428571 6.857143l4 2.857143q12.571429 5.714286 24.857143 21.714285t18 29.142858l5.714286 13.142857q7.428571 21.714286 25.142857 35.142857t38.285714 17.142857 39.714286 4 31.714286-2l13.142857-2.285714q0 21.714286 0.285714 50.857143t0.285714 30.857142q0 10.285714-7.428571 17.142858t-22.857143 4q-132.571429-44-216.285714-158.571429T73.142857 512q0-119.428571 58.857143-220.285714T291.714286 132 512 73.142857t220.285714 58.857143T892 291.714286 950.857143 512z" p-id="7725" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="https://gitee.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700810083615" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11744" data-darkreader-inline-fill="" width="200" height="200"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="11745" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #7b2c2f;"></path></svg></a><a class="social" href="mailto:hl1670704310@icloud.com" rel="noopener noreferrer"><svg t="1700665373816" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6718" data-darkreader-inline-fill="" width="200" height="200"><path d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l73.142857 62.000762V780.190476h682.666666V417.645714l73.142857-62.000762zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z m-10.971428 73.142857H181.638095L512 525.58019 842.361905 243.809524z" p-id="6719" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="/social/#comments" rel="noopener noreferrer"><svg t="1700665059859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5632" data-darkreader-inline-fill="" width="200" height="200"><path d="M371.2 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5633" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M512 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5634" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M652.8 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5635" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M377.6 896c-6.4 0-6.4 0-12.8 0-12.8-6.4-19.2-19.2-19.2-32l0-128C211.2 684.8 128 569.6 128 448c0-179.2 172.8-320 384-320s384 140.8 384 320c0 172.8-166.4 313.6-371.2 320l-128 121.6C390.4 896 384 896 377.6 896zM512 192C332.8 192 192 307.2 192 448c0 102.4 76.8 192 192 236.8 12.8 6.4 19.2 19.2 19.2 32l0 76.8 83.2-76.8C492.8 704 505.6 704 512 704c179.2 0 320-115.2 320-256S691.2 192 512 192z" fill="#1afa29" p-id="5636" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/toolkit/">toolkit</a></div><div id="post-meta">
+    <span>发布于&nbsp;<time datetime="2023-11-22T17:14:20.000Z">2023年11月23日</time></span>
+    
+    <span>更新于&nbsp;<time datetime="2023-12-26T10:29:51.375Z">2023年12月26日</time></span>
+    </div></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>网络连接相关</span></h1>
+<p>汇总不同场景下主机之间的远程连接方法、代理服务等；探索更全能快捷的远程开发方式。   </p>
+<span id="more"></span>
+
+
+<div class="tag-plugin colorful note" ><div class="body"><p>①前两节主要讲解了如何用ssh实现两主机的互访；<br>②第三节讲了如何通过代理访问外网资源；<br>③第四节介绍了当我们只专注与<code>远程生产</code>场景下的，更高效便捷的访问方式——code CLI。</p><blockquote><p>非特殊说明, 下述<em>客户端</em>指代主访主机, <em>服务端</em>指代被访主机。</p></blockquote></div></div>
+
+<h2 id="1-远程连接：服务、客户两端可直连访问"><a href="#1-远程连接：服务、客户两端可直连访问" class="headerlink" title="1. 远程连接：服务、客户两端可直连访问"></a>1. 远程连接：服务、客户两端可直连访问</h2><h3 id="1-1-服务端确保安装openssh-server"><a href="#1-1-服务端确保安装openssh-server" class="headerlink" title="1.1 服务端确保安装openssh-server"></a>1.1 服务端确保安装openssh-server<a name="11"></a></h3><ul>
+<li>检验: <code>ssh -V</code></li>
+<li>win10安装: 控制面板→ 程序→ 启关windows功能→ 下载ssh服务器</li>
+<li>Linux安装:  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo apt-get install openssh-server  <br>sudo service sshd start/status          <span class="hljs-comment"># 查看状态: wsl和Linux  </span><br>sudo systemctl status/restart sshd   <span class="hljs-comment"># 查看状态: Linux</span><br></code></pre></td></tr></table></figure></li>
+<li>可选：按需配置服务端<code>/etc/ssh/sshd_config</code>（改后需<code>重启</code>sshd）  <figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">Port 2222     # 如wsl1中要修改，不与win冲突; 而wsl2可不必修改, 因为它已是一台独立主机  <br>PermitRootLogin yes   # 可以root远程登录<br>PasswordAuthentication yes     # 密码验证登录<br>GSSAPIAuthentication yes    # 解决一台服务器管理多个ssh服务<br>UseDNS no  # 加快响应速度因为在内网环境下<br>ListenAddress  192.168.25.130  # 只监听指定内网的IP<br>Match User anoncvs    # 当前环境允许登录的用户<br>GatewayPorts yes<br>AllowTcpForwarding yes<br>......<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="1-2-免密码登录——配密钥"><a href="#1-2-免密码登录——配密钥" class="headerlink" title="1.2 免密码登录——配密钥"></a>1.2 免密码登录——配密钥<a name="12"></a></h3><ul>
+<li>核心：公钥在服务端，私钥在客户端</li>
+<li>密钥对生成方法: <code>ssh-keygen -t rsa -C &#39;hl1670704310@icloud.com&#39; -f ~/.ssh/someName-rsa</code></li>
+<li>情况1: 用新密钥对<ul>
+<li>建议在客户端本地生成，方法见上 </li>
+<li>公钥发给服务端: <ul>
+<li>自动: <code>ssh-copy-id -i ~/.ssh/name_rsa.pub -p 22 user@remote_host</code></li>
+<li>手动: 复制<code>~/.ssh/someName-rsa.pub</code>的内容到服务端主机的<code>~/.ssh/authorized_keys</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>情况2: 用旧密钥对<ul>
+<li>客户端: 把私钥存放于<code>~/.ssh/id_rsa</code>, 用于<code>ssh -i</code>参数; 修改其权限<code>chmod 600 rsa_path</code></li>
+<li>服务端: 公钥内容复制到<code>~/.ssh/authorized_keys</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-登录服务端主机"><a href="#1-3-登录服务端主机" class="headerlink" title="1.3 登录服务端主机"></a>1.3 登录服务端主机</h3><ul>
+<li>完整命令，无密直连: <code>ssh -p 22 user@remote_host</code></li>
+<li>最简指令（推荐）: <code>ssh test</code><ul>
+<li>前提须在客户端配置<code>~/.ssh/config</code>  <figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">Host test<br>    HostName serverIP<br>    User serverUSER<br>    Port 22<br>    ServerAliveInterval 60<br>    IdentityFile ~/.ssh/id_rsa<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-常见问题排查"><a href="#1-4-常见问题排查" class="headerlink" title="1.4 常见问题排查"></a>1.4 常见问题排查</h3><ul>
+<li>连接出问题，先尝试删除客户端<code>~/.ssh/know_hosts</code></li>
+</ul>
+<h2 id="2-远程连接服务、客户两端不可直连访问"><a href="#2-远程连接服务、客户两端不可直连访问" class="headerlink" title="2. 远程连接服务、客户两端不可直连访问"></a>2. 远程连接服务、客户两端不可直连访问</h2><p>场景: 两主机位于不同内网, 且都可访问互联网, 假设这里<code>公司某主机</code>为服务端(确保<a href="#11">安装有sshserver</a>), <code>家中笔记本</code>为客户端</p>
+<h3 id="2-1-当拥有一个公网IP时-e-g-云服"><a href="#2-1-当拥有一个公网IP时-e-g-云服" class="headerlink" title="2.1 当拥有一个公网IP时(e.g.云服)"></a>2.1 当拥有一个公网IP时(e.g.云服)</h3><h4 id="🚩2-1-1-方法1-远程端口转发-内网穿透"><a href="#🚩2-1-1-方法1-远程端口转发-内网穿透" class="headerlink" title="🚩2.1.1 方法1: 远程端口转发&#x2F;内网穿透"></a>🚩2.1.1 方法1: 远程端口转发&#x2F;内网穿透</h4><p>核心: 先让远程主机连到跳板机, 把ssh端口暴露给跳板机指定的端口, 再让本地主机连到跳板机的指定端口, 实现穿透。</p>
+<ol>
+<li>准备两对密钥: <ul>
+<li><code>KEY-sj</code>: 用于服务端(pri)→ 跳板机(pub)的连接, reach_jumper_rsa</li>
+<li><code>KEY-cs</code>: 用于客户端(pri)→ 服务端(pub)的连接, reach_luge_server_rsa</li>
+</ul>
+</li>
+<li>跳板机: <ul>
+<li>检查服务端配置(<a href="#11">戳</a>, 注: 在远程主机眼里跳板机是服务端)</li>
+<li>防火墙设置: 在入站策略中开启任一闲置端口(如18086)并<code>重启</code>系统。用以映射到服务端的ssh端口, 让客户端以为连到该端口, 就等于连到了服务端的ssh服务。</li>
+<li>sshd配置: 在<code>/etc/ssh/sshd_config</code>中至少保证<code>GatewayPorts yes</code>和<code>AllowTcpForwarding yes</code>; 可选<code>ForwardAgent yes</code></li>
+<li>密钥配置: 把<code>KEY-sj</code>的公钥内容添加到<code>~/.ssh/authorized_keys</code>文件，没有文件则创建</li>
+</ul>
+</li>
+<li>服务端主机&#x2F;远程主机: <ul>
+<li>检查服务端配置(<a href="#11">戳</a>)</li>
+<li>先处理密钥:<br>  将<code>KEY-sj</code>的私钥文件复制到<code>~/.ssh/</code>, 改权限为600；<br>  将<code>KEY-cs</code>的公钥内容添加到<code>~/.ssh/authorized_keys</code>文件, 没有文件则创建；</li>
+<li>后配置与跳板机的ssh连接, 在<code>~/.ssh/config</code>中输入:  <figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">Host jumper<br>    HostName 跳板机IP<br>    Port 跳板机ssh端口<br>    User 跳板机用户名<br>    ServerAliveInterval 60<br>    IdentityFile ~/.ssh/刚才KEY-sj的私钥<br></code></pre></td></tr></table></figure></li>
+<li>后执行远程转发命令<br>  <code>ssh -gfnNTR 18086:localhost:22 jumper</code><blockquote>
+<ul>
+<li>解释: <code>g</code>开启网关转发, <code>f</code>放入后台, <code>n</code>不接受输入, <code>N</code>不开交互式shell, <code>T</code>禁用伪终端, <code>R</code>代表这是远程的转发规则。</li>
+<li>该命令将本机(服务端)的22端口映射到了跳板机的18086端口, 使得外界访问本机的ssh服务变为可能。</li>
+<li>该命令长期在服务端后台执行, 可通过<code>ps aux | grep &#39;ssh -gfnNTR 18086:localhost:22 jumper&#39;</code>命令查看其进程</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>客户端主机:<br><code>ssh 服务端用户名@跳板机IP -p 18086 -i KEY-cs的私钥</code><br>若有问题，添加<code>-v</code>参数可以打印详细日志；或者删掉<code>~/.ssh/known_host*</code>相关文件试试看。<blockquote>
+<p>上述命令也可改到<code>~/.ssh/config</code>中。</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="2-2-当无公网IP时"><a href="#2-2-当无公网IP时" class="headerlink" title="2.2 当无公网IP时"></a>2.2 当无公网IP时</h3><h4 id="2-2-1-可视化内网穿透软件"><a href="#2-2-1-可视化内网穿透软件" class="headerlink" title="2.2.1 可视化内网穿透软件"></a>2.2.1 可视化内网穿透软件</h4><p>使用场景: 服务端有桌面系统, 如工位上的windows, 软件需安装于服务端</p>
+<ul>
+<li>花生壳:<br>直接添加一个端口映射项目即可, 可最终得到命令形如<code>ssh -p 21570 james@44621m7c15.yicp.fun</code>;<br>优点: 足够简单; 缺点: 花生壳定义到wsl的映射时, 需面临宿主机每次开关机都会重启虚拟网络适配器导致wsl的内网IP改变的情况, 不够方便。</li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/397451362">ZeroTier</a>：<br>功能：创建一个虚拟局域网，实现多台机器的互访。</li>
+</ul>
+<h4 id="2-2-2-命令行穿透工具"><a href="#2-2-2-命令行穿透工具" class="headerlink" title="2.2.2 命令行穿透工具"></a>2.2.2 命令行穿透工具</h4><p>使用场景: 如工位上的wsl, 公司内网的某台服务器 </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gustavohenrique.net/en/2022/02/45-tools-to-exposes-local-server-to-the-internet/">多种工具</a>, 这些工具不仅限于tcp协议</li>
+<li>bore<br>优缺点: 简单, bore.pub带宽超低。<ol>
+<li>公网主机(可选):	将该主机作为bore服务器, 相当于跳板机: <code>bore server</code></li>
+<li>服务端: <ul>
+<li>在想要暴露端口的主机上下载<a target="_blank" rel="noopener" href="https://github.com/ekzhang/bore">二进制可执行文件</a></li>
+<li>暴露本地端口: <code>bore local 22 --to bore.pub</code></li>
+<li>如果设置了公网主机, 命令改为 <code>bore local 22 --to 公网主机IP</code></li>
+<li>你会得到一个新端口newP</li>
+</ul>
+</li>
+<li>客户端: <ul>
+<li>访问暴露的端口: <code>ssh -p newP 服务端用户名@bore.pub</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>其他</li>
+</ul>
+<h3 id="2-3-当服务端IP不固定时"><a href="#2-3-当服务端IP不固定时" class="headerlink" title="2.3 当服务端IP不固定时"></a>2.3 当服务端IP不固定时</h3><ul>
+<li>场景：本地想访问工位的wsl</li>
+<li>难点：Windows是通过虚拟交换机给Win10主机与WSL2子系统分别分配IP地址，当Windows重启并再次打开WSL2时，虚拟交换机会被重新创建，分配给它们的IP地址也会随着改变。</li>
+<li>常规思路：每次重启后都用wsl2的新IP来更新ssh命令</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/455171787/answer/2022306191">讨巧思路</a>：直接访问win端系统，在进入cmd时系统自动跳转到<code>bash.exe</code>(就像Linux中在<code>.bashrc</code>末尾加上<code>zsh</code>一样)<ul>
+<li>方法：执行跳转命令  <figure class="highlight powershell"><table><tr><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">New-ItemProperty</span> <span class="hljs-literal">-Path</span> <span class="hljs-string">&quot;HKLM:\SOFTWARE\OpenSSH&quot;</span> <span class="hljs-literal">-Name</span> DefaultShell <span class="hljs-literal">-Value</span> <span class="hljs-string">&quot;C:\WINDOWS\System32\bash.exe&quot;</span> <span class="hljs-literal">-PropertyType</span> String <span class="hljs-literal">-Force</span><br></code></pre></td></tr></table></figure></li>
+<li>然后再通过(#2.1，或#2.2)的方法访问工位的Windows</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-破qiang访问互联网"><a href="#3-破qiang访问互联网" class="headerlink" title="3. 破qiang访问互联网"></a>3. 破qiang访问互联网</h2><h3 id="3-1-只想访问特定的外部网站"><a href="#3-1-只想访问特定的外部网站" class="headerlink" title="3.1 只想访问特定的外部网站"></a>3.1 只想访问特定的外部网站<a name="31"></a></h3><p>场景：我国内的服务器需要从github下载文件, 为此只想实现访问github域名的能力</p>
+<div class="tag-plugin colorful note" ><div class="title">下述方法综述</div><div class="body"><p><strong>法1~法4</strong>我多次尝试，有的有时有效，有的完全无效；只要自己有梯子，<strong>法5</strong>一定能行；<strong>法6</strong>属于是曲线救国了，保底方案。 color&#x3D;green</p></div></div> 
+
+<h4 id="法1：修改本地hosts文件"><a href="#法1：修改本地hosts文件" class="headerlink" title="法1：修改本地hosts文件"></a>法1：修改本地<code>hosts</code>文件</h4><blockquote>
+<p><strong>更新：</strong>查到的IP地址国内也不一定能访问，此法无效。</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zaishuiyifang_ct/article/details/134299038">原理</a>：我国通过一些技术手段实现了<code>DNS污染</code>，返回错误的GitHub的ip地址。因此我们只需更改&#x2F;增添<code>hosts</code>中的域名IP映射即可</li>
+<li>获取正确映射：进入<a target="_blank" rel="noopener" href="https://ip.tool.chinaz.com/">网站</a> 查询（如 github.com -&gt; 20.205.243.166）</li>
+<li>在Windows：<br>  修改<code>C:\Windows\System32\drivers\etc\hosts</code>权限，<br>  后进入添加映射（如 <code>20.205.243.166 github.com</code>），<br>  刷新本地DNS缓存：<code>ipconfig /flushdns</code></li>
+<li>在Linux：<br>  只需在<code>/etc/hosts</code>添加映射即可<br>  若未生效，<code>sudo systemctl restart nscd</code>，如报错则须安装：<code>sudo apt install nscd </code>或 <code>sudo /etc/init.d/nscd restart</code></li>
+</ul>
+<h4 id="法2：修改DNS"><a href="#法2：修改DNS" class="headerlink" title="法2：修改DNS"></a>法2：修改DNS</h4><ul>
+<li>原理：不同的DNS服务商可能有不同的解析方法</li>
+<li>在Linux：<code>sudo vim /etc/resolv.conf</code>添加&#x2F;修改<code>nameserver </code>，指定你想要使用的DNS服务器的IP地址，后执行<code>sudo systemctl restart systemd-resolved</code>生效<blockquote>
+<p>如：<code>nameserver 114.114.114.114        nameserver 223.5.5.5</code></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="法3：借助github520项目"><a href="#法3：借助github520项目" class="headerlink" title="法3：借助github520项目"></a>法3：借助<a target="_blank" rel="noopener" href="https://github.com/521xueweihan/GitHub520">github520</a>项目</h4><p>原理仍是修改<code>hosts</code> </p>
+<h4 id="法4：针对github网站可用ssh密钥对"><a href="#法4：针对github网站可用ssh密钥对" class="headerlink" title="法4：针对github网站可用ssh密钥对"></a>法4：针对github网站可用ssh密钥对</h4><ul>
+<li>在主访主机准备密钥对，见<a href="#12">这里</a></li>
+<li>公钥复制到github: “Settings” -&gt; “SSH and GPG keys” -&gt; “New SSH key”</li>
+<li>两种处理方式，但都是ssh连接：<div class="tag-plugin tabs" align="center"id="tab_7"><div class="nav-tabs"><div class="tab active"><a href="#tab_7-1">方式1</a></div><div class="tab"><a href="#tab_7-2">方式2</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_7-1"><ul>
+<li>验证可以连接：<code>ssh -v -T git@github.com</code>, 会返回<code>successful</code></li>
+<li>此时可以下载仓库：<code>git clone git@github.com:your-username/your-repository.git</code></li>
+</ul></div><div class="tab-pane" id="tab_7-2"><ul>
+<li>在<code>~/.ssh/config</code>添加远程主机信息如下：<figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">Host github<br>  User  hl1670704310@icloud.com<br>  Hostname ssh.github.com<br>  PreferredAuthentications publickey<br>  IdentityFile ~/.ssh/id_rsa<br>  port 443<br></code></pre></td></tr></table></figure></li>
+<li>验证可以连接：<code>ssh -T git@github.com </code></li>
+</ul></div></div></div></li>
+</ul>
+<h4 id="法5：配置代理"><a href="#法5：配置代理" class="headerlink" title="法5：配置代理"></a>法5：配置代理</h4><p>假设我们已经通过一些渠道得到了一个梯子，且正运行在本地，那请移步系统的<kbd>设置→ 网络→ 代理→ 手动设置代理</kbd>获取代理地址和端口（e.g. <code>127.0.0.1:7890</code>）<br>然后在终端给git配置代理服务器：<code>git config --global http.proxy http://127.0.0.1:7890</code><br>可验证查看配置成功：<code>git config --global --list</code></p>
+<h4 id="法6：借助gitee"><a href="#法6：借助gitee" class="headerlink" title="法6：借助gitee"></a>法6：借助gitee</h4><p>以上方法均无效时，老实把目标仓库导入到gitee，然后使用gitee仓库链接。</p>
+<h3 id="3-2-丝滑访问所有外网"><a href="#3-2-丝滑访问所有外网" class="headerlink" title="3.2 丝滑访问所有外网"></a>3.2 丝滑访问所有外网</h3><h4 id="3-2-1-VPN软件"><a href="#3-2-1-VPN软件" class="headerlink" title="3.2.1 VPN软件"></a>3.2.1 VPN软件</h4><ul>
+<li>小火箭</li>
+<li>v2ray</li>
+<li>clash<ul>
+<li>for windows</li>
+<li>for linux</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-2-代理商"><a href="#3-2-2-代理商" class="headerlink" title="3.2.2 代理商"></a>3.2.2 代理商</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://dash.bste.xyz/#/dashboard">BSTE</a>: 目前最便宜，￥85&#x2F;年，100G&#x2F;月</li>
+</ul>
+<h4 id="3-2-3-自造代理服务器"><a href="#3-2-3-自造代理服务器" class="headerlink" title="3.2.3 自造代理服务器"></a>3.2.3 自造代理服务器</h4><ul>
+<li>永久免费HeroKu部署：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=xEewUeWDNeI">实践TODO</a></li>
+</ul>
+<h2 id="4-VScode强大的远程开发工具——-Remote-Tunnels"><a href="#4-VScode强大的远程开发工具——-Remote-Tunnels" class="headerlink" title="4. VScode强大的远程开发工具—— Remote Tunnels"></a>4. VScode强大的远程开发工具—— Remote Tunnels</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/590168599">中文</a>；<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/tunnels">microsoft文档</a></p>
+<h3 id="工具原理"><a href="#工具原理" class="headerlink" title="工具原理"></a>工具原理</h3><p>本质是<code>vscode</code>客户端与服务端的通信。在服务端已经安装好<code>code cli</code>且运行了通道命令的前提下，我们可直接用URL连接远端，如server&#x2F;VM&#x2F;container&#x2F;WSL等（远端需能访问互联网）。<br>该工具有助于高效便捷地开发，但有个缺点是必须事先想办法登录远端手动开启<code>通道命令</code>。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>当用于生产的服务器在公司内网，无法直接访问怎么办？</li>
+<li>当你把工位电脑装上向日葵，延迟和隐私问题该咋办？</li>
+<li>当公司服务器管理严格，你买了公网IP，用ssh搞端口转发，搭建的通道被网管掐了又怎么办？</li>
+<li>当在服务器里docker容器搞生产，层层端口、IP设置令人头大，又该如何应对？（当然<code>SSH/tunnel到宿主机+ Dev Container插件</code>也比较简单）</li>
+</ul>
+<p>vscode服务端解君愁。</p>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><ul>
+<li><p>远程服务端：</p>
+<ol>
+<li>下载独立包装的<a target="_blank" rel="noopener" href="https://code.visualstudio.com/Download">code CLI压缩包</a>后解压，认准系统和架构，如下图：  <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/下载code-CLI.png" fancybox="true"/></div></div>
+  也可命令方式：  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">curl -Lk <span class="hljs-string">&#x27;https://code.visualstudio.com/sha/download?build=stable&amp;os=cli-alpine-x64&#x27;</span> --output vscode_cli.tar.gz<br>tar -xf vscode_cli.tar.gz<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的下载连接只针对<code>Linux-Alpine x64</code>系统及架构（不过其他版本如focal好像也能用），若是其他系统架构，请<a target="_blank" rel="noopener" href="https://code.visualstudio.com/sha/">参考</a>。  </p>
+</blockquote>
+</li>
+<li>按如下图步骤进行：①用命令创建隧道：<code>./code tunnel</code>，将得到绑定到此远程计算机的 vscode.dev <code>URL</code>。若是首次创建，②需按提示选择登录账户（建议Microsoft）、③进入<code>devicelogin</code>的url，登录账户，输入它给你的验证码、④给这台远程机器命名。⑤获得vscode dev的<code>URL</code>  <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/vscode构建远程通道.jpg" fancybox="true"/></div></div></li>
+<li>确保通道持久运行，<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/tunnels#_how-can-i-ensure-i-keep-my-tunnel-running">戳</a></li>
+</ol>
+</li>
+<li><p>本地客户端：</p>
+<ul>
+<li>方法1：在本地网页上开发。直接打开 <code>URL</code>即可进入网页版<code>vscode desktop</code><blockquote>
+<p>若是首次打开<code>URL</code>，会提示登录GitHub&#x2F;Microsoft账户来授权你能正确地访问隧道。（国内没有梯子的用户建议使用<code>Microsoft</code>账户） </p>
+</blockquote>
+</li>
+<li>方法2：用本地<code>VScode Desktop</code>开发。先安装插件<code>Remote SSH</code>，<code>Remote Tunnels</code>；后进入左侧面板的<kbd>Remote</kbd>，点击<kbd>Tunnels</kbd>右侧的<kbd>+</kbd>，选择账户，系统会自动刷出你账户下的远程机器名，连接即可。<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/vscode远程连接tunnels.png" fancybox="true"/></div></div></li>
+</ul>
+</li>
+</ul>
+
+
+
+<div class="article-footer reveal fs14">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文为 @JamesRay 原创，采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/toolkit02-about-network-connection/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://taddream.site/post/toolkit02-about-network-connection/&title=网络连接相关 - 分你一半&summary=汇总不同场景下主机之间的远程连接方法、代理服务等；探索更全能快捷的远程开发方式。   "><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=网络连接相关 - 分你一半&amp;body=https://taddream.site/post/toolkit02-about-network-connection/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/toolkit02-about-network-connection/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/manual-useful-command/">常用命令手册</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/toolkit01_about_OS_config/">操作系统配置相关</a></div></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <section class='header cmt-title cap theme'>
+      快来参与讨论吧
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023 <a href="/">JamesRay</a>, All Rights Reserved.</p>
+</div>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.21.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js","memos":"/js/plugins/memos.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img, .gallery img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

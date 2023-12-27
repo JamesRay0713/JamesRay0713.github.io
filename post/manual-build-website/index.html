@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>手册：搭建博客网站 - 分你一半</title>
+
+  
+    <meta name="description" content="从0-1, 基于hexo+ stellar+ vercel搭建博客所涉及到的方方面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="手册：搭建博客网站">
+<meta property="og:url" content="https://taddream.site/post/manual-build-website/">
+<meta property="og:site_name" content="分你一半">
+<meta property="og:description" content="从0-1, 基于hexo+ stellar+ vercel搭建博客所涉及到的方方面。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://taddream.site/assets/posts/%E9%83%A8%E7%BD%B2github-io.jpg">
+<meta property="article:published_time" content="2023-11-24T14:29:58.000Z">
+<meta property="article:modified_time" content="2023-12-25T02:18:44.273Z">
+<meta property="article:author" content="James Ray">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://taddream.site/assets/posts/%E9%83%A8%E7%BD%B2github-io.jpg">
+  
+  
+  
+  <meta name="keywords" content="博客">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="分你一半" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="/assets/build_site_images/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%872.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?snow"></div></div></div>
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='post'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">分你一半</div><div class="sub normal cap">tadpole in dreams ~~</div><div class="sub hover cap" style="opacity:0"> turning in circles</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/explore/">探索</a><a class="nav-item" href="/social/">社交</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">手册：搭建博客网站</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E6%9E%84%E6%80%9D"><span class="toc-text">博客构思</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-text">环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%A0%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2%E6%BA%90%E7%A0%81%E4%BB%93%E5%BA%93"><span class="toc-text">造一个博客源码仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%90%AD%E5%BB%BA"><span class="toc-text">本地搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0%E4%BA%92%E8%81%94%E7%BD%91"><span class="toc-text">部署博客到互联网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%AE%80%E5%8D%95%E5%BF%AB%E6%8D%B7%EF%BC%9A%E9%83%A8%E7%BD%B2%E5%88%B0GitHub-Gitee"><span class="toc-text">最简单快捷：部署到GitHub&#x2F;Gitee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E5%A5%BD%E7%9A%84%E9%83%A8%E7%BD%B2%EF%BC%9A%E8%B4%AD%E4%B9%B0%E5%9F%9F%E5%90%8D-vercel%E9%83%A8%E7%BD%B2"><span class="toc-text">更好的部署：购买域名+ vercel部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#github%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2-TODO"><span class="toc-text">github自动化部署(TODO)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E9%AB%98%E7%BA%A7%E9%83%A8%E7%BD%B2%EF%BC%9A%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">更高级部署：用自己的服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A"><span class="toc-text">更多</span></a></li></ol></div></div></widget>
+
+
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/flight-ticket-crawler/"><span class="title">一个特价机票的优选工具</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a></div></widget>
+
+
+
+<widget class="widget-wrapper markdown"><div class="widget-body fs14"><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/build_site_images/wiki-note-cover.jpg" alt="小贝贝"></p>
+</div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700665441051" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7724" data-darkreader-inline-fill="" width="200" height="200"><path d="M950.857143 512q0 143.428571-83.714286 258T650.857143 928.571429q-15.428571 2.857143-22.571429-4t-7.142857-17.142858v-120.571428q0-55.428571-29.714286-81.142857 32.571429-3.428571 58.571429-10.285715t53.714286-22.285714 46.285714-38 30.285714-60T792 489.142857q0-69.142857-45.142857-117.714286 21.142857-52-4.571429-116.571428-16-5.142857-46.285714 6.285714t-52.571429 25.142857l-21.714285 13.714286q-53.142857-14.857143-109.714286-14.857143t-109.714286 14.857143q-9.142857-6.285714-24.285714-15.428571T330.285714 262.571429 281.142857 254.857143q-25.142857 64.571429-4 116.571428-45.142857 48.571429-45.142857 117.714286 0 48.571429 11.714286 85.714286t30 60 46 38.285714 53.714285 22.285714 58.571429 10.285715q-22.857143 20.571429-28 58.857143-12 5.714286-25.714286 8.571428t-32.571428 2.857143-37.428572-12.285714T276.571429 728q-10.857143-18.285714-27.714286-29.714286t-28.285714-13.714285l-11.428572-1.714286q-12 0-16.571428 2.571428t-2.857143 6.571429 5.142857 8 7.428571 6.857143l4 2.857143q12.571429 5.714286 24.857143 21.714285t18 29.142858l5.714286 13.142857q7.428571 21.714286 25.142857 35.142857t38.285714 17.142857 39.714286 4 31.714286-2l13.142857-2.285714q0 21.714286 0.285714 50.857143t0.285714 30.857142q0 10.285714-7.428571 17.142858t-22.857143 4q-132.571429-44-216.285714-158.571429T73.142857 512q0-119.428571 58.857143-220.285714T291.714286 132 512 73.142857t220.285714 58.857143T892 291.714286 950.857143 512z" p-id="7725" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="https://gitee.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700810083615" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11744" data-darkreader-inline-fill="" width="200" height="200"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="11745" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #7b2c2f;"></path></svg></a><a class="social" href="mailto:hl1670704310@icloud.com" rel="noopener noreferrer"><svg t="1700665373816" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6718" data-darkreader-inline-fill="" width="200" height="200"><path d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l73.142857 62.000762V780.190476h682.666666V417.645714l73.142857-62.000762zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z m-10.971428 73.142857H181.638095L512 525.58019 842.361905 243.809524z" p-id="6719" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="/social/#comments" rel="noopener noreferrer"><svg t="1700665059859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5632" data-darkreader-inline-fill="" width="200" height="200"><path d="M371.2 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5633" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M512 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5634" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M652.8 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5635" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M377.6 896c-6.4 0-6.4 0-12.8 0-12.8-6.4-19.2-19.2-19.2-32l0-128C211.2 684.8 128 569.6 128 448c0-179.2 172.8-320 384-320s384 140.8 384 320c0 172.8-166.4 313.6-371.2 320l-128 121.6C390.4 896 384 896 377.6 896zM512 192C332.8 192 192 307.2 192 448c0 102.4 76.8 192 192 236.8 12.8 6.4 19.2 19.2 19.2 32l0 76.8 83.2-76.8C492.8 704 505.6 704 512 704c179.2 0 320-115.2 320-256S691.2 192 512 192z" fill="#1afa29" p-id="5636" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a></div></footer>
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+
+
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/%E5%8D%9A%E5%AE%A2/">博客</a></div><div id="post-meta">
+    <span>发布于&nbsp;<time datetime="2023-11-24T14:29:58.000Z">2023年11月24日</time></span>
+    
+    <span>更新于&nbsp;<time datetime="2023-12-25T02:18:44.273Z">2023年12月25日</time></span>
+    </div></div></div>
+
+<article class='md-text content post'>
+<h1 class="article-title"><span>手册：搭建博客网站</span></h1>
+<p>从0-1, 基于hexo+ stellar+ vercel搭建博客所涉及到的方方面。</p>
+<span id="more"></span>
+<h2 id="博客构思"><a href="#博客构思" class="headerlink" title="博客构思"></a>博客构思</h2><p>我们想要做出一个什么样的个人博客？应该是能满足记录生活、学习笔记、bug收录、项目展示、产品推广、个人简历、朋友互动等等，最主要是简单易上手且方便部署。为此选择了Hexo。</p>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><p><input type="checkbox" style="color: green;" checked> win10系统，终端用<code>powershell</code>或<a href="/yinxiang/Git-SDK%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE"><code>git-bash</code></a>均可。<br><input type="checkbox" style="color: green;" checked> 确认git可正常访问github, 有问题请<a href="/post/toolkit02-about-network-connection#31">参考</a>。<br><input type="checkbox" style="color: green;" checked> 安装有<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38192105/article/details/113865023">nvm</a>，并以此安装了与stellar匹配的<code>nodejs</code><a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/#%E5%BC%80%E5%A7%8B%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C">版本</a>。验证安装成功: <code>node -v</code>, <code>npm -v</code>。<br><input type="checkbox" style="color: green;" disabled> 全局安装了hexo博客工具：<code>npm install -g hexo-cli</code>。</p>
+<h2 id="造一个博客源码仓库"><a href="#造一个博客源码仓库" class="headerlink" title="造一个博客源码仓库"></a>造一个博客源码仓库</h2><div class="tag-plugin colorful note" ><div class="body"><p>~&nbsp;如果你只想在本地搭建博客，没有远程管理及迁移的需求，可跳过该节。</p></div></div>
+<ul>
+<li><p>在github&#x2F;gitee新建<mark class="tag-plugin colorful mark" color="warning">私有</mark>仓库<code>blog-source</code>, 克隆到本地;</p>
+</li>
+<li><p>进入<code>blog-source</code>目录，制作<code>.gitignore</code>:   </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">.DS_Store<br>Thumbs.db<br>db.json<br>*.log<br>node_modules/<br>public/<br>.deploy*/<br>_multiconfig.yml<br></code></pre></td></tr></table></figure>  
+</li>
+<li><p>然后进行下节的博客搭建工作。</p>
+</li>
+<li><p>当需要上传博客源码时：<code>git add --all &amp;&amp; git commit -m &quot;update&quot; &amp;&amp; git push origin main</code>。</p>
+<blockquote>
+<p>如果是gitee, <code>main</code>要换成<code>master</code></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="本地搭建"><a href="#本地搭建" class="headerlink" title="本地搭建"></a>本地搭建</h2><ul>
+<li><mark class="tag-plugin colorful mark" color="green">造目录</mark>：
+创建空的博客工程目录 <code>blog-source</code>，如果是git克隆而来则直接进入目录。</li>
+<li><mark class="tag-plugin colorful mark" color="green">搭框架</mark>：
+<ul>
+<li>如果是从零开始，则先把目录所有内容移出去，后用命令<code>hexo init</code>来初始化得到博客框架；</li>
+<li>如果已有博客，想移植其他主题，则建议按需移植以下目录&#x2F;文件过来：<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-bullet">-</span> <span class="hljs-string">scaffolds/</span>  <span class="hljs-comment"># 模版</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">source/</span>     <span class="hljs-comment"># 各种文章内容、资源      </span><br><span class="hljs-bullet">-</span> <span class="hljs-string">themes/</span>     <span class="hljs-comment"># 主题</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">_config.yml</span> <span class="hljs-comment"># 配置文件</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">_config.theme.yml</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">package.json</span><br><span class="hljs-string">...</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>为什么不整个移植过来呢？因为其他目录&#x2F;文件都是通过上述目录&#x2F;文件生成的，保证了移植时的轻量化。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><mark class="tag-plugin colorful mark" color="green">装软件</mark>：安装‘package.json’中的npm依赖，执行<mark class="tag-plugin colorful mark" color="red">npm install</mark>。</li>
+<li><mark class="tag-plugin colorful mark" color="green">配主题</mark>:
+<ul>
+<li>如果对`stellar`主题功能更新没有兴趣，直接安装稳定版：<code>npm i hexo-theme-stellar</code></li>
+<li>如果想跟随`stellar`作者的更新脚步，则克隆他的主题仓库，<ul>
+<li>若当前目录下有`.git&#x2F;`，那就用（仓库套仓库）：<div class="tag-plugin copy"><input class="copy-area" readonly id="copy_1" value="git submodule add https://github.com/xaoxuu/hexo-theme-stellar.git themes/stellar"><button class="copy-btn" onclick="util.copy(&quot;copy_1&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
+<li>若没有，那就用：<div class="tag-plugin copy"><input class="copy-area" readonly id="copy_2" value="git clone https://github.com/xaoxuu/hexo-theme-stellar.git themes/stellar"><button class="copy-btn" onclick="util.copy(&quot;copy_2&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
+</ul>
+</li>
+<li>如果想时时更新，还有自定义需求，那就<a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar">fork</a>他的仓库到自己的GitHub，然后用上面的clone或submodule add命令即可；</li>
+<li>然后在<code>_config.yml</code>中修改：<code>theme: stellar</code>。   <blockquote>
+<p>以后如果主题有更新，则进入`themes&#x2F;stellar&#x2F;`,执行<code>git pull</code>。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><mark class="tag-plugin colorful mark" color="green">DIY主题</mark>：
+<ul>
+<li>先将主题目录下的config文件复制到根目录下，使得hexo可用：<div class="tag-plugin copy"><input class="copy-area" readonly id="copy_3" value="cp themes/stellar/_config.yml _config.stellar.yml"><button class="copy-btn" onclick="util.copy(&quot;copy_3&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
+<li>然后可选择进一步根据<a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/theme-settings/">教程</a>设计自己的网站。</li>
+</ul>
+</li>
+<li><mark class="tag-plugin colorful mark" color="green">写文章</mark>：此刻你已经可以创建、修改、部署博客到本地了，常用命令有
+<blockquote>
+<p><code>hexo new post [title]</code>            (新建文章)<br><code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</code>   (清缓存、生成网页、本地部署) </p>
+</blockquote>
+<div class="tag-plugin colorful note" ><div class="body"><p><a href="/post/manual-ues-stellar-theme">主题手册</a>是对<code>stellar</code>教程文档中大量<code>内置标签</code>用法的总结，用以辅助写文章。我也将时刻关注主题版本的升级，每次升级的内容都要同步添加到我的<a href="/post/manual-ues-stellar-theme">主题手册</a>中。</p></div></div></li>
+</ul>
+<h2 id="部署博客到互联网"><a href="#部署博客到互联网" class="headerlink" title="部署博客到互联网"></a>部署博客到互联网</h2><h3 id="最简单快捷：部署到GitHub-Gitee"><a href="#最简单快捷：部署到GitHub-Gitee" class="headerlink" title="最简单快捷：部署到GitHub&#x2F;Gitee"></a>最简单快捷：部署到GitHub&#x2F;Gitee</h3><ul>
+<li>新建<mark class="tag-plugin colorful mark" color="warning">公有</mark>仓库，存放我们的输出的网页静态文件（即<code>hexo g</code>命令后生成的<code>/public/</code>文件夹）<blockquote>
+<p>仓库名有讲究：GitHub应为<code>用户名.github.io</code>; Gitee应为<code>用户名</code></p>
+</blockquote>
+</li>
+<li>将仓库加入配置<figure class="highlight yaml"><figcaption><span>./_config.yml</span></figcaption><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">git@gitee.com:jamesray0713/jamesray0713.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br>  <span class="hljs-attr">message:</span> <span class="hljs-string">&quot;update&quot;</span><br><span class="hljs-bullet">-</span> <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://github.com/JamesRay0713/JamesRay0713.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">gh-pages</span><br>  <span class="hljs-attr">message:</span> <span class="hljs-string">&quot;update&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="tag-plugin colorful note" color="yellow"><div class="body"><p>注意GitHub和gitee两者branch的区别</p></div></div></li>
+<li>下载部署工具: <code>npm i hexo-deployer-git</code></li>
+<li>执行部署：<code>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></li>
+<li>仓库开启服务<div class="tag-plugin tabs" align="center"id="tab_1"><div class="nav-tabs"><div class="tab active"><a href="#tab_1-1">github</a></div><div class="tab"><a href="#tab_1-2">gitee</a></div></div><div class="tab-content"><div class="tab-pane active" id="tab_1-1"><p>在仓库的<kbd>Settings</kbd>设置中找到<kbd>Pages</kbd>选项卡，设置<kbd>Source</kbd>和<kbd>Branch</kbd>为如下图所示：<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/%E9%83%A8%E7%BD%B2github-io.jpg" fancybox="true"/></div></div></p>
+<p>此时，我们得到了域名<code>user.github.io</code>。</p></div><div class="tab-pane" id="tab_1-2"><p>在仓库的<kbd>服务</kbd>下拉中找到<kbd>Gitee Pages</kbd>选项卡，可以什么都不要动，只需点击<kbd>更新</kbd>即可。<br>此时，我们得到了域名<code>user.gitee.io</code>。</p></div></div></div></li>
+</ul>
+<h3 id="更好的部署：购买域名-vercel部署"><a href="#更好的部署：购买域名-vercel部署" class="headerlink" title="更好的部署：购买域名+ vercel部署"></a>更好的部署：购买域名+ vercel部署</h3><p>Vercel可以获得更快的访问速度，但在大陆地区<code>vercel.app</code>和<code>github.io</code>均被运营商进行了DNS污染，无法直接访问。因此需要购买域名。</p>
+<ul>
+<li><p>准备域名：</p>
+<ul>
+<li><p>购买域名: 我在腾讯云上买了<code>taddream.site</code>，有效期10年，￥175，挺实惠的。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/ba">备案</a>域名:<br>需要备案的场景：你的存放静态文件的服务器在国内，我目前托管在vercel完全没必要的。如果你的网站有很大的访问流量，建议把服务器搬到国内。<br>这里服务器有两种情况：</p>
+<ul>
+<li>购买的云服务器：按照官方教程走即可</li>
+<li>自己的实体服务器：该情况下备案审核要求很繁琐（特别是腾讯云），而且需要有<code>营业执照</code>+ <code>备案授权码</code><blockquote>
+<p>营业执照那里需填写法人身份信息；授权码可以去淘宝搜<code>腾讯 授权码</code>，10块左右。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>设置DNS解析：在云服务商的<a target="_blank" rel="noopener" href="https://console.dnspod.cn/dns/taddream.site/record">域名DNS解析</a>中增加2条CNAME 解析, 主机记录分别是<code>@</code>、<code>www</code>：</p>
+<table>
+<thead>
+<tr>
+<th>主机记录</th>
+<th>记录类型</th>
+<th>记录值</th>
+<th>TTL</th>
+<th>解析请求来源(isp)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@</td>
+<td>CNAME</td>
+<td>cname.vercel-dns.com</td>
+<td>10分钟</td>
+<td>默认</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>获取免费<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/ssl">SSL证书</a>，一年一签。</p>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://vercel.com/">vercel.com</a>部署：<br>用<code>GitHub</code>账号登录，<kbd>Add New...</kbd> -&gt; <kbd>Project</kbd>, 导入我们的静态文件仓库（<code>username.github.io</code>）。<br>输入<code>projectName</code>，这直接关系到三级域名的名字，点击部署。<br>修改分支：因为我们的博客静态文件存在了<code>gh-pages</code>分支，所以在当前vercel项目中依次点击<kbd>settings</kbd> -&gt; <kbd>git</kbd> -&gt; <kbd>Production Branch</kbd>, 输入<code>gh-pages</code>即可。</p>
+<blockquote>
+<p>分支不会立即生效，需再次用<code>hexo d</code>将静态文件部署上传后，这里才能自动更改。<br>此时，我们得到了新域名<code>taddream.vercel.app</code>(国内不可访问)。</p>
+</blockquote>
+</li>
+<li><p>绑定域名：<br>在当前vercel项目中依次点击<kbd>settings</kbd> -&gt; <kbd>Domains</kbd> -&gt; <kbd>Production Branch</kbd>, 填入我的域名<code>taddream.site</code></p>
+</li>
+<li><p>修改博客配置文件, 修改之后需等待<code>重新部署</code>后生效：</p>
+<figure class="highlight yaml"><figcaption><span>./_config.yml</span></figcaption><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">url:</span> <span class="hljs-string">https://taddream.site</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="github自动化部署-TODO"><a href="#github自动化部署-TODO" class="headerlink" title="github自动化部署(TODO)"></a>github自动化部署(TODO)</h3><p>TODO：　<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/github-pages">https://hexo.io/zh-cn/docs/github-pages</a></p>
+<ul>
+<li>借助GitHub Actions实现自动化。我们无需再负责维护<code>user.github.io</code>仓库, 只需push好<mark class="tag-plugin colorful mark" color="warning">源码仓库</mark>即可。</li>
+<li>gitee无自动化功能，考虑放弃gitee部署这条路。</li>
+<li>我们直接在本地源码仓库目录的<code>.github/workflows/</code>下创建配置文件(即自动化脚本)，如下：<details class="tag-plugin colorful folding" ><summary><span>.github/workflows/auto-deploy.yml</span></summary><div class="body"><figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">name:</span> <span class="hljs-string">auto</span> <span class="hljs-string">deploy</span><br><span class="hljs-attr">on:</span><br>  <span class="hljs-attr">workflow_dispatch:</span>  <span class="hljs-comment"># 手动触发</span><br>  <span class="hljs-attr">push:</span>               <span class="hljs-comment"># push代码时触发</span><br><span class="hljs-attr">jobs:</span><br>  <span class="hljs-attr">build:</span><br>    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span> <span class="hljs-comment"># 运行环境为最新版 Ubuntu</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">auto</span> <span class="hljs-string">deploy</span><br>    <span class="hljs-attr">steps:</span><br>    <span class="hljs-comment"># 1. 获取源码</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Checkout</span><br>      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span> <span class="hljs-comment"># 使用 actions/checkout@v3</span><br>      <span class="hljs-attr">with:</span> <span class="hljs-comment"># 条件</span><br>        <span class="hljs-attr">submodules:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># Checkout private submodules(themes or something else). 当有子模块时切换分支？</span><br>    <span class="hljs-comment"># 2. 配置环境</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Setup</span> <span class="hljs-string">Node.js</span> <span class="hljs-number">18.12</span><span class="hljs-string">.x</span><br>      <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/setup-node@master</span><br>      <span class="hljs-attr">with:</span><br>        <span class="hljs-attr">node-version:</span> <span class="hljs-string">&quot;18.12.x&quot;</span><br>    <span class="hljs-comment"># 3. 生成静态文件</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Generate</span> <span class="hljs-string">Public</span> <span class="hljs-string">Files</span><br>      <span class="hljs-attr">run:</span> <span class="hljs-string">|</span><br><span class="hljs-string">        npm i</span><br><span class="hljs-string">        npm install hexo-cli -g</span><br><span class="hljs-string">        hexo clean &amp;&amp; hexo generate</span><br><span class="hljs-string"></span>    <span class="hljs-comment"># 4. 部署到 GitHub 仓库（可选）</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">GitHub</span> <span class="hljs-string">Pages</span><br>      <span class="hljs-attr">uses:</span> <span class="hljs-string">peaceiris/actions-gh-pages@v3</span><br>      <span class="hljs-attr">with:</span><br>        <span class="hljs-attr">deploy_key:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.DEPLOY_KEY</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">external_repository:</span> <span class="hljs-string">JamesRay0713/JamesRay0713.github.io</span><br>        <span class="hljs-attr">publish_branch:</span> <span class="hljs-string">gh-pages</span><br>        <span class="hljs-attr">publish_dir:</span> <span class="hljs-string">./public</span><br>        <span class="hljs-attr">commit_message:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">github.event.head_commit.message</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">user_name:</span> <span class="hljs-string">&#x27;github-actions[bot]&#x27;</span><br>        <span class="hljs-attr">user_email:</span> <span class="hljs-string">&#x27;github-actions[bot]@users.noreply.github.com&#x27;</span><br>    <span class="hljs-comment"># 5. 部署到服务器（可选）</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">Server</span><br>      <span class="hljs-attr">uses:</span> <span class="hljs-string">easingthemes/ssh-deploy@v3</span><br>      <span class="hljs-attr">env:</span><br>        <span class="hljs-attr">SSH_PRIVATE_KEY:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.SERVER_SSH_KEY</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">ARGS:</span> <span class="hljs-string">&quot;-rltgoDzvO --delete&quot;</span><br>        <span class="hljs-attr">EXCLUDE:</span> <span class="hljs-string">&quot;.well-known, .user.ini&quot;</span><br>        <span class="hljs-attr">SOURCE:</span> <span class="hljs-string">public/</span><br>        <span class="hljs-attr">REMOTE_HOST:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.REMOTE_HOST</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">REMOTE_PORT:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.REMOTE_PORT</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">REMOTE_USER:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.REMOTE_USER</span> <span class="hljs-string">&#125;&#125;</span><br>        <span class="hljs-attr">TARGET:</span> <span class="hljs-string">$&#123;&#123;</span> <span class="hljs-string">secrets.TARGET</span> <span class="hljs-string">&#125;&#125;</span><br></code></pre></td></tr></table></figure></div></details>
+<blockquote>
+<p>选择<code>仅部署GitHub</code>时，只需修改其中<code>external_repository</code>为自己的博客静态文件仓库</p>
+</blockquote>
+</li>
+<li>配置公私钥，用于’Action的虚拟机(客户端，私钥)’同’静态文件仓库(服务端，公钥)’的通信：<ul>
+<li>准备一对公私钥(<a href="/post/toolkit02-about-network-connection/#12">方法</a>)</li>
+<li>放置公钥：进入<code>external_repository</code>→ <kbd>settings</kbd>→ <kbd>Deploy keys</kbd>→ <kbd>Add Deploy key</kbd></li>
+</ul>
+</li>
+</ul>
+<h3 id="更高级部署：用自己的服务器"><a href="#更高级部署：用自己的服务器" class="headerlink" title="更高级部署：用自己的服务器"></a>更高级部署：用自己的服务器</h3><p>略，以后探索。参考：<div class="tag-plugin link dis-select"><a class="link-card rich" title="" href="https://zhuanlan.zhihu.com/p/120743882" target="_blank" rel="external nofollow noopener noreferrer" cardlink autofill="title,icon,desc"><div class="top"><div class="lazy img" data-bg="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/link/8f277b4ee0ecd.svg"></div><span class="cap link fs12">https://zhuanlan.zhihu.com/p/120743882</span></div><div class="bottom"><span class="title">https://zhuanlan.zhihu.com/p/120743882</span><span class="cap desc fs12"></span></div></a></div></p>
+<h2 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h2><p>请<a href="/explore/#%E6%9C%89%E7%A9%BATODO">移步</a></p>
+
+
+
+<div class="article-footer reveal fs14">
+    <section id="references">
+      <div class="header"><span>参考资料</span></div>
+      <div class="body">
+        <ul>
+        <li class="post-title">
+          <p><a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar">Stellar - 每个人的独立博客</a></p>
+
+        </li>
+        </ul>
+      </div>
+    </section>
+    
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文为 @JamesRay 原创，采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+    <section id="share">
+      <div class="header"><span>分享文章</span></div>
+      <div class="body">
+        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/manual-build-website/" /></div>
+        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://taddream.site/post/manual-build-website/&title=手册：搭建博客网站 - 分你一半&summary=从0-1, 基于hexo+ stellar+ vercel搭建博客所涉及到的方方面。"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=手册：搭建博客网站 - 分你一半&amp;body=https://taddream.site/post/manual-build-website/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a></div>
+        
+        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/manual-build-website/"/>
+        </div>
+        
+      </div>
+    </section>
+    </div>
+
+</article>
+
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/manual-debug/">手册：debug</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/manual-manage-blog/">手册：管理hexo-stellar博客</a></div></section></div>
+
+
+
+
+
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <section class='header cmt-title cap theme'>
+      
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023 <a href="/">JamesRay</a>, All Rights Reserved.</p>
+</div>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.21.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js","memos":"/js/plugins/memos.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img, .gallery img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
