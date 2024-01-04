@@ -1,5 +1,6 @@
 #!/bin/bash
 # 环境：Ubuntu/WSL2，NVIDIA-GPU(默认已安装驱动，可以顺利使用命令nvidia-smi。)
+# 使用方法：`bash config_script.sh [--in-container]`
 
 # 0. 准备参数和最基础的安装包
 in_container=false    # 默认要执行所有模块（即非容器的场景）
@@ -89,7 +90,7 @@ check_and_install() {
 }
     # 注：psmisc用于pstree
 packages=("wget" "curl" "git" "vim" "net-tools" "iputils-ping" "htop" "tmux" 
-"zsh" "kmod" "g++" "gcc" "cmake" "psmisc" "language-pack-en")
+"zsh" "kmod" "g++" "gcc" "cmake" "psmisc" "language-pack-en" "tree")
 for package in "${packages[@]}"; do
   check_and_install $package
 done

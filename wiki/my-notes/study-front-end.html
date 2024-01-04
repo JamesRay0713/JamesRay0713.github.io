@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0">
+  <meta charset="utf-8">
+  
+
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
+  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
+  <link rel='dns-prefetch' href='//unpkg.com'>
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>笔记本：前端学习笔记 - 分你一半</title>
+
+  
+    <meta name="description" content="至少掌握HTML, DOM -&gt; CSS -&gt; JavaScript -&gt; jQuery -&gt; AJAX，在线工具">
+<meta property="og:type" content="website">
+<meta property="og:title" content="前端学习笔记">
+<meta property="og:url" content="https://taddream.site/wiki/my-notes/study-front-end.html">
+<meta property="og:site_name" content="分你一半">
+<meta property="og:description" content="至少掌握HTML, DOM -&gt; CSS -&gt; JavaScript -&gt; jQuery -&gt; AJAX，在线工具">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://taddream.site/assets/wiki/my-notes/css-gammer.png">
+<meta property="article:published_time" content="2024-01-03T08:03:00.000Z">
+<meta property="article:modified_time" content="2024-01-03T08:05:28.834Z">
+<meta property="article:author" content="James Ray">
+<meta property="article:tag" content="技术, 生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://taddream.site/assets/wiki/my-notes/css-gammer.png">
+  
+  
+  
+  <meta name="keywords" content="技术, 生活">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="分你一半" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="/assets/build_site_images/%E7%BD%91%E7%AB%99%E5%9B%BE%E6%A0%872.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  
+
+
+  
+    
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+    
+  
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="/assets/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">分你一半</div><div class="sub normal cap">tadpole in dreams ~~</div><div class="sub hover cap" style="opacity:0"> turning in circles</div></a></div>
+
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/explore/">探索</a><a class="nav-item" href="/social/">社交</a></nav>
+</header>
+
+
+<div class="widgets">
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/my-notes/" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc"><div class="widget-header cap dis-select"><span class="name">日常问题解决</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/#start"><span class="toc-text">技术碎片收集</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E5%B0%8F%E5%B7%A5%E5%85%B7.html"><span class="toc-text">常用代码小工具</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/debug%E9%9B%86%E5%90%88.html"><span class="toc-text">debug集合</span></a></div></div><div class="widget-header cap dis-select"><span class="name">...</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/my-notes/study-front-end.html"><span class="toc-text">前端学习笔记</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-text">快速入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#css%E4%BB%A3%E7%A0%81%E7%9A%843%E7%A7%8D%E5%87%BA%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-text">css代码的3种出现方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript"><span class="toc-text">JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-text">基础知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jQuery"><span class="toc-text">jQuery</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-1"><span class="toc-text">基础知识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AJAX"><span class="toc-text">AJAX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NodeJS"><span class="toc-text">NodeJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">包管理工具</span></a></li></ol></li></ol></div></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+  
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/">博客</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/my-notes/">笔记本</a></div><div id="post-meta">
+    <span>更新于&nbsp;<time datetime="2024-01-03T08:05:28.834Z">2024年1月3日</time></span>
+    </div></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>前端学习笔记</span></h1>
+  <p>至少掌握<code>HTML, DOM -&gt; CSS -&gt; JavaScript -&gt; jQuery -&gt; AJAX</code>，<a target="_blank" rel="noopener" href="https://c.runoob.com/front-end/61">在线工具</a></p>
+<span id="more"></span>
+
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/html/html-tutorial.html">教程</a>; <a target="_blank" rel="noopener" href="https://www.runoob.com/tags/html-reference.html">手册:标签-属性等</a>。</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/css/css-tutorial.html">教程</a>; <a target="_blank" rel="noopener" href="https://www.runoob.com/cssref/css-reference.html">手册:选择器-属性等</a>。</p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p>C层叠S样式S表，使网页样式、布局更高效规范。本质来讲，CSS都是对HTML元素的<code>style</code>属性进行定义。</p>
+<ul>
+<li>语法：<div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/wiki/my-notes/css-gammer.png" fancybox="true"/></div></div>
+<blockquote>
+<p>属性与值之间只有冒号，没有空格。</p>
+</blockquote>
+</li>
+<li>选择器：用于限定后面这组声明的使用范围。<a target="_blank" rel="noopener" href="https://www.runoob.com/cssref/css-selectors.html">常见的选择器</a>：<ul>
+<li><strong>元素选择器</strong><br>  选择<code>一种</code>HTML元素，如：<code>p &#123;  color:blue; &#125;</code>；</li>
+<li><strong>类选择器</strong><br>  选择<code>class</code>属性为特定值的<code>所有</code>HTML元素，如：<code>.highlight &#123;  color:yellow; &#125;</code>;<br>  选择<code>class</code>属性为特定值的<code>一种</code>HTML元素，如：<code>p.highlight &#123;  color:yellow; &#125;</code>;</li>
+<li><strong>ID选择器</strong><br>  选择<code>id</code>属性为特定值的<code>那一个</code>HTML元素，如：<code>#runoob &#123; width:200px; &#125;</code>;</li>
+<li><strong>属性选择器</strong><br>  选择<code>指定</code>属性为特定值的<code>指定</code>HTML元素，如：<code>nput[type=&quot;text&quot;] &#123;border:1px solid gray;&#125;</code>;</li>
+<li>后代、兄弟、伪类、伪元素选择器……</li>
+</ul>
+</li>
+</ul>
+<h3 id="css代码的3种出现方式"><a href="#css代码的3种出现方式" class="headerlink" title="css代码的3种出现方式"></a>css代码的3种出现方式</h3><ul>
+<li>内联样式：  一个元素的临时装饰，位于HTML标签的<code>style</code>属性中，如：<br><code>&lt;p style=&quot;color:sienna;margin-left:20px&quot;&gt;这是一个段落。&lt;/p&gt;</code></li>
+<li>内部样式表：一个文档多处可复用，位于<code>html.head.style</code>元素的内容中，如：  <figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">        hr &#123;<span class="hljs-attribute">color</span>:sienna;&#125;</span><br><span class="language-css">        <span class="hljs-selector-tag">p</span> &#123;<span class="hljs-attribute">margin-left</span>:<span class="hljs-number">20px</span>;&#125;</span><br><span class="language-css">        <span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">background-image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">&quot;images/back40.gif&quot;</span>);&#125;</span><br><span class="language-css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>外部样式表：独立文件随处使用，位于<code>html.head.link</code>元素的href属性中，如：  <figure class="highlight html"><figcaption><span>"mystyle.css"即外部样式表</span></figcaption><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;mystyle.css&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-tutorial.html">教程</a>, <a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-htmldom.html">DOM文档对象模型</a>, <a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-window.html">BOM浏览器对象模型</a>; <a target="_blank" rel="noopener" href="https://www.runoob.com/jsref/jsref-tutorial.html">手册：内置对象-Browser对象-DOM对象</a>；。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ul>
+<li>数据类型：<ul>
+<li>值类型(基本类型)：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol。</li>
+<li>引用数据类型（对象类型）：对象(Object)、数组(Array)、函数(Function)，还有两个特殊的对象：正则（RegExp）和日期（Date）</li>
+</ul>
+</li>
+<li>JS对象：<code>在 JavaScript中，几乎所有的事物都是对象</code>。  <figure class="highlight js"><figcaption><span>‘对象’实例：</span></figcaption><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> person = &#123;<br>    <span class="hljs-attr">firstName</span>: <span class="hljs-string">&quot;John&quot;</span>,      <span class="hljs-comment">// 这是对象属性，值的访问方式：`person.firstName`</span><br>    lastName : <span class="hljs-string">&quot;Doe&quot;</span>,<br>    id : <span class="hljs-number">5566</span>,<br>    fullName : <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)   <span class="hljs-comment">// 访问时，不加`()`是对象属性；加`()`是对象方法。</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">firstName</span> + <span class="hljs-string">&quot; &quot;</span> + <span class="hljs-variable language_">this</span>.<span class="hljs-property">lastName</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>JS对象是<code>变量</code>的容器、<code>键值对</code>的容器、</p>
+</blockquote>
+</li>
+<li>DOM</li>
+<li>BOM<ul>
+<li>所有JS全局对象、函数以及变量均自动成为 window 对象的成员。全局变量是 window 对象的属性。全局函数是 window 对象的方法。甚至 HTML DOM的document也是window对象的属性之一。</li>
+</ul>
+</li>
+<li>JS高级程序设计工具——<a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-libraries.html">JS库&#x2F;框架</a><ul>
+<li>jQuery：是目前最受欢迎的 JavaScript 框架。它使用 CSS 选择器来访问和操作网页上的 HTML 元素（DOM 对象）。jQuery 同时提供 companion UI（用户界面）和插件。见下一节。</li>
+<li>Prototype<ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-lib-prototype.html">简单使用方法</a></li>
+<li>与 jQuery 类似，Prototype 也有自己的 $() 函数。$() 函数接受 HTML DOM 元素的 id 值（或 DOM 元素），并会向 DOM 对象添加新的功能。</li>
+<li>与 jQuery 不同，Prototype 没有用以取代 window.onload() 的 ready() 方法。相反，Prototype 会向浏览器及 HTML DOM 添加扩展。</li>
+</ul>
+</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h2 id="jQuery"><a href="#jQuery" class="headerlink" title="jQuery"></a>jQuery</h2><p>资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/jquery/jquery-tutorial.html">教程</a>；<a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-lib-prototype.html">参考手册</a>；<a target="_blank" rel="noopener" href="https://www.runoob.com/manual/jquery/">API手册</a></p>
+<h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><p>jQuery 是一个 JavaScript 库。jQuery 极大地简化了 JavaScript 编程。</p>
+<details class="tag-plugin colorful folding" color="green"><summary><span>该库的功能</span></summary><div class="body"><p>HTML 元素选取<br>HTML 元素操作<br>CSS 操作<br>HTML 事件函数<br>JavaScript 特效和动画<br>HTML DOM 遍历和修改<br>AJAX<br>Utilities<br>除此之外，jQuery 还提供了大量的插件。</p></div></details>
+<ul>
+<li>使用方法：<ul>
+<li>先在网页的<code>&lt;script&gt;</code>标签中引用该库，如：<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js">&lt;script src=<span class="hljs-string">&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;</span>&gt;&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>为更快引入，可修改<code>src</code>为jquary的合适的CDN地址，如:<ul>
+<li>国外的（<code>https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js</code>、<code>https://cdnjs.com/</code>…），</li>
+<li>国内的（<code>https://cdn.staticfile.org/jquery/3.4.0/jquery.min.js</code>）</li>
+</ul>
+</li>
+<li>疑惑为什么没有在 <code>&lt;script&gt;</code> 标签中使用 <code>type=&quot;text/javascript&quot;</code> ？在 HTML5 中，JavaScript 是 HTML5 以及所有现代浏览器中的默认脚本语言！</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>语法：<br>核心：选取 HTML 元素，执行操作。<br>基础语法： <code>$(selector).action()</code><blockquote>
+<p>关于选择器：jQuery 使用的语法是 XPath 与 CSS 选择器语法的组合。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a>AJAX</h2><p>资料：<a target="_blank" rel="noopener" href="https://www.runoob.com/ajax/ajax-tutorial.html">教程</a><br>AJAX（异步的 JavaScript 和 XML）是与服务器交换数据的技术，它在不重载全部页面的情况下，实现了对部分网页的更新。<br>AJAX不是语言，是一套标准。</p>
+<h2 id="NodeJS"><a href="#NodeJS" class="headerlink" title="NodeJS"></a>NodeJS</h2><h3 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h3><ul>
+<li>镜像源<figure class="highlight txt"><table><tr><td class="code"><pre><code class="hljs txt">node_mirror: https://npm.taobao.org/mirrors/node/<br>npm_mirror: https://npm.taobao.org/mirrors/npm/<br></code></pre></td></tr></table></figure></li>
+</ul>
+
+  
+  
+<div class="article-footer reveal fs14"></div>
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/my-notes/debug%E9%9B%86%E5%90%88.html">debug集合</a></div><div class="item" id="next"></div></section></div>
+
+  
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 JamesRay, All Rights Reserved.</p>
+</div>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    <script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.21.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js","memos":"/js/plugins/memos.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img, .gallery img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.src = 'https://giscus.app/client.js';
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>

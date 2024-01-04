@@ -23,15 +23,15 @@
   <title>红树林目标检测：红树林正射影像目标检测 - 分你一半</title>
 
   
-    <meta name="description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 coding过程参考PaddleYOLO项目用docker来准备paddleyolo的环境   注：容器里的&#x2F;paddle&#x2F;用于挂载和主机通信。另外一定要加--gpus&#x3D;all参数。  给">
+    <meta name="description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 基于paddleYOLO的coding资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&amp;#x2F">
 <meta property="og:type" content="website">
 <meta property="og:title" content="红树林正射影像目标检测">
 <meta property="og:url" content="https://taddream.site/wiki/OD-mangrove/">
 <meta property="og:site_name" content="分你一半">
-<meta property="og:description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 coding过程参考PaddleYOLO项目用docker来准备paddleyolo的环境   注：容器里的&#x2F;paddle&#x2F;用于挂载和主机通信。另外一定要加--gpus&#x3D;all参数。  给">
+<meta property="og:description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 基于paddleYOLO的coding资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&amp;#x2F">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-27T04:53:36.197Z">
-<meta property="article:modified_time" content="2023-12-27T04:53:36.197Z">
+<meta property="article:published_time" content="2023-12-28T20:04:39.119Z">
+<meta property="article:modified_time" content="2023-12-28T20:04:39.119Z">
 <meta property="article:author" content="James Ray">
 <meta property="article:tag" content="技术, 生活">
 <meta name="twitter:card" content="summary">
@@ -90,9 +90,9 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/OD-mangrove/" placeholder="search in OD-mangrove..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">红树林正射影像目标检测</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#coding%E8%BF%87%E7%A8%8B"><span class="toc-text">coding过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E8%80%83PaddleYOLO%E9%A1%B9%E7%9B%AE"><span class="toc-text">参考PaddleYOLO项目</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8docker%E6%9D%A5%E5%87%86%E5%A4%87paddleyolo%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="toc-text">用docker来准备paddleyolo的环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%99"><span class="toc-text">给</span></a></li></ol></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">红树林正射影像目标检测</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EpaddleYOLO%E7%9A%84coding"><span class="toc-text">基于paddleYOLO的coding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools"><span class="toc-text">.&#x2F;tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%EF%BC%9Adocker-paddle"><span class="toc-text">环境准备：docker+paddle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">配置模型</span></a></li></ol></li></ol></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/wiki/awesome-proj/others.html"><span class="title"><strong>有趣项目</strong><span class="dot"></span>awesome-proj</span></a><a class="item title" href="/wiki/awesome-proj/"><span class="title"><strong>有趣项目</strong><span class="dot"></span>awesome-proj</span></a><a class="item title" href="/wiki/my-notes/debug%E9%9B%86%E5%90%88.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>debug集合</span></a><a class="item title" href="/wiki/my-notes/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E5%B0%8F%E5%B7%A5%E5%85%B7.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>常用代码小工具</span></a><a class="item title" href="/wiki/my-notes/"><span class="title"><strong>笔记本</strong><span class="dot"></span>技术碎片收集</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/wiki/my-notes/study-front-end.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>前端学习笔记</span></a><a class="item title" href="/wiki/my-notes/%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81%E5%B0%8F%E5%B7%A5%E5%85%B7.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>常用代码小工具</span></a><a class="item title" href="/wiki/OD-mangrove/"><span class="title"><strong>红树林目标检测</strong><span class="dot"></span>红树林正射影像目标检测</span></a><a class="item title" href="/wiki/awesome-proj/others.html"><span class="title"><strong>有趣项目</strong><span class="dot"></span>awesome-proj</span></a><a class="item title" href="/wiki/awesome-proj/"><span class="title"><strong>有趣项目</strong><span class="dot"></span>awesome-proj</span></a></div></widget>
 </div>
 
 
@@ -106,18 +106,42 @@
   
   
 <div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OD-mangrove/">红树林目标检测</a></div><div id="post-meta">
-    <span>更新于&nbsp;<time datetime="2023-12-27T04:53:36.197Z">2023年12月27日</time></span>
+    <span>更新于&nbsp;<time datetime="2023-12-28T20:04:39.119Z">2023年12月29日</time></span>
     </div></div></div>
 
   <article class='md-text content wiki'>
   <h1 class="article-title"><span>红树林正射影像目标检测</span></h1>
   <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>红树林目标检测，特点是超大分辨率的遥感数据，小目标检测</p>
-<h2 id="coding过程"><a href="#coding过程" class="headerlink" title="coding过程"></a>coding过程</h2><h3 id="参考PaddleYOLO项目"><a href="#参考PaddleYOLO项目" class="headerlink" title="参考PaddleYOLO项目"></a>参考<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO">PaddleYOLO</a>项目</h3><h4 id="用docker来准备paddleyolo的环境"><a href="#用docker来准备paddleyolo的环境" class="headerlink" title="用docker来准备paddleyolo的环境"></a>用docker来准备paddleyolo的环境</h4><div class="tag-plugin copy"><input class="copy-area" readonly id="copy_11" value="docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6"><button class="copy-btn" onclick="util.copy(&quot;copy_11&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
-<div class="tag-plugin copy"><input class="copy-area" readonly id="copy_12" value="docker run --name paddle -itd -v $PWD/obj_OD:/paddle --gpus=all registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6 /bin/bash"><button class="copy-btn" onclick="util.copy(&quot;copy_12&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
+<h2 id="基于paddleYOLO的coding"><a href="#基于paddleYOLO的coding" class="headerlink" title="基于paddleYOLO的coding"></a>基于paddleYOLO的coding</h2><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO">PaddleYOLO</a>项目；<a target="_blank" rel="noopener" href="https://paddledetection.readthedocs.io/">官方文档</a></p>
+<details class="tag-plugin colorful folding" color="yellow"><summary><span>源码更改记录表</span></summary><div class="body"><ul><li>.&#x2F;configs:<ul><li><code>A</code>: <ul><li>configs&#x2F;datasets&#x2F;mangrove_coco.yml, </li><li>configs&#x2F;datasets&#x2F;mangrove_voc.yml, </li><li>configs&#x2F;yolov5&#x2F;yolov5_s_80e_ssod_finetune_coco_mangrove.yml</li></ul></li><li><code>M</code>: <ul><li>configs&#x2F;yolov5&#x2F;<em>base</em>&#x2F;yolov5_cspdarknet.yml</li></ul></li></ul></li><li>.&#x2F;dataset:<ul><li><code>A</code>: dataset&#x2F;mangrove&#x2F;</li></ul></li><li><h2 id="tools"><a href="#tools" class="headerlink" title=".&#x2F;tools"></a>.&#x2F;tools</h2></li></ul></div></details>
+<h3 id="环境准备：docker-paddle"><a href="#环境准备：docker-paddle" class="headerlink" title="环境准备：docker+paddle"></a>环境准备：docker+paddle</h3><div class="tag-plugin copy"><input class="copy-area" readonly id="copy_11" value="docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6"><button class="copy-btn" onclick="util.copy(&quot;copy_11&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
+<div class="tag-plugin copy"><input class="copy-area" readonly id="copy_12" value="docker run --name paddleGPU -itd -v $PWD/obj_OD:/paddle --gpus=all -p 8040:8040 registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6 /bin/bash"><button class="copy-btn" onclick="util.copy(&quot;copy_12&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
 <blockquote>
-<p>注：容器里的<code>/paddle/</code>用于挂载和主机通信。另外一定要加<code>--gpus=all</code>参数。</p>
+<p>注：容器里的<code>/paddle/</code>用于挂载和主机通信。另外一定要加<code>--gpus=all</code>参数。8040端口用于paddle的可视化工具。</p>
 </blockquote>
-<h4 id="给"><a href="#给" class="headerlink" title="给"></a>给</h4>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO/blob/develop/docs/tutorials/data/PrepareDetDataSet.md">见</a></p>
+<ul>
+<li>进入工作目录<code>/paddle/PaddleYOLO/</code>, 把自定义的voc类型训练数据复制进<code>dataset/mangrove/</code></li>
+<li>新增Dataset配置文件及其对应的数据目录<ul>
+<li>改为规范的voc组织结构：<code>bash dataset/mangrove/data_to_voc.sh</code>, 并配置<code>configs/datasets/mangrove_voc.yml</code><blockquote>
+<p>注意，bug点：<code>name: VOCDataSet</code>要换成<code>!VOCDataSet</code></p>
+</blockquote>
+</li>
+<li>增加规范的coco组织结构：<code>bash dataset/mangrove/data_voc_to_coco.sh</code>, 并配置<code>configs/datasets/mangrove_coco.yml</code></li>
+</ul>
+</li>
+<li>新增模型配置文件：涉及到选择模型，先选一个有预训练模型的：<code>configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
+<li>准备新锚框：<ul>
+<li>因为该项目属于密集的小目标监测，所有的锚框像素范围需要很小才行。</li>
+<li>计算新锚框：<code>python tools/anchor_cluster.py -v false -c configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
+<li>更新到配置文件的锚框部分：<code>configs/yolov5/_base_/yolov5_cspdarknet.yml</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="配置模型"><a href="#配置模型" class="headerlink" title="配置模型"></a>配置模型</h3><blockquote>
+<p>注：默认学习率是适配多GPU训练(8x GPU)，若使用单GPU训练，须对应调整学习率（例如，除以8）。更多使用问题，请参考FAQ<br>细细设置6个配置文件（1主5副）</p>
+</blockquote>
+
   
   
 <div class="article-footer reveal fs14"></div>
@@ -138,7 +162,7 @@
 
 <svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
 
     </section>
   </div>
@@ -149,7 +173,7 @@
       
 <footer class="page-footer reveal fs12"><hr><div class="text"><div style="text-align:center">
 
-<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023 <a href="/">JamesRay</a>, All Rights Reserved.</p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 JamesRay, All Rights Reserved.</p>
 </div>
 </div></footer>
 
