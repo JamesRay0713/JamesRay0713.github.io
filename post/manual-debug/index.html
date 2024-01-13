@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang='zh-CN'>
 
+
 <head>
-  <meta name="generator" content="Hexo 7.0.0">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0">
   <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0" theme-name="Stellar" theme-version="1.23.0">
   
-
+  <meta name="generator" content="Hexo 7.0.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
-  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
-  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
-  <link rel='dns-prefetch' href='//unpkg.com'>
-
+  
   <meta name="renderer" content="webkit">
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -31,8 +28,8 @@
 <meta property="og:description" content="平时遇到的各种bug及解决办法收录。【环境、命令、报错现象、原因、解决】">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-26T19:29:58.000Z">
-<meta property="article:modified_time" content="2024-01-06T07:35:20.092Z">
-<meta property="article:author" content="James Ray">
+<meta property="article:modified_time" content="2024-01-11T02:51:20.665Z">
+<meta property="article:author" content="JamesRay">
 <meta property="article:tag" content="debug">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -62,19 +59,13 @@
   
 
   
-
-
-  
-    
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
-    
-  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 </head>
 
 <body>
   
 
-<div class="l_cover post"><div class="cover"><div class="lazy img bg" data-bg="https://source.unsplash.com/2000x400/?debug"></div></div></div>
+
 
 
   <div class='l_body' id='start'>
@@ -93,11 +84,11 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">手册：debug</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9B%B8%E5%85%B3"><span class="toc-text">python相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%9C%BA%E6%99%AF"><span class="toc-text">调试场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E7%9B%B8%E5%85%B3"><span class="toc-text">docker相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-text">命令相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3"><span class="toc-text">Linux相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-text">ssh相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%9B%B8%E5%85%B3"><span class="toc-text">网络连接相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#url%E8%AE%BF%E9%97%AE%E6%8A%A5%E9%94%99"><span class="toc-text">url访问报错</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc" collapse="true"><div class="widget-header cap dis-select"><span class="name">手册：debug</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9B%B8%E5%85%B3"><span class="toc-text">python相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%9C%BA%E6%99%AF"><span class="toc-text">调试场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E7%9B%B8%E5%85%B3"><span class="toc-text">docker相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-text">命令相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3"><span class="toc-text">Linux相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-text">ssh相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%9B%B8%E5%85%B3"><span class="toc-text">网络连接相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#url%E8%AE%BF%E9%97%AE%E6%8A%A5%E9%94%99"><span class="toc-text">url访问报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">前端相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%86%85%E5%AE%B9%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF"><span class="toc-text">将内容复制到剪切板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84"><span class="toc-text">写博客时遇到的</span></a></li></ol></div></div></widget>
 
 
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/manual-build-website/"><span class="title">手册：搭建博客网站</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/flight-ticket-crawler/"><span class="title">一个特价机票的优选工具</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/toolkit01_about_OS_config/"><span class="title">操作系统配置相关</span></a></div></widget>
 
 <widget class="widget-wrapper markdown"><div class="widget-body fs14"><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site//build_site_images/wiki-note-cover.jpg" alt="小贝贝"></p>
 </div></widget>
@@ -110,12 +101,10 @@
 
       
 
-
-
-<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/debug/">debug</a></div><div id="post-meta">
-    <span>发布于&nbsp;<time datetime="2023-11-26T19:29:58.000Z">2023年11月27日</time></span>
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/debug/">debug</a></div><div id="post-meta"><span class="author">本文由 <a href="/author/JamesRay/">Ray~</a> 发布于</span>
+    <span class="created"><time datetime="2023-11-26T19:29:58.000Z">2023年11月27日</time></span>
     
-    <span>更新于&nbsp;<time datetime="2024-01-06T07:35:20.092Z">2024年1月6日</time></span>
+    <span class="updated">，更新于&nbsp;<time datetime="2024-01-11T02:51:20.665Z">2024年1月11日</time></span>
     </div></div></div>
 
 <article class='md-text content post'>
@@ -139,28 +128,42 @@
 <h2 id="网络连接相关"><a href="#网络连接相关" class="headerlink" title="网络连接相关"></a>网络连接相关</h2><h3 id="url访问报错"><a href="#url访问报错" class="headerlink" title="url访问报错"></a>url访问报错</h3><p><a name="reffer-problem"></a></p>
 <details class="tag-plugin colorful folding" ><summary><span>一个url本身可被访问，但置于另一网页则无法被加载的问题</span></summary><div class="body"><ul><li>场景：我的七牛云图床中一张图片的url可以打开查看，但将该url放到我博客文章里时，博客网页无法加载对应图片，浏览器控制台报错<code>forbidden 403</code></li><li>原因：七牛云图床有<code>防盗链</code>设置，且博客域名没有加入白名单。</li><li>解决办法：将你想要的域名放入白名单即可。注意，经测试<code>*.taddream.site</code>无效，应用<code>taddream.site</code>和<code>www.taddream.site</code>；另外最好加上<code>127.0.0.1</code>，用以本地调试。</li></ul></div></details>
 
-
-
+<h2 id="前端相关"><a href="#前端相关" class="headerlink" title="前端相关"></a>前端相关</h2><h3 id="将内容复制到剪切板"><a href="#将内容复制到剪切板" class="headerlink" title="将内容复制到剪切板"></a>将内容复制到剪切板</h3><ul>
+<li><p>问题描述：一个不显示的元素(即含有<code>style=&quot;display: none;&quot;</code>属性)的值，无法用<code>document.execCommand(&quot;Copy&quot;)</code>方法实现复制到剪切板的操作。</p>
+</li>
+<li><p>场景：在博客主题stellar-v1.23.0的源码中，作者在文章footer部分的<code>分享文章</code>模块有一个<code>class=&quot;social share-item link&quot;</code>的图标按钮，点击该按钮后，会将相应链接复制到剪切板。具体实现方式为:</p>
+<ul>
+<li>先在<code>分享文章</code>模块中把文章的永久链接显示出来，其HTML元素为：<figure class="highlight html"><figcaption><span>https://github.com/xaoxuu/hexo-theme-stellar/blob/1.23.0/layout/_partial/main/article/article_footer.ejs</span></figcaption><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;link&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;copy-area&quot;</span> <span class="hljs-attr">readonly</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;copy-link&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;$&#123;page.permalink&#125;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span> <br></code></pre></td></tr></table></figure></li>
+<li>然后对<code>social share-item link</code>按钮实现复制到剪切板的功能：<figure class="highlight html"><figcaption><span>.../article_footer.ejs</span></figcaption><table><tr><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;social share-item link&quot;</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;util.copy(<span class="hljs-symbol">&amp;quot;</span>copy-link<span class="hljs-symbol">&amp;quot;</span>, <span class="hljs-symbol">&amp;quot;</span>复制成功<span class="hljs-symbol">&amp;quot;</span>)&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">img</span> 。。。&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+util.copy函数的功能：通过<code>id=&quot;copy-link&quot;</code>找到相应元素，将元素的<code>value</code>属性的值复制到剪切板，源码如下：<figure class="highlight js"><figcaption><span>https://github.com/xaoxuu/hexo-theme-stellar/blob/1.23.0/source/js/main.js</span></figcaption><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-attr">copy</span>: <span class="hljs-function">(<span class="hljs-params">id, msg</span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">const</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id);<br>  <span class="hljs-keyword">if</span> (el) &#123;<br>    el.<span class="hljs-title function_">select</span>();<br>    <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">execCommand</span>(<span class="hljs-string">&quot;Copy&quot;</span>);<br>    <span class="hljs-keyword">if</span> (msg &amp;&amp; msg.<span class="hljs-property">length</span> &gt; <span class="hljs-number">0</span>) &#123;<br>      hud.<span class="hljs-title function_">toast</span>(msg, <span class="hljs-number">2500</span>);<br>    &#125;<br>  &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+通过这种方法，能顺利实现复制到剪切板的功能。<br>但当我简化这个模块，通过在<code>class=&quot;link&quot;</code>的元素中增加<code>style=&quot;display: none;&quot;</code>属性，把链接隐藏起来后，发现点击<code>class=&quot;social share-item link&quot;</code>按钮并不能把文章链接有效地复制到剪切板。</li>
+</ul>
+</li>
+<li><p>原因：因为<code>class=&quot;link&quot;</code>的元素是隐藏的，无法通过<code>document.execCommand(&quot;Copy&quot;)</code>实现复制到剪切板的操作。chatGPT解释如下</p>
+<blockquote>
+<p>由于浏览器安全策略的限制，直接使用 document.execCommand(“copy”) 在某些情况下可能无法正常工作。可以考虑使用更先进的 Clipboard API 或其他现代的方法。</p>
+</blockquote>
+</li>
+<li><p>解决办法：将<code>copy</code>函数中的<code>el.select(); document.execCommand(&quot;Copy&quot;);</code>替换为<code>navigator.clipboard.writeText(el.value)</code>即可。</p>
+</li>
+</ul>
+<h2 id="写博客时遇到的"><a href="#写博客时遇到的" class="headerlink" title="写博客时遇到的"></a>写博客时遇到的</h2><details class="tag-plugin colorful folding" ><summary><span>非常奇怪的bug: `jQuery`字符串(区分大小写)不能单独作为二级目录，否则整篇文章图片无法被懒加载</span></summary><div class="body"><ul><li>场景：<a href="https://taddream.site/wiki/my-notes/study-front-end.html#CSS">该页面</a></li><li>原因：未知。</li></ul></div></details>
 
 
 <div class="article-footer reveal fs14">
-    <section id="license">
-      <div class="header"><span>许可协议</span></div>
-      <div class="body"><p>本文为 @JamesRay 原创，采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
-</div>
-    </section>
-    
-    <section id="share">
-      <div class="header"><span>分享文章</span></div>
-      <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/manual-debug/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://taddream.site/post/manual-debug/&title=手册：debug - 分你一半&pics=debug&summary=平时遇到的各种bug及解决办法收录。【环境、命令、报错现象、原因、解决】"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=手册：debug - 分你一半&amp;body=https://taddream.site/post/manual-debug/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a></div>
+    <section id="share" style="display: flex; flex-wrap: wrap; align-items: center;">
+      <div class="link" style="display: none;">
+        <input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/manual-debug/" />
+      </div>
+      
+        <span>分享文章：本文由<a href="https://taddream.site">Ray~</a>原创，基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</span>
         
-        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0">
+      <a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" style="width: 25px; height: 25px; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" style="width: 25px; height: 25px; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a>
+      
+        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0;" >
           <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/manual-debug/"/>
         </div>
         
-      </div>
     </section>
     </div>
 
@@ -182,7 +185,7 @@
 
 <svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
 
     </section>
   </div>
@@ -205,7 +208,8 @@
     </div>
   </div>
   <div class='scripts'>
-    <script type="text/javascript">
+    
+<script type="text/javascript">
   const stellar = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     loadCSS: (href, before, media, attributes) => {
@@ -300,8 +304,8 @@
       }
     }
   };
-  stellar.version = '1.21.0';
-  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0';
+  stellar.version = '1.23.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0';
   stellar.config = {
     date_suffix: {
       just: '刚刚',
@@ -351,7 +355,7 @@
     stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
   }
   if ('true' == 'true') {
-    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied","toast":"复制成功"});
   }
 </script>
 
@@ -375,7 +379,6 @@
         console.error(error);
       }
       var script = document.createElement('script');
-      script.src = 'https://giscus.app/client.js';
       script.async = true;
       for (let key of Object.keys(el.attributes)) {
         let attr = el.attributes[key];
@@ -390,6 +393,9 @@
     loadJS();
   });
 </script>
+
+
+
 
 
 

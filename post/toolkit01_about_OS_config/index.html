@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang='zh-CN'>
 
+
 <head>
-  <meta name="generator" content="Hexo 7.0.0">
-  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0">
   <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0" theme-name="Stellar" theme-version="1.23.0">
   
-
+  <meta name="generator" content="Hexo 7.0.0">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
-  <link rel='dns-prefetch' href='https://gcore.jsdelivr.net'>
-  <link rel="preconnect" href="https://gcore.jsdelivr.net" crossorigin>
-  <link rel='dns-prefetch' href='//unpkg.com'>
-
+  
   <meta name="renderer" content="webkit">
   <meta name="force-rendering" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -23,26 +20,26 @@
   <title>操作系统配置相关 - 分你一半</title>
 
   
-    <meta name="description" content="该手册可用于对新到手的系统进行快速配置.">
+    <meta name="description" content="该手册可用于对新到手的系统进行快速配置。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="操作系统配置相关">
 <meta property="og:url" content="https://taddream.site/post/toolkit01_about_OS_config/">
 <meta property="og:site_name" content="分你一半">
-<meta property="og:description" content="该手册可用于对新到手的系统进行快速配置.">
+<meta property="og:description" content="该手册可用于对新到手的系统进行快速配置。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://taddream.site/assets/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-1.jpg">
+<meta property="og:image" content="http://assets.taddream.site/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-1.jpg">
 <meta property="og:image" content="https://pic3.zhimg.com/80/v2-14dab23bc473ca60891773a86e675be2_720w.webp">
-<meta property="og:image" content="https://taddream.site/assets/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-2.jpg">
-<meta property="og:image" content="https://taddream.site/assets/posts/tzdata%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA.jpg">
+<meta property="og:image" content="http://assets.taddream.site/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-2.jpg">
+<meta property="og:image" content="http://assets.taddream.site/posts/tzdata%E8%BD%AF%E4%BB%B6%E8%AE%BE%E7%BD%AE%E6%97%B6%E5%8C%BA.jpg">
 <meta property="article:published_time" content="2023-11-21T17:14:20.000Z">
-<meta property="article:modified_time" content="2023-12-27T17:45:40.367Z">
-<meta property="article:author" content="James Ray">
+<meta property="article:modified_time" content="2024-01-08T17:35:12.336Z">
+<meta property="article:author" content="JamesRay">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="OS">
 <meta property="article:tag" content="Windows">
 <meta property="article:tag" content="docker">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://taddream.site/assets/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://assets.taddream.site/posts/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E7%9B%B8%E5%85%B3-1.jpg">
   
   
   
@@ -70,13 +67,7 @@
   
 
   
-
-
-  
-    
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
-    
-  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -101,9 +92,9 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc"><div class="widget-header cap dis-select"><span class="name">操作系统配置相关</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="toc-text">配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8win%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%AF%E9%80%89"><span class="toc-text">配置：在win平台搞深度学习(可选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL2"><span class="toc-text">WSL2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F-1"><span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F-1"><span class="toc-text">配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8wsl2%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%AF%E9%80%89"><span class="toc-text">配置：在wsl2平台搞深度学习(可选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-text">docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%93-%E5%9C%A8win%E5%AE%89%E8%A3%85Docker-Desktop"><span class="toc-text">😓 在win安装Docker Desktop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%80-%E5%9C%A8Linux%E7%AB%AF%E5%AE%89%E8%A3%85Docker-Engine"><span class="toc-text">😀 在Linux端安装Docker Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%80-%E5%9C%A8wsl2%E5%AE%89%E8%A3%85Docker-Engine"><span class="toc-text">😀 在wsl2安装Docker Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%BF%85%E9%80%89"><span class="toc-text">配置：在docker容器中搞深度学习(必选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%A9-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%EF%BC%9A%E7%82%B9%E5%87%BB%E4%B8%8B%E8%BD%BD"><span class="toc-text">🚩 自动配置脚本：点击下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E6%BA%90"><span class="toc-text">1. 手动配置：配置国内源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A-%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7"><span class="toc-text">2.手动配置： 配置基础工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96%EF%BC%9Aohmyzsh"><span class="toc-text">终端美化：ohmyzsh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86%EF%BC%9Aminiconda"><span class="toc-text">包管理：miniconda</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8Linux%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">3. 手动配置：在Linux平台搞深度学习（可选）</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc" collapse="true"><div class="widget-header cap dis-select"><span class="name">操作系统配置相关</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows"><span class="toc-text">Windows</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="toc-text">配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8win%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%AF%E9%80%89"><span class="toc-text">配置：在win平台搞深度学习(可选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSL2"><span class="toc-text">WSL2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F-1"><span class="toc-text">安装系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F-1"><span class="toc-text">配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8wsl2%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%8F%AF%E9%80%89"><span class="toc-text">配置：在wsl2平台搞深度学习(可选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker"><span class="toc-text">docker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%93-%E5%9C%A8win%E5%AE%89%E8%A3%85Docker-Desktop"><span class="toc-text">😓 在win安装Docker Desktop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%80-%E5%9C%A8Linux%E7%AB%AF%E5%AE%89%E8%A3%85Docker-Engine"><span class="toc-text">😀 在Linux端安装Docker Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%98%80-%E5%9C%A8wsl2%E5%AE%89%E8%A3%85Docker-Engine"><span class="toc-text">😀 在wsl2安装Docker Engine</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0-%E5%BF%85%E9%80%89"><span class="toc-text">配置：在docker容器中搞深度学习(必选)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%A9-%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC%EF%BC%9A%E7%82%B9%E5%87%BB%E4%B8%8B%E8%BD%BD"><span class="toc-text">🚩 自动配置脚本：点击下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A%E9%85%8D%E7%BD%AE%E5%9B%BD%E5%86%85%E6%BA%90"><span class="toc-text">1. 手动配置：配置国内源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A-%E9%85%8D%E7%BD%AE%E5%9F%BA%E7%A1%80%E5%B7%A5%E5%85%B7"><span class="toc-text">2.手动配置： 配置基础工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF%E7%BE%8E%E5%8C%96%EF%BC%9Aohmyzsh"><span class="toc-text">终端美化：ohmyzsh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86%EF%BC%9Aminiconda"><span class="toc-text">包管理：miniconda</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%89%8B%E5%8A%A8%E9%85%8D%E7%BD%AE%EF%BC%9A%E5%9C%A8Linux%E5%B9%B3%E5%8F%B0%E6%90%9E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89"><span class="toc-text">3. 手动配置：在Linux平台搞深度学习（可选）</span></a></li></ol></li></ol></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/manual-build-website/"><span class="title">手册：搭建博客网站</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/flight-ticket-crawler/"><span class="title">一个特价机票的优选工具</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/toolkit01_about_OS_config/"><span class="title">操作系统配置相关</span></a></div></widget>
 
 
 
@@ -118,17 +109,15 @@
 
       
 
-
-
-<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/toolkit/">toolkit</a></div><div id="post-meta">
-    <span>发布于&nbsp;<time datetime="2023-11-21T17:14:20.000Z">2023年11月22日</time></span>
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/toolkit/">toolkit</a></div><div id="post-meta"><span class="author">本文由 <a href="/author/JamesRay/">Ray~</a> 发布于</span>
+    <span class="created"><time datetime="2023-11-21T17:14:20.000Z">2023年11月22日</time></span>
     
-    <span>更新于&nbsp;<time datetime="2023-12-27T17:45:40.367Z">2023年12月28日</time></span>
+    <span class="updated">，更新于&nbsp;<time datetime="2024-01-08T17:35:12.336Z">2024年1月9日</time></span>
     </div></div></div>
 
 <article class='md-text content post'>
 <h1 class="article-title"><span>操作系统配置相关</span></h1>
-<p>该手册可用于对新到手的系统进行快速配置.</p>
+<p>该手册可用于对新到手的系统进行快速配置。</p>
 <span id="more"></span>
 <p>基于不同的系统环境，会有不同的配置方法，下面列举了4种场景</p>
 <h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><h3 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h3><ol>
@@ -185,7 +174,7 @@
 <li>选<code>自定义安装</code>: 第一次安装，尽量全选(除了CUDA-&gt;visual studio); 第n次安装，尽量只选择CUDA，不然会出现错误。</li>
 <li><code>安装目录</code>尽量默认，因为后期开发中很多报错来源于路径问题。</li>
 <li><code>控制面板-&gt;程序</code>将得到一堆CUDA软件</li>
-<li>添加到系统环境变量：有4个，可能后两个未自动生成，需参考下图手动配，<code>NVCUDASAMPLES_ROOT;  NVCUDASAMPLES11_0_ROOT</code>    <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/操作系统配置相关-1.jpg" alt="示例图片" style="zoom:75%;" /></li>
+<li>添加到系统环境变量：有4个，可能后两个未自动生成，需参考下图手动配，<code>NVCUDASAMPLES_ROOT;  NVCUDASAMPLES11_0_ROOT</code>    <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/posts/操作系统配置相关-1.jpg" alt="示例图片" style="zoom:75%;" /></li>
 <li>验证：<code>nvcc -V</code></li>
 </ul>
 </li>
@@ -265,7 +254,7 @@
 </li>
 <li><p>配置镜像源</p>
 <ul>
-<li>获取<code>镜像加速器地址</code>：登录<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云</a>-&gt;控制台-&gt;搜索容器镜像服务-&gt;’镜像加速器’  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/操作系统配置相关-2.jpg" alt="示例图片" style="zoom:50%;" /></li>
+<li>获取<code>镜像加速器地址</code>：登录<a target="_blank" rel="noopener" href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云</a>-&gt;控制台-&gt;搜索容器镜像服务-&gt;’镜像加速器’  <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/posts/操作系统配置相关-2.jpg" alt="示例图片" style="zoom:50%;" /></li>
 <li>添加镜像  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /etc/docker<br>sudo <span class="hljs-built_in">tee</span> /etc/docker/daemon.json &lt;&lt;-<span class="hljs-string">&#x27;EOF&#x27;</span><br>&#123;<br><span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://你自己的.mirror.aliyuncs.com&quot;</span>]<br>&#125;<br>EOF<br>sudo systemctl daemon-reload<br>sudo systemctl restart docker<br></code></pre></td></tr></table></figure></li>
 </ul>
 </li>
@@ -290,7 +279,7 @@
 <li>wsl2的局限性：不能使用Linux原生的<code>systemctl</code>来管理服务。</li>
 <li>局限性的解决办法：<ul>
 <li>对于wsl2，<a href="#systemctl">戳</a></li>
-<li>对于wsl2里的docker容器，设置docker run的参数来模拟原生环境: <div class="tag-plugin copy" width="max"><input class="copy-area" readonly id="copy_10" value="docker run -itd --name=mycontainer --privileged --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ubuntu"><button class="copy-btn" onclick="util.copy(&quot;copy_10&quot;,&quot;Copied!&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div><blockquote>
+<li>对于wsl2里的docker容器，设置docker run的参数来模拟原生环境: <div class="tag-plugin copy"><input class="copy-area" id="copy_10" value="width:max docker run -itd --name=mycontainer --privileged --tmpfs /run --tmpfs /run/lock -v /sys/fs/cgroup:/sys/fs/cgroup:ro ubuntu"><button class="copy-btn" onclick="util.copy(&quot;copy_10&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div><blockquote>
 <p><code>--privileged</code>: 赋予容器特权，这对于模拟Systemd环境是必要的。<br><code>--tmpfs /run --tmpfs /run/lock</code>: 将 &#x2F;run 和 &#x2F;run&#x2F;lock 设置为tmpfs文件系统，以便Systemd单元正常工作<br><code>-v /sys/fs/cgroup:/sys/fs/cgroup:ro</code>: 将主机的 &#x2F;sys&#x2F;fs&#x2F;cgroup 挂载到容器中，以便容器内的Systemd能够访问它。</p>
 </blockquote>
 </li>
@@ -313,7 +302,7 @@
 <li><p>step3 容器里装CUDA、cuDNN(<a href="#Linux-3">跳转</a>); 或直接pull现成镜像使用。</p>
 </li>
 </ul>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux<a name="Linux"></a></h2><h3 id="🚩-自动配置脚本：点击下载"><a href="#🚩-自动配置脚本：点击下载" class="headerlink" title="🚩 自动配置脚本：点击下载"></a>🚩 自动配置脚本：<a href="/assets/downloads/code/forLinux/script_for_new_ubuntu.sh">点击下载</a></h3><p>该脚本可对一个Ubuntu新系统进行一键配置，脚本有以下模块（如果只想手动配置部分模块请跳转下一节）：</p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux<a name="Linux"></a></h2><h3 id="🚩-自动配置脚本：点击下载"><a href="#🚩-自动配置脚本：点击下载" class="headerlink" title="🚩 自动配置脚本：点击下载"></a>🚩 自动配置脚本：<a target="_blank" rel="noopener" href="http://assets.taddream.site/downloads/code/forLinux/script_for_new_ubuntu.sh">点击下载</a></h3><p>该脚本可对一个Ubuntu新系统进行一键配置，脚本有以下模块（如果只想手动配置部分模块请跳转下一节）：</p>
 <ul>
 <li>必定安装的①②③⑦模块：  <ul>
 <li>①<u>配置国内源</u>：加速apt的软件包的下载速度。</li>
@@ -339,7 +328,7 @@
 <li>注意：根据实际需求，完全可以自选任意模块的组合，进行一键配置。</li>
 <li>注意：将执行较长时间，结束后注意排查日志看有无报错。  </li>
 <li>注意：除了开始阶段<mark class="tag-plugin colorful mark" color="green">可能</mark>需要手动设置时区外，其他命令均自动完成。</li>
-<li>时区设置如下，需按提示依次填写<code>6</code>, <code>70</code>: <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="/assets/posts/tzdata软件设置时区.jpg" fancybox="true"/></div></div></li>
+<li>时区设置如下，需按提示依次填写<code>6</code>, <code>70</code>: <div class="tag-plugin image"><div class="image-bg"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/posts/tzdata软件设置时区.jpg" fancybox="true"/></div></div></li>
 </ul>
 </blockquote>
 </li>
@@ -413,23 +402,19 @@
 
 
 <div class="article-footer reveal fs14">
-    <section id="license">
-      <div class="header"><span>许可协议</span></div>
-      <div class="body"><p>本文为 @JamesRay 原创，采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</p>
-</div>
-    </section>
-    
-    <section id="share">
-      <div class="header"><span>分享文章</span></div>
-      <div class="body">
-        <div class="link"><input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/toolkit01_about_OS_config/" /></div>
-        <div class="social-wrap dis-select"><a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer" href="https://service.weibo.com/share/share.php?url=https://taddream.site/post/toolkit01_about_OS_config/&title=操作系统配置相关 - 分你一半&summary=该手册可用于对新到手的系统进行快速配置."><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/80c07e4dbb303.svg"/></a><a class="social share-item email" href="mailto:?subject=操作系统配置相关 - 分你一半&amp;body=https://taddream.site/post/toolkit01_about_OS_config/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/a1b00e20f425d.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a></div>
+    <section id="share" style="display: flex; flex-wrap: wrap; align-items: center;">
+      <div class="link" style="display: none;">
+        <input class="copy-area" readonly="true" id="copy-link" value="https://taddream.site/post/toolkit01_about_OS_config/" />
+      </div>
+      
+        <span>分享文章：本文由<a href="https://taddream.site">Ray~</a>原创，基于<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a> 许可协议，转载请注明出处。</span>
         
-        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0">
+      <a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy" style="width: 25px; height: 25px; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/b32ef3da1162a.svg"/></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy" style="width: 25px; height: 25px; margin-right: 5px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/social/8411ed322ced6.svg"/></a>
+      
+        <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0;" >
           <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/toolkit01_about_OS_config/"/>
         </div>
         
-      </div>
     </section>
     </div>
 
@@ -451,7 +436,7 @@
 
 <svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
 
-<div id="giscus" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
 
     </section>
   </div>
@@ -474,7 +459,8 @@
     </div>
   </div>
   <div class='scripts'>
-    <script type="text/javascript">
+    
+<script type="text/javascript">
   const stellar = {
     // 懒加载 css https://github.com/filamentgroup/loadCSS
     loadCSS: (href, before, media, attributes) => {
@@ -569,8 +555,8 @@
       }
     }
   };
-  stellar.version = '1.21.0';
-  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.21.0';
+  stellar.version = '1.23.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0';
   stellar.config = {
     date_suffix: {
       just: '刚刚',
@@ -620,7 +606,7 @@
     stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
   }
   if ('true' == 'true') {
-    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied"});
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied","toast":"复制成功"});
   }
 </script>
 
@@ -644,7 +630,6 @@
         console.error(error);
       }
       var script = document.createElement('script');
-      script.src = 'https://giscus.app/client.js';
       script.async = true;
       for (let key of Object.keys(el.attributes)) {
         let attr = el.attributes[key];
@@ -659,6 +644,9 @@
     loadJS();
   });
 </script>
+
+
+
 
 
 
