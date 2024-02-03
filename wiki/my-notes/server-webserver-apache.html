@@ -17,23 +17,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>有趣项目：h1 - 分你一半</title>
+  <title>笔记本：web服务器-Apache - 分你一半</title>
 
   
-    <meta name="description" content="文章站点项目大佬友链项目收集   h2dsf">
+    <meta name="description" content="本文操作的环境为ubuntu18.04 一些概念虚拟主机虚拟主机允许在同一台服务器上运行多个网站，有两种实现方式：  基于域名的VH最常见。一台服务器的 IP 地址可以被多个域名共享，服务器通过检查 HTTP 请求中的 Host 头部来确定请求的目标域名，然后Apache把请求路由到相应的虚拟主机配置。  注意：在DNS服务商那里，这里涉及到的那些域名，都应该被解析到Apache所在的服务器IP。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="h1">
-<meta property="og:url" content="https://taddream.site/wiki/awesome-proj/others.html">
+<meta property="og:title" content="web服务器-Apache">
+<meta property="og:url" content="https://taddream.site/wiki/my-notes/server-webserver-apache.html">
 <meta property="og:site_name" content="分你一半">
-<meta property="og:description" content="文章站点项目大佬友链项目收集   h2dsf">
+<meta property="og:description" content="本文操作的环境为ubuntu18.04 一些概念虚拟主机虚拟主机允许在同一台服务器上运行多个网站，有两种实现方式：  基于域名的VH最常见。一台服务器的 IP 地址可以被多个域名共享，服务器通过检查 HTTP 请求中的 Host 头部来确定请求的目标域名，然后Apache把请求路由到相应的虚拟主机配置。  注意：在DNS服务商那里，这里涉及到的那些域名，都应该被解析到Apache所在的服务器IP。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://th.bing.com/th/id/R.24c3db2aaeb3d0bcbda6e5af3a0725a1?rik=T3HhzTjT8xff1Q&pid=ImgRaw&r=0">
-<meta property="article:published_time" content="2024-01-08T18:46:15.642Z">
-<meta property="article:modified_time" content="2024-01-08T18:46:15.642Z">
+<meta property="article:published_time" content="2024-01-29T08:00:15.434Z">
+<meta property="article:modified_time" content="2024-01-29T08:00:15.434Z">
 <meta property="article:author" content="JamesRay">
 <meta property="article:tag" content="技术, 生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://th.bing.com/th/id/R.24c3db2aaeb3d0bcbda6e5af3a0725a1?rik=T3HhzTjT8xff1Q&pid=ImgRaw&r=0">
   
   
   
@@ -78,15 +76,19 @@
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="http://assets.taddream.site/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.9/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">分你一半</div><div class="sub normal cap">tadpole in dreams ~~</div><div class="sub hover cap" style="opacity:0"> turning in circles</div></a></div>
 
-<nav class="menu dis-select"><a class="nav-item" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item active" href="/explore/">探索</a><a class="nav-item" href="/social/">社交</a></nav>
+<nav class="menu dis-select"><a class="nav-item active" href="/">博客</a><a class="nav-item" href="/wiki/">项目</a><a class="nav-item" href="/explore/">探索</a><a class="nav-item" href="/social/">社交</a></nav>
 </header>
 
 
 <div class="widgets">
-<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/awesome-proj/" placeholder="search in awesome-proj..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/my-notes/" placeholder="search in my-notes ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc multi" id="data-toc" collapse="true"><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/awesome-proj/#start"><span class="toc-text">合辑</span></a></div></div><div class="widget-header cap dis-select"><span class="name">AI</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/awesome-proj/others.html"><span class="toc-text">h1</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#h2"><span class="toc-text">h2</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc" collapse="true"><div class="widget-body fs14"></div><div class="widget-header cap dis-select"><span class="name">后端开发</span></div><div class="widget-body fs14"><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/my-notes/server-webserver-apache.html"><span class="toc-text">web服务器-Apache</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-text">一些概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA"><span class="toc-text">虚拟主机</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4"><span class="toc-text">一些命令</span></a></li></ol></div></div><div class="widget-header cap dis-select"><span class="name">前端开发</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/html-css-js.html"><span class="toc-text">HTML+CSS+JS+jQuery+AJAX</span></a></div></div><div class="widget-header cap dis-select"><span class="name">工具类</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/git.html"><span class="toc-text">Git学习</span></a></div></div><div class="widget-header cap dis-select"><span class="name">日常笔记</span></div><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/my-notes/set-of-debug-and-pieces-of-knowledge.html"><span class="toc-text">debug集合</span></a></div></div></widget>
+
+
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/topic-security/"><span class="title">加解密及安全话题</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用代码/命令手册</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a></div></widget>
 </div>
 
 
@@ -98,20 +100,30 @@
 
   
   
-<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/explore/">探索</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/awesome-proj/">有趣项目</a></div><div id="post-meta">
-    <span>更新于&nbsp;<time datetime="2024-01-08T18:46:15.642Z">2024年1月9日</time></span>
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/">博客</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/my-notes/">笔记本</a></div><div id="post-meta">
+    <span>更新于&nbsp;<time datetime="2024-01-29T08:00:15.434Z">2024年1月29日</time></span>
     </div></div></div>
 
   <article class='md-text content wiki'>
   
-  <div class="tag-plugin banner"><img class="bg lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://th.bing.com/th/id/R.24c3db2aaeb3d0bcbda6e5af3a0725a1?rik=T3HhzTjT8xff1Q&pid=ImgRaw&r=0"><div class="content"><div class="top">
-    <button class="back cap" onclick="window.history.back()">
-      <svg aria-hidden="true" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>
-    </button>
-    <div class="tag-plugin navbar"><nav class="cap"><a class="link" href="/explore/">文章</a><a class="link" href="/explore/sites/">站点</a><a class="link blur active" href="/wiki/awesome-proj/">项目</a><a class="link" href="/explore/awesome/">大佬</a><a class="link" href="/explore/friends/">友链</a></nav></div></div><div class="bottom"><div class="text-area"><div class="text title">项目收集</div></div></div></div></div>
-
-
-<h2 id="h2"><a href="#h2" class="headerlink" title="h2"></a>h2</h2><p>dsf </p>
+  <p>本文操作的环境为ubuntu18.04</p>
+<h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><h3 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h3><p>虚拟主机允许在同一台服务器上运行多个网站，有两种实现方式：</p>
+<ul>
+<li><code>基于域名的VH</code><br>最常见。一台服务器的 IP 地址可以被<code>多个域名共享</code>，服务器通过检查 HTTP 请求中的 Host 头部来确定请求的目标域名，然后Apache把请求路由到相应的虚拟主机配置。 <blockquote>
+<p>注意：在DNS服务商那里，这里涉及到的那些域名，都应该被解析到Apache所在的服务器IP。<br>相当于多个域名共用一个IP，却能拥有不同的网站目录。</p>
+</blockquote>
+</li>
+<li><code>基于IP的VH</code>。</li>
+</ul>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><code>/var/www/</code><br><code>/usr/share</code></p>
+<h2 id="一些命令"><a href="#一些命令" class="headerlink" title="一些命令"></a>一些命令</h2><ul>
+<li>列出正在监听的虚拟主机：<code>sudo apache2ctl -S</code></li>
+<li>虚拟主机：<ul>
+<li>开启：<code>a2ensite git-http.conf</code>(注意：配置文件一定不能带路径前缀。只需输入文件名，Apache会自动找到其文件路径的。)</li>
+<li>关闭：<code>a2dissite</code></li>
+</ul>
+</li>
+</ul>
 
   
   
@@ -119,23 +131,9 @@
 
   </article>
   
-<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/awesome-proj/">合辑</a></div><div class="item" id="next"></div></section></div>
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/my-notes/">my-notes</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/my-notes/html-css-js.html">HTML+CSS+JS+jQuery+AJAX</a></div></section></div>
 
   
-
-  <div class='related-wrap md-text reveal' id="comments">
-    <section class='header cmt-title cap theme'>
-      
-    </section>
-    <section class='body cmt-body giscus'>
-      
-
-<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
-
-<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
-
-    </section>
-  </div>
 
 
 

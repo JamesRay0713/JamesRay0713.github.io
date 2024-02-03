@@ -28,7 +28,7 @@
 <meta property="og:description" content="平时遇到的各种bug及解决办法收录。【环境、命令、报错现象、原因、解决】">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-26T19:29:58.000Z">
-<meta property="article:modified_time" content="2024-01-11T02:51:20.665Z">
+<meta property="article:modified_time" content="2024-01-26T02:23:57.668Z">
 <meta property="article:author" content="JamesRay">
 <meta property="article:tag" content="debug">
 <meta name="twitter:card" content="summary_large_image">
@@ -84,11 +84,11 @@
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" placeholder="searching for ..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc" collapse="true"><div class="widget-header cap dis-select"><span class="name">手册：debug</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9B%B8%E5%85%B3"><span class="toc-text">python相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%9C%BA%E6%99%AF"><span class="toc-text">调试场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E7%9B%B8%E5%85%B3"><span class="toc-text">docker相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-text">命令相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3"><span class="toc-text">Linux相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-text">ssh相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%9B%B8%E5%85%B3"><span class="toc-text">网络连接相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#url%E8%AE%BF%E9%97%AE%E6%8A%A5%E9%94%99"><span class="toc-text">url访问报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">前端相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%86%85%E5%AE%B9%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF"><span class="toc-text">将内容复制到剪切板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84"><span class="toc-text">写博客时遇到的</span></a></li></ol></div></div></widget>
+<widget class="widget-wrapper toc single" id="data-toc" collapse="true"><div class="widget-header cap dis-select"><span class="name">手册：debug</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9B%B8%E5%85%B3"><span class="toc-text">python相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E5%9C%BA%E6%99%AF"><span class="toc-text">调试场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E7%9B%B8%E5%85%B3"><span class="toc-text">docker相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-text">命令相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%B8%E5%85%B3"><span class="toc-text">Linux相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ssh%E7%9B%B8%E5%85%B3"><span class="toc-text">ssh相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3"><span class="toc-text">Windows编程相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#batch%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80-CMD"><span class="toc-text">batch脚本语言(CMD)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BF%80%E6%B4%BBconda%E7%8E%AF%E5%A2%83%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-text">激活conda环境的命令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%9B%B8%E5%85%B3"><span class="toc-text">网络连接相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#url%E8%AE%BF%E9%97%AE%E6%8A%A5%E9%94%99"><span class="toc-text">url访问报错</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">前端相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%86%85%E5%AE%B9%E5%A4%8D%E5%88%B6%E5%88%B0%E5%89%AA%E5%88%87%E6%9D%BF"><span class="toc-text">将内容复制到剪切板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VSCode"><span class="toc-text">VSCode</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98"><span class="toc-text">配置问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%8D%9A%E5%AE%A2%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84"><span class="toc-text">写博客时遇到的</span></a></li></ol></div></div></widget>
 
 
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/flight-ticket-crawler/"><span class="title">一个特价机票的优选工具</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用命令手册</span></a><a class="item title" href="/post/toolkit01_about_OS_config/"><span class="title">操作系统配置相关</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/post/topic-security/"><span class="title">加解密及安全话题</span></a><a class="item title" href="/post/manual-useful-command/"><span class="title">常用代码/命令手册</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a></div></widget>
 
 <widget class="widget-wrapper markdown"><div class="widget-body fs14"><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site//build_site_images/wiki-note-cover.jpg" alt="小贝贝"></p>
 </div></widget>
@@ -104,7 +104,7 @@
 <div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/debug/">debug</a></div><div id="post-meta"><span class="author">本文由 <a href="/author/JamesRay/">Ray~</a> 发布于</span>
     <span class="created"><time datetime="2023-11-26T19:29:58.000Z">2023年11月27日</time></span>
     
-    <span class="updated">，更新于&nbsp;<time datetime="2024-01-11T02:51:20.665Z">2024年1月11日</time></span>
+    <span class="updated">，更新于&nbsp;<time datetime="2024-01-26T02:23:57.668Z">2024年1月26日</time></span>
     </div></div></div>
 
 <article class='md-text content post'>
@@ -124,6 +124,11 @@
 </ul>
 </li>
 <li>当无法锁定问题，用<code>-v</code>参数查看详细信息。</li>
+</ul>
+<h2 id="Windows编程相关"><a href="#Windows编程相关" class="headerlink" title="Windows编程相关"></a>Windows编程相关</h2><h3 id="batch脚本语言-CMD"><a href="#batch脚本语言-CMD" class="headerlink" title="batch脚本语言(CMD)"></a>batch脚本语言(CMD)</h3><h4 id="激活conda环境的命令"><a href="#激活conda环境的命令" class="headerlink" title="激活conda环境的命令"></a>激活conda环境的命令</h4><ul>
+<li>报错场景：在CMD中，<code>activate base</code>命令可正常开启base虚拟环境，但放入<code>.bat</code>文件中执行会导致闪退。</li>
+<li>解决办法：语句改为<code>call activate base</code>。</li>
+<li>注意事项：<code>conda activate base</code>在CMD中是没有效果的。</li>
 </ul>
 <h2 id="网络连接相关"><a href="#网络连接相关" class="headerlink" title="网络连接相关"></a>网络连接相关</h2><h3 id="url访问报错"><a href="#url访问报错" class="headerlink" title="url访问报错"></a>url访问报错</h3><p><a name="reffer-problem"></a></p>
 <details class="tag-plugin colorful folding" ><summary><span>一个url本身可被访问，但置于另一网页则无法被加载的问题</span></summary><div class="body"><ul><li>场景：我的七牛云图床中一张图片的url可以打开查看，但将该url放到我博客文章里时，博客网页无法加载对应图片，浏览器控制台报错<code>forbidden 403</code></li><li>原因：七牛云图床有<code>防盗链</code>设置，且博客域名没有加入白名单。</li><li>解决办法：将你想要的域名放入白名单即可。注意，经测试<code>*.taddream.site</code>无效，应用<code>taddream.site</code>和<code>www.taddream.site</code>；另外最好加上<code>127.0.0.1</code>，用以本地调试。</li></ul></div></details>
@@ -145,6 +150,28 @@ util.copy函数的功能：通过<code>id=&quot;copy-link&quot;</code>找到相�
 </blockquote>
 </li>
 <li><p>解决办法：将<code>copy</code>函数中的<code>el.select(); document.execCommand(&quot;Copy&quot;);</code>替换为<code>navigator.clipboard.writeText(el.value)</code>即可。</p>
+</li>
+</ul>
+<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>以下是vscode-windows-desktop使用中遇到的bug及解决办法</p>
+<h3 id="配置问题"><a href="#配置问题" class="headerlink" title="配置问题"></a>配置问题</h3><ul>
+<li><p>Git bash终端的集成问题</p>
+<ul>
+<li><p>问题描述：系统中安装了git，且环境变量能找到<code>git-bash.exe</code>的路径。我想在vscode内部就能使用Git bash, 但是在<code>终端下拉菜单</code>中选择”Git Bash”后，实际打开的是一个独立的<code>git-bash终端窗口</code>，而非vscode的集成终端。</p>
+</li>
+<li><p>原因：未能正确配置Git bash。特别是，你想在vscode中使用git的终端工具，应该调用git目录里的<code>bash.exe</code>，而非<code>git-bash.exe</code></p>
+</li>
+<li><p>解决办法：</p>
+<ul>
+<li>找到终端工具的正确路径：由于我Windows中安装的不是单纯的<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git</a>，而是<a href="/yinxiang/Git-SDK%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.html">git-for-windows-sdk</a>，因此所需的路径是：<code>E:\\app_down\\Git_sdk_64\\usr\\bin\\bash.exe</code></li>
+<li>在<code>settings.json</code>中配置：<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;terminal.integrated.profiles.windows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;PowerShell&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Command Prompt&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;Git Bash&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>      <span class="hljs-comment">//&quot;path&quot;: [&quot;E:\\app_down\\Git_sdk_64\\git-bash.exe&quot;], 注意，这里一定是bash.exe而非git-bash.exe</span><br>      <span class="hljs-attr">&quot;path&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;E:\\app_down\\Git_sdk_64\\usr\\bin\\bash.exe&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;icon&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;terminal-bash&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-comment">//&quot;source&quot;: &quot;Git Bash&quot; 如果git的安装是默认路径，则可使用source，否则使用&quot;path&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>    <br><span class="hljs-attr">&quot;terminal.integrated.defaultProfile.windows&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Git Bash&quot;</span><span class="hljs-punctuation">,</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>然后就成了。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392260566">参考</a></p>
+</li>
+</ul>
+</li>
+<li><p>其他配置问题</p>
 </li>
 </ul>
 <h2 id="写博客时遇到的"><a href="#写博客时遇到的" class="headerlink" title="写博客时遇到的"></a>写博客时遇到的</h2><details class="tag-plugin colorful folding" ><summary><span>非常奇怪的bug: `jQuery`字符串(区分大小写)不能单独作为二级目录，否则整篇文章图片无法被懒加载</span></summary><div class="body"><ul><li>场景：<a href="https://taddream.site/wiki/my-notes/study-front-end.html#CSS">该页面</a></li><li>原因：未知。</li></ul></div></details>

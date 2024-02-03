@@ -1,0 +1,16 @@
+downloads
+├── code    [常用代码小仓库]
+│   ├── forAI
+│   │   ├── scripts_for_datasets    [数据集处理脚本]
+│   │   │   ├── imgs                [图像类数据集]
+│   │   │   │   ├── norm_to_voc_style.sh    [单层目录(图像+xml混放) -> 递归目录(VOC风格)]
+│   │   │   │   ├── voc_to_coco_style.sh    [VOC风格目录 -> COCO风格目录]
+│   │   │   │   └── x2coco.py               [被`voc_to_coco_style.sh`调用]
+│   │   │   └── ~
+│   │   └── tools.py        [[[[[[[[[ 各种function小工具合辑 ]]]]]]]]]
+│   ├── forLinux
+│   │   ├── script_for_new_ubuntu.sh    [Ray风格的一个新操作系统的初始配置脚本]
+│   │   └── ~
+│   └── ~
+└── UU在线工具集合站.exe
+    

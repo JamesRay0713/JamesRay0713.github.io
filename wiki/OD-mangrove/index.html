@@ -17,21 +17,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" content="#f8f8f8">
   
-  <title>红树林目标检测：红树林正射影像目标检测 - 分你一半</title>
+  <title>红树林目标检测：index - 分你一半</title>
 
   
-    <meta name="description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 基于paddleYOLO的coding资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&amp;#x2F">
+    <meta name="description" content="背景介绍红树林目标检测，属于超大分辨率的TIFF图像的小目标检测。 项目构思流程设计标注数据 -&gt; 识别树种 -&gt; 密度统计 -&gt; 可视化呈现  标注数据: 标注得越详细，框体与目标越契合，模型训练出的准确性越高。 识别树种：基于YOLO的目标检测模型 密度统计：基于像素与地理坐标之间的映射关系  可能的难点 数据量和质量：处理大规模高分辨率图像需要大量计算资源和存储空间。 标注">
 <meta property="og:type" content="website">
-<meta property="og:title" content="红树林正射影像目标检测">
+<meta property="og:title" content="index">
 <meta property="og:url" content="https://taddream.site/wiki/OD-mangrove/">
 <meta property="og:site_name" content="分你一半">
-<meta property="og:description" content="背景介绍红树林目标检测，特点是超大分辨率的遥感数据，小目标检测 基于paddleYOLO的coding资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&amp;#x2F">
+<meta property="og:description" content="背景介绍红树林目标检测，属于超大分辨率的TIFF图像的小目标检测。 项目构思流程设计标注数据 -&gt; 识别树种 -&gt; 密度统计 -&gt; 可视化呈现  标注数据: 标注得越详细，框体与目标越契合，模型训练出的准确性越高。 识别树种：基于YOLO的目标检测模型 密度统计：基于像素与地理坐标之间的映射关系  可能的难点 数据量和质量：处理大规模高分辨率图像需要大量计算资源和存储空间。 标注">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-28T20:04:39.119Z">
-<meta property="article:modified_time" content="2023-12-28T20:04:39.119Z">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda(%E7%BB%AD1).png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda(%E7%BB%AD2).png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%88%87%E5%89%B2%E5%A4%A7%E5%9B%BE%E8%BD%AF%E4%BB%B6%E7%AA%97%E5%8F%A3.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%A6%82%E4%BD%95%E8%BF%9B%E5%85%A5Anaconda.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A21.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A22.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A23.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%BA%A2%E6%B5%B7%E6%A6%84.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%A7%8B%E8%8C%84.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%99%BD%E9%AA%A8%E5%A3%A4.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E6%97%A0%E7%93%A3%E6%B5%B7%E6%A1%91.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E8%80%81%E9%BC%A0%E5%8B%92.png">
+<meta property="og:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E6%9C%A8%E6%A6%84.png">
+<meta property="article:published_time" content="2024-01-22T13:33:45.260Z">
+<meta property="article:modified_time" content="2024-01-22T13:33:45.260Z">
 <meta property="article:author" content="JamesRay">
 <meta property="article:tag" content="技术, 生活">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda.png">
   
   
   
@@ -65,7 +80,7 @@
 <body>
   
 
-<div class="l_cover wiki"><article class="cover-wrap md-text"><div class="preview cover"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/build_site_images/wiki-note-cover.jpg"/></div><div class="cover-title"><span>红树林正射图像目标检测</span></div><div class="description">~~ 高分辨率、小目标场景下的检测任务 ~~</div><div class="start-wrap"><a class="button start gradient" href="#start">开始使用</a></div></article></div><hr>
+
 
 
   <div class='l_body' id='start'>
@@ -77,13 +92,13 @@
 
 
 
-<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewBox="0 0 16 16" width="1.2em" height="1.2em" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/OD-mangrove/"><div class="main" ff="title">红树林目标检测</div><div class="sub cap">Mangrove orthophoto target detection ~</div></a></div></widget>
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewBox="0 0 16 16" width="1.2em" height="1.2em" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/OD-mangrove/create-a-company.html"><div class="main" ff="title">红树林目标检测</div><div class="sub cap">Mangrove orthophoto target detection ~</div></a></div></widget>
 <widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/OD-mangrove/" placeholder="search in OD-mangrove..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
 
 
-<widget class="widget-wrapper toc single" id="data-toc" collapse="true"><div class="widget-header cap dis-select"><span class="name">红树林正射影像目标检测</span></div><div class="widget-body fs14"><div class="doc-tree active"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EpaddleYOLO%E7%9A%84coding"><span class="toc-text">基于paddleYOLO的coding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tools"><span class="toc-text">.&#x2F;tools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%EF%BC%9Adocker-paddle"><span class="toc-text">环境准备：docker+paddle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">配置模型</span></a></li></ol></li></ol></div></div></widget>
+<widget class="widget-wrapper toc multi" id="data-toc" collapse="true"><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OD-mangrove/create-a-company.html#start"><span class="toc-text">建立一个公司</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OD-mangrove/"><span class="toc-text">index</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="toc-text">背景介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E6%9E%84%E6%80%9D"><span class="toc-text">项目构思</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-text">流程设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E9%9A%BE%E7%82%B9"><span class="toc-text">可能的难点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step1-%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-text">step1 构建数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%83%8C%E6%99%AF"><span class="toc-text">数据背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%87%E6%B3%A8%E5%B7%A5%E4%BD%9C"><span class="toc-text">数据标注工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85TIFF%E5%9B%BE%E5%83%8F%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7"><span class="toc-text">安装TIFF图像切割工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E6%A0%87%E6%B3%A8%E8%BD%AF%E4%BB%B6"><span class="toc-text">安装使用标注软件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E5%88%86%E7%B1%BB%E6%96%B9%E6%B3%95"><span class="toc-text">目标分类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E7%A7%8D%E4%B8%8E%E7%B1%BB%E5%88%AB%E5%90%8D%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-text">树种与类别名对应关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A0%91%E7%A7%8D%E5%9B%BE%E4%BE%8B%E5%8F%8A%E7%89%B9%E5%BE%81"><span class="toc-text">树种图例及特征</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E6%B3%A8%E6%97%A5%E5%BF%97%E5%8F%8A%E5%A4%87%E5%BF%98%E5%BD%95"><span class="toc-text">标注日志及备忘录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step3-%E8%AE%AD%E7%BB%83%E6%95%B0%E6%8D%AE"><span class="toc-text">step3 训练数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E6%97%A5%E5%BF%97"><span class="toc-text">训练日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step4-%E9%A2%84%E6%B5%8B%E5%9B%BE%E5%83%8F"><span class="toc-text">step4 预测图像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%EF%BC%9A%E6%89%8B%E5%8A%A8%E5%88%87%E5%89%B2%E5%9B%BE%E5%83%8F"><span class="toc-text">预处理：手动切割图像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E6%8E%A8%E7%90%86"><span class="toc-text">开始推理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8E%E5%A4%84%E7%90%86%EF%BC%9A%E6%8B%BC%E6%8E%A5%E9%A2%84%E6%B5%8B%E5%9B%BE%E5%83%8F"><span class="toc-text">后处理：拼接预测图像</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#GDAL%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8"><span class="toc-text">GDAL的安装与使用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%AE%9E%E6%93%8D%EF%BC%9A%E5%A6%82%E4%BD%95%E6%8E%A8%E7%90%86%EF%BC%9F"><span class="toc-text">用户实操：如何推理？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step5-%E8%AE%A1%E7%AE%97%E5%AF%86%E5%BA%A6%E7%AD%89%E6%93%8D%E4%BD%9C"><span class="toc-text">step5 计算密度等操作</span></a></li></ol></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OD-mangrove/train-and-test.html"><span class="toc-text">模型训练与测试</span></a></div></div></widget>
 
-<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/wiki/awesome-proj/others.html"><span class="title"><strong>有趣项目</strong><span class="dot"></span>h1</span></a><a class="item title" href="/wiki/awesome-proj/"><span class="title"><strong>有趣项目</strong><span class="dot"></span>合辑</span></a><a class="item title" href="/wiki/my-notes/study-front-end.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>前端学习笔记</span></a><a class="item title" href="/wiki/my-notes/debug%E9%9B%86%E5%90%88.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>debug集合</span></a><a class="item title" href="/wiki/my-notes/"><span class="title"><strong>笔记本</strong><span class="dot"></span>技术碎片收集</span></a></div></widget>
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/wiki/my-notes/git.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>Git学习</span></a><a class="item title" href="/wiki/my-notes/server-webserver-apache.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>web服务器-Apache</span></a><a class="item title" href="/wiki/my-notes/"><span class="title"><strong>笔记本</strong><span class="dot"></span>my-notes</span></a><a class="item title" href="/wiki/my-notes/set-of-debug-and-pieces-of-knowledge.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>debug集合</span></a><a class="item title" href="/wiki/my-notes/html-css-js.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>HTML+CSS+JS+jQuery+AJAX</span></a></div></widget>
 </div>
 
 
@@ -95,50 +110,463 @@
 
   
   
-<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OD-mangrove/">红树林目标检测</a></div><div id="post-meta">
-    <span>更新于&nbsp;<time datetime="2023-12-28T20:04:39.119Z">2023年12月29日</time></span>
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OD-mangrove/create-a-company.html">红树林目标检测</a></div><div id="post-meta">
+    <span>更新于&nbsp;<time datetime="2024-01-22T13:33:45.260Z">2024年1月22日</time></span>
     </div></div></div>
 
   <article class='md-text content wiki'>
-  <h1 class="article-title"><span>红树林正射影像目标检测</span></h1>
-  <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>红树林目标检测，特点是超大分辨率的遥感数据，小目标检测</p>
-<h2 id="基于paddleYOLO的coding"><a href="#基于paddleYOLO的coding" class="headerlink" title="基于paddleYOLO的coding"></a>基于paddleYOLO的coding</h2><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO">PaddleYOLO</a>项目；<a target="_blank" rel="noopener" href="https://paddledetection.readthedocs.io/">官方文档</a></p>
-<details class="tag-plugin colorful folding" color="yellow"><summary><span>源码更改记录表</span></summary><div class="body"><ul><li>.&#x2F;configs:<ul><li><code>A</code>: <ul><li>configs&#x2F;datasets&#x2F;mangrove_coco.yml, </li><li>configs&#x2F;datasets&#x2F;mangrove_voc.yml, </li><li>configs&#x2F;yolov5&#x2F;yolov5_s_80e_ssod_finetune_coco_mangrove.yml</li></ul></li><li><code>M</code>: <ul><li>configs&#x2F;yolov5&#x2F;<em>base</em>&#x2F;yolov5_cspdarknet.yml</li></ul></li></ul></li><li>.&#x2F;dataset:<ul><li><code>A</code>: dataset&#x2F;mangrove&#x2F;</li></ul></li><li><h2 id="tools"><a href="#tools" class="headerlink" title=".&#x2F;tools"></a>.&#x2F;tools</h2></li></ul></div></details>
-<h3 id="环境准备：docker-paddle"><a href="#环境准备：docker-paddle" class="headerlink" title="环境准备：docker+paddle"></a>环境准备：docker+paddle</h3><div class="tag-plugin copy"><input class="copy-area" id="copy_11" value="docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6"><button class="copy-btn" onclick="util.copy(&quot;copy_11&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
-<div class="tag-plugin copy"><input class="copy-area" id="copy_12" value="docker run --name paddleGPU -itd -v $PWD/obj_OD:/paddle --gpus=all -p 8040:8040 registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6 /bin/bash"><button class="copy-btn" onclick="util.copy(&quot;copy_12&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
-<blockquote>
-<p>注：容器里的<code>/paddle/</code>用于挂载和主机通信。另外一定要加<code>--gpus=all</code>参数。8040端口用于paddle的可视化工具。</p>
-</blockquote>
-<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO/blob/develop/docs/tutorials/data/PrepareDetDataSet.md">见</a></p>
+  <h1 class="article-title"><span>index</span></h1>
+  <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>红树林目标检测，属于超大分辨率的TIFF图像的小目标检测。</p>
+<h2 id="项目构思"><a href="#项目构思" class="headerlink" title="项目构思"></a>项目构思</h2><h3 id="流程设计"><a href="#流程设计" class="headerlink" title="流程设计"></a>流程设计</h3><p>标注数据 -&gt; 识别树种 -&gt; 密度统计 -&gt; 可视化呈现</p>
 <ul>
-<li>进入工作目录<code>/paddle/PaddleYOLO/</code>, 把自定义的voc类型训练数据复制进<code>dataset/mangrove/</code></li>
-<li>新增Dataset配置文件及其对应的数据目录<ul>
-<li>改为规范的voc组织结构：<code>bash dataset/mangrove/data_to_voc.sh</code>, 并配置<code>configs/datasets/mangrove_voc.yml</code><blockquote>
-<p>注意，bug点：<code>name: VOCDataSet</code>要换成<code>!VOCDataSet</code></p>
+<li>标注数据: 标注得越详细，框体与目标越契合，模型训练出的准确性越高。</li>
+<li>识别树种：基于YOLO的目标检测模型</li>
+<li>密度统计：基于像素与地理坐标之间的映射关系</li>
+</ul>
+<h3 id="可能的难点"><a href="#可能的难点" class="headerlink" title="可能的难点"></a>可能的难点</h3><ol>
+<li>数据量和质量：处理大规模高分辨率图像需要大量计算资源和存储空间。</li>
+<li>标注数据的准确性和质量： 对模型的性能至关重要。</li>
+<li>图像分割：实现像素级别的图像分割对计算机视觉任务来说是复杂的，需要专业的分割算法和大规模标注的分割数据。</li>
+<li>密度估算：从分割结果中估算树木密度可能受到光照、遮挡和树木形状的影响，这需要细致的算法和考虑各种因素。</li>
+<li>性能优化：处理大图像需要优化计算效率和内存管理，以确保算法可以在合理的时间内完成任务。</li>
+</ol>
+<h2 id="step1-构建数据集"><a href="#step1-构建数据集" class="headerlink" title="step1 构建数据集"></a>step1 构建数据集</h2><h3 id="数据背景"><a href="#数据背景" class="headerlink" title="数据背景"></a>数据背景</h3><ul>
+<li>检测图像像素巨大，tiff格式，当尺寸40000*40000，约有3GB；<blockquote>
+<p>直接将原图用于训练、测试不可取，将导致算力不足，内存爆炸。因此在训练、推理前，必须有<code>切割图像</code>的步骤。</p>
 </blockquote>
 </li>
-<li>增加规范的coco组织结构：<code>bash dataset/mangrove/data_voc_to_coco.sh</code>, 并配置<code>configs/datasets/mangrove_coco.yml</code></li>
-</ul>
-</li>
-<li>新增模型配置文件：涉及到选择模型，先选一个有预训练模型的：<code>configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
-<li>准备新锚框：<ul>
-<li>因为该项目属于密集的小目标监测，所有的锚框像素范围需要很小才行。</li>
-<li>计算新锚框：<code>python tools/anchor_cluster.py -v false -c configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
-<li>更新到配置文件的锚框部分：<code>configs/yolov5/_base_/yolov5_cspdarknet.yml</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="配置模型"><a href="#配置模型" class="headerlink" title="配置模型"></a>配置模型</h3><blockquote>
-<p>注：默认学习率是适配多GPU训练(8x GPU)，若使用单GPU训练，须对应调整学习率（例如，除以8）。更多使用问题，请参考FAQ<br>细细设置6个配置文件（1主5副）</p>
+<li>检测目标像素超小，树冠像素尺寸在约20~50；<blockquote>
+<p>检测精度的提高存在挑战</p>
 </blockquote>
-
+</li>
+<li>没有现成的、精细标注的训练集。</li>
+</ul>
+<h3 id="数据标注工作"><a href="#数据标注工作" class="headerlink" title="数据标注工作"></a>数据标注工作</h3><p>标注流程是先切割图像，后利用标注软件进行作业。</p>
+<h4 id="安装TIFF图像切割工具"><a href="#安装TIFF图像切割工具" class="headerlink" title="安装TIFF图像切割工具"></a>安装TIFF图像切割工具</h4><ol>
+<li>点击下载<a target="_blank" rel="noopener" href="http://assets.taddream.site/downloads/%E5%AE%89%E8%A3%85TIFF%E5%9B%BE%E5%83%8F%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7.zip">TIFF图像切割工具</a></li>
+<li>放到自定义文件夹下，解压，查阅<code>readme.txt</code>，双击运行<code>切割大图工具.bat</code></li>
+<li>当您的系统中未安装python，该工具会自动下载<code>conda-python</code>安装包（或者您也可<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py39_4.12.0-Windows-x86_64.exe">点击</a>手动下载），下载后按如下流程安装python：<ol>
+<li>安装：双击刚下载的安装包，根据提示选择<code>All Users</code>。如果有<code>add to env PATH</code>的选项请勾上，勾不上也无妨。记住安装目录，默认为<code>C:\ProgramData\Miniconda3</code>，也可自定义安装到其他盘。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda.png" alt="安装Miniconda"></li>
+<li>验证环境变量：进入操作系统的设置，搜索框中搜<code>高级系统设置</code>，点击<code>环境变量</code>，双击<code>系统变量</code>中的<code>Path</code>，查看路径列表中是否有Miniconda3相关的两个路径（<code>C:\ProgramData\Miniconda3</code>和<code>C:\ProgramData\Miniconda3\Scripts</code>，若安装目录是自定义的，这里也会相应改变），没有则新建该路径。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda(%E7%BB%AD1).png" alt="安装Miniconda(续1)"></li>
+<li>测试：点击<code>开始</code>菜单，软件目录中找到<code>Anaconda3</code>下的<code>Anaconda powershell prompt</code>，右键以管理员身份进入，执行<code>conda -V</code>，返回相应版本号，即安装成功。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E5%AE%89%E8%A3%85Miniconda(%E7%BB%AD2).png" alt="安装Miniconda(续2)"></li>
+</ol>
+</li>
+<li>安装好python后，重新双击运行<code>切割大图工具.bat</code>，片刻后弹出窗口如下：<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E5%88%87%E5%89%B2%E5%A4%A7%E5%9B%BE%E8%BD%AF%E4%BB%B6%E7%AA%97%E5%8F%A3.png" alt="切割大图软件窗口"></li>
+<li>按您需求设置，其中<code>输出图片格式</code>，<code>子图尺寸</code>，<code>重叠比率</code>可保持默认值, 也可<code>0.1</code>重叠。</li>
+<li>点击开始，当下方日志框中出现<code>Mission Success!</code>，即切图成功，前往你指定的存放目录进行标注工作。<blockquote>
+<p>注意：</p>
+<ul>
+<li>图片越大，加载时间<code>loading image......</code>越长</li>
+<li>子图集合中可能会存在大量空白图片，这是由于原始.tif图像四周的空白像素点导致，忽略即可。<br>另外：命令行实现切割：<code>time python /home/james/obj_OD/demo_mangrove/split_app.py --input_dir origin --output_dir origin</code></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h4 id="安装使用标注软件"><a href="#安装使用标注软件" class="headerlink" title="安装使用标注软件"></a>安装使用标注软件</h4><ol>
+<li>安装：进入刚才的<code>Anaconda powershell prompt</code>软件，输入<code>pip install labelImg</code>并执行，片刻后就安装好标注软件了。</li>
+<li>进入：执行<code>labelImg</code>，我们将进入标注工具界面。<blockquote>
+<p>此后若再次使用该工具，可直接在<code>Anaconda powershell prompt</code>或<code>cmd</code>命令行中输入执行<code>labelImg</code>即可。 <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E5%A6%82%E4%BD%95%E8%BF%9B%E5%85%A5Anaconda.png" alt="如何进入Anaconda"></p>
+</blockquote>
+</li>
+<li>界面左上角点击<code>open dir</code>，导入存放原图的文件夹。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A21.png" alt="labelImg界面1"></li>
+<li><code>View</code>菜单中选择<code>single class mode</code>，单类模式下提高标注速度。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A22.png" alt="labelImg界面2"></li>
+<li>点击<code>create rectBox</code>（或快捷键<code>W</code>），即可鼠标进行标注。首个框体标注会让你自定义目标类别。<img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/labelImg%E7%95%8C%E9%9D%A23.png" alt="labelImg界面3"></li>
+<li>框体要包含完整目标物，且要尽可能小，不要遗漏每一棵树。完成一张图的标注后<code>ctrl+S</code>保存即可，这样操作目录下会生成一个同名的<code>.xml</code>文件，格式如下:   <figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">annotation</span> <span class="hljs-attr">verified</span>=<span class="hljs-string">&quot;yes&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">folder</span>&gt;</span>01_Downloads<span class="hljs-tag">&lt;/<span class="hljs-name">folder</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">filename</span>&gt;</span>1.tif<span class="hljs-tag">&lt;/<span class="hljs-name">filename</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">path</span>&gt;</span>G:\doc\01_Downloads\1.tif<span class="hljs-tag">&lt;/<span class="hljs-name">path</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">source</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">database</span>&gt;</span>Unknown<span class="hljs-tag">&lt;/<span class="hljs-name">database</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">source</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">size</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">width</span>&gt;</span>41394<span class="hljs-tag">&lt;/<span class="hljs-name">width</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">height</span>&gt;</span>37777<span class="hljs-tag">&lt;/<span class="hljs-name">height</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">depth</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">depth</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">size</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">segmented</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">segmented</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">object</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>tree<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">pose</span>&gt;</span>Unspecified<span class="hljs-tag">&lt;/<span class="hljs-name">pose</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">truncated</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">truncated</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">difficult</span>&gt;</span>0<span class="hljs-tag">&lt;/<span class="hljs-name">difficult</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">bndbox</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">xmin</span>&gt;</span>23146<span class="hljs-tag">&lt;/<span class="hljs-name">xmin</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">ymin</span>&gt;</span>25563<span class="hljs-tag">&lt;/<span class="hljs-name">ymin</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">xmax</span>&gt;</span>23162<span class="hljs-tag">&lt;/<span class="hljs-name">xmax</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">ymax</span>&gt;</span>25579<span class="hljs-tag">&lt;/<span class="hljs-name">ymax</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">bndbox</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">object</span>&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li>点击左侧菜单<code>Next Image</code>继续标注。</li>
+</ol>
+<h3 id="目标分类方法"><a href="#目标分类方法" class="headerlink" title="目标分类方法"></a>目标分类方法</h3><h4 id="树种与类别名对应关系"><a href="#树种与类别名对应关系" class="headerlink" title="树种与类别名对应关系"></a>树种与类别名对应关系</h4><p>红树林植物有诸多类别，下面是本项目的类别名与树种的对应关系：</p>
+<table>
+<thead>
+<tr>
+<th>树种</th>
+<th>类别名</th>
+<th>标注特征</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>红海榄</td>
+<td>tree</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>秋茄</td>
+<td>qiu</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>白骨壤</td>
+<td>bai</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>无瓣海桑</td>
+<td>wu</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>老鼠勒</td>
+<td>lao</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>桐花树</td>
+<td>tong</td>
+<td></td>
+<td>灌木类，全省有一定种植（据资料，惠州项目基本无种植），一般单株为一簇一簇，叶片翠绿、黄绿、暗绿都有，影像识别特征较难。</td>
+</tr>
+<tr>
+<td>木榄</td>
+<td>mu</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>卤蕨</td>
+<td>lu</td>
+<td></td>
+<td>草本类，一般无直接种植，暂时不需识别。</td>
+</tr>
+<tr>
+<td>拉关木</td>
+<td>la</td>
+<td></td>
+<td>暂时没有找到影像素材，本次惠州、广州不用识别，后续补充。</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>noise</td>
+<td></td>
+<td>非红树林的其他所有树种</td>
+</tr>
+</tbody></table>
+<h4 id="树种图例及特征"><a href="#树种图例及特征" class="headerlink" title="树种图例及特征"></a>树种图例及特征</h4><p><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%BA%A2%E6%B5%B7%E6%A6%84.png" alt="物种识别-红海榄"><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%A7%8B%E8%8C%84.png" alt="物种识别-秋茄"><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E7%99%BD%E9%AA%A8%E5%A3%A4.png" alt="物种识别-白骨壤"><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E6%97%A0%E7%93%A3%E6%B5%B7%E6%A1%91.png" alt="物种识别-无瓣海桑"><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E8%80%81%E9%BC%A0%E5%8B%92.png" alt="物种识别-老鼠勒"><br><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="http://assets.taddream.site/wiki/OD-mangrove/%E7%89%A9%E7%A7%8D%E8%AF%86%E5%88%AB-%E6%9C%A8%E6%A6%84.png" alt="物种识别-木榄"></p>
+<h3 id="标注日志及备忘录"><a href="#标注日志及备忘录" class="headerlink" title="标注日志及备忘录"></a>标注日志及备忘录</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>数据源</th>
+<th>标注图像存放路径</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>&#x2F;mnt&#x2F;d&#x2F;【003】红树林核查识别工作&#x2F;惠东正射1&#x2F;1.tif</td>
+<td>&#x2F;home&#x2F;james&#x2F;obj_OD&#x2F;PaddleDetection&#x2F;dataset&#x2F;mangrove_coco</td>
+<td>已用于一轮训练</td>
+</tr>
+<tr>
+<td>2</td>
+<td>D:\【003】红树林核查识别工作\2023年核查数据图\惠东2023核查01号图斑\标注</td>
+<td></td>
+<td>潞哥√</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D:\【003】红树林核查识别工作\2023年核查数据图\惠东2023核查11号图斑\标注</td>
+<td></td>
+<td>潞哥√</td>
+</tr>
+<tr>
+<td>4</td>
+<td>J:\【011】2023红树林省级核查正射影像\惠州市\惠东县\正射影像</td>
+<td></td>
+<td>我×</td>
+</tr>
+</tbody></table>
+<h2 id="step3-训练数据"><a href="#step3-训练数据" class="headerlink" title="step3 训练数据"></a>step3 训练数据</h2><p>我们基于<code>640*640</code>的子图进行训练。</p>
+<h3 id="训练日志"><a href="#训练日志" class="headerlink" title="训练日志"></a>训练日志</h3><table>
+<thead>
+<tr>
+<th>序号</th>
+<th>base model</th>
+<th>训练数据</th>
+<th>Best test bbox ap</th>
+<th>模型路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>ppyoloe-l</td>
+<td>T-31&#x2F;V-9</td>
+<td>0.461</td>
+<td>&#x2F;home&#x2F;james&#x2F;obj_OD&#x2F;PaddleDetection&#x2F;deploy_inference_model&#x2F;ppyoloe_crn_l_200e_sliced_mangrove_640_025</td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="step4-预测图像"><a href="#step4-预测图像" class="headerlink" title="step4 预测图像"></a>step4 预测图像</h2><p>通过训练得到模型后，我们将导入新图片进行预测。但由于该项目的预测图片尺寸一般都超大，因此预测流程归纳为：<code>预处理 -&gt; 预测 -&gt; 后处理</code></p>
+<h3 id="预处理：手动切割图像"><a href="#预处理：手动切割图像" class="headerlink" title="预处理：手动切割图像"></a>预处理：手动切割图像</h3><p>模型预测时，输入图像可以是任何有效尺寸，因此我们面临的首要问题是，切割到什么尺寸可以使推理更高效、准确？</p>
+<blockquote>
+<p>注意事项：python的图像处理库 (PIL或Pillow)有像素限制，支持处理最高<code>9450*9450</code>的图像。</p>
+</blockquote>
+<p>下面将以5000*5000的目标图片进行测试。</p>
+<ul>
+<li><p>一阶段法：使用事先设计的自切功能来推理</p>
+<table>
+<thead>
+<tr>
+<th>手切子图</th>
+<th>手切多少张</th>
+<th>自切子子图数</th>
+<th>显存消耗(G)</th>
+<th>单张手切图耗时(s)</th>
+<th>总耗时(s)</th>
+<th>识别数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>640</td>
+<td>81</td>
+<td>1</td>
+<td>2.2</td>
+<td>-</td>
+<td>20</td>
+<td>13355</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>36</td>
+<td>4</td>
+<td>3.2</td>
+<td>5</td>
+<td>54</td>
+<td>15299</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>16</td>
+<td>9</td>
+<td>4.8</td>
+<td>10</td>
+<td>106</td>
+<td>15817</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>9</td>
+<td>16</td>
+<td>6.9</td>
+<td>22</td>
+<td>177</td>
+<td>15345</td>
+</tr>
+<tr>
+<td>2500</td>
+<td>9</td>
+<td>16</td>
+<td>7.2</td>
+<td>40</td>
+<td>270</td>
+<td>23387</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>4</td>
+<td>25</td>
+<td>9.7</td>
+<td>97</td>
+<td>276</td>
+<td>15410</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>4</td>
+<td>49</td>
+<td>15.5</td>
+<td>270</td>
+<td>956</td>
+<td>-</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>1</td>
+<td>64</td>
+<td>19.7</td>
+<td>450</td>
+<td>450</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>可见，传入推理模块的图越大，推理速度越慢，显存消耗越大。</p>
+</li>
+<li><p>两阶段法：使用手切推理</p>
+<table>
+<thead>
+<tr>
+<th>手切子图</th>
+<th>手切多少张</th>
+<th>显存消耗(G)</th>
+<th>总耗时(s)</th>
+<th>识别数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>640</td>
+<td>81</td>
+<td>1.1</td>
+<td>9</td>
+<td>38766</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>36</td>
+<td>1.8</td>
+<td>7</td>
+<td>17729</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>16</td>
+<td>1.8</td>
+<td>5</td>
+<td>8000</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>9</td>
+<td>1.8</td>
+<td>5</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>2500</td>
+<td>9</td>
+<td>2.2</td>
+<td>5</td>
+<td>4500</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>4</td>
+<td>2.2</td>
+<td>4</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>4</td>
+<td>2.2</td>
+<td>5</td>
+<td>2000</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>1</td>
+<td>1.8</td>
+<td>4</td>
+<td>500</td>
+</tr>
+</tbody></table>
+<p>可见，直接事前切图到最小，即模型训练所用尺寸，速度非常快，显存消耗非常小，识别能力非常强。</p>
+</li>
+<li><p>结论：</p>
+<ul>
+<li>PIL库处理图像能力有限，必须事前切图，再导入推理模块。</li>
+<li>推理模块的自切功能<code>--slice_infer</code>不如手切。</li>
+<li>切割标准为：直接切到训练所用的640*640。</li>
+</ul>
+</li>
+</ul>
+<h3 id="开始推理"><a href="#开始推理" class="headerlink" title="开始推理"></a>开始推理</h3><p>推理日志：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>分辨率</th>
+<th>大小</th>
+<th>耗时</th>
+<th>原图路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>4.1w*3.7w</td>
+<td>3.0G</td>
+<td>4’</td>
+<td>“D:\【003】红树林核查识别工作\惠东正射1\1.tif”</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2w*2w</td>
+<td>1.5G</td>
+<td>1’10’’</td>
+<td>“D:\【003】红树林核查识别工作\惠东正射1\origin\1_20000x20000.tif”</td>
+</tr>
+</tbody></table>
+<h3 id="后处理：拼接预测图像"><a href="#后处理：拼接预测图像" class="headerlink" title="后处理：拼接预测图像"></a>后处理：拼接预测图像</h3><p>初步设想，后处理的路径有两种：</p>
+<ul>
+<li>只交付预测框文本数据<ul>
+<li>优点：简洁，方便，且如果后续借助某些方法将数据转换为可嵌入<code>GIS软件</code>的格式，使预测框的呈现方式更加原生，这会更符合目标用户的使用习惯；</li>
+<li>缺点：寻找这种转换方法不一定能成功，且会带来更高的项目设计成本。</li>
+</ul>
+</li>
+<li>交付带预测框的拼接后的图像<ul>
+<li>优点：呈现更直观；</li>
+<li>缺点：需要更多的存储空间；</li>
+<li>难点：拼接的大图将是一张超高分辨率的TIFF图像，简单的工具不能实现。<br>当前只针对第二种方法进行设计。鉴于其难点，常用的PIL库、imageio库等均不支持超大图，因此采用了<code>GDAL</code>。</li>
+</ul>
+</li>
+</ul>
+<h4 id="GDAL的安装与使用"><a href="#GDAL的安装与使用" class="headerlink" title="GDAL的安装与使用"></a>GDAL的安装与使用</h4><p>资料：地理空间开源基金会<a target="_blank" rel="noopener" href="https://www.osgeo.org/">osgeo</a>&#x2F;<a target="_blank" rel="noopener" href="https://www.osgeo.cn/">osgeoCN</a>; GDAL的<a target="_blank" rel="noopener" href="https://gdal.org/">官方文档</a>&#x2F;<a target="_blank" rel="noopener" href="https://www.osgeo.cn/pygis/gdal.html">中文文档</a>；python的API手册<a target="_blank" rel="noopener" href="https://gdal.org/api/python/osgeo.html">官方</a>&#x2F;<a target="_blank" rel="noopener" href="https://www.osgeo.cn/pygis/gdal-gdalds.html">中文</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://gdal.org/download.html#conda">安装</a>：<code>conda install -c conda-forge gdal</code></li>
+<li>使用：一定要先用<code>from osgeo import gdal</code>导入模块</li>
+<li>设计拼图模块: <code>python /home/james/obj_OD/demo_mangrove/splice.py --input_dir $output_dir --output_path $final_path</code></li>
+<li>模块性能测试：<table>
+<thead>
+<tr>
+<th>原图尺寸</th>
+<th>原图大小</th>
+<th>合并耗时</th>
+<th>合并后尺寸</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4.1w*3.8w</td>
+<td>3.0G</td>
+<td>18’</td>
+<td>4.36G</td>
+<td>可是图片损坏状态</td>
+</tr>
+<tr>
+<td>2w*2w</td>
+<td>1.5G</td>
+<td>3’’</td>
+<td>1.1G</td>
+<td>可见上行的合并流程有bug [TODO:]</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="用户实操：如何推理？"><a href="#用户实操：如何推理？" class="headerlink" title="用户实操：如何推理？"></a>用户实操：如何推理？</h3><ol>
+<li>把需要预测的TIFF大图放到一个空文件夹中，复制该文件夹路径；<blockquote>
+<p>由于一些未知的bug, 建议预测的原图不大于<code>2GB</code>。</p>
+</blockquote>
+</li>
+<li>在Ubuntu中运行<code>bash /home/james/obj_OD/demo_mangrove/demo-mangrove.sh --input-dir &quot;复制的路径&quot;</code>；</li>
+<li>片刻后，带预测框的原图将出现在桌面的<code>红树林目标检测可视化结果</code>文件夹中。</li>
+</ol>
+<h2 id="step5-计算密度等操作"><a href="#step5-计算密度等操作" class="headerlink" title="step5 计算密度等操作"></a>step5 计算密度等操作</h2>
   
   
 <div class="article-footer reveal fs14"></div>
 
   </article>
   
-
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/OD-mangrove/create-a-company.html">建立一个公司</a></div><div class="item" id="next"><div class="note">接下来阅读</div><a href="/wiki/OD-mangrove/train-and-test.html">模型训练与测试</a></div></section></div>
 
   
 

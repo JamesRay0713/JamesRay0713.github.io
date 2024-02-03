@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0" theme-name="Stellar" theme-version="1.23.0">
+  
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>红树林目标检测：模型训练与测试 - 分你一半</title>
+
+  
+    <meta name="description" content="基于paddleYOLO的coding (摒弃)资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&#x2F;yolov5&#x2F;yolov5_s_80e_s">
+<meta property="og:type" content="website">
+<meta property="og:title" content="模型训练与测试">
+<meta property="og:url" content="https://taddream.site/wiki/OD-mangrove/train-and-test.html">
+<meta property="og:site_name" content="分你一半">
+<meta property="og:description" content="基于paddleYOLO的coding (摒弃)资料：PaddleYOLO项目；官方文档 源码更改记录表.&#x2F;configs:A: configs&#x2F;datasets&#x2F;mangrove_coco.yml, configs&#x2F;datasets&#x2F;mangrove_voc.yml, configs&#x2F;yolov5&#x2F;yolov5_s_80e_s">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-22T08:03:57.029Z">
+<meta property="article:modified_time" content="2024-01-22T08:03:57.029Z">
+<meta property="article:author" content="JamesRay">
+<meta property="article:tag" content="技术, 生活">
+<meta name="twitter:card" content="summary">
+  
+  
+  
+  <meta name="keywords" content="技术, 生活">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="分你一半" type="application/atom+xml">
+  
+
+  
+    
+<link rel="stylesheet" href="/css/main.css">
+
+  
+
+  
+    <link rel="shortcut icon" href="http://assets.taddream.site/build_site_images/网站图标2.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  
+
+
+
+
+  <div class='l_body' id='start'>
+    <aside class='l_left' layout='wiki'>
+    
+
+  
+
+
+
+
+<div class="widgets"><widget class="widget-wrapper logo-wrap wiki"><div class="widget-body"><a style="filter: grayscale(100%)" class="wiki-home cap" href="/wiki"><svg aria-hidden="true" viewBox="0 0 16 16" width="1.2em" height="1.2em" fill="currentColor"><path fill-rule="evenodd" d="M7.78 12.53a.75.75 0 01-1.06 0L2.47 8.28a.75.75 0 010-1.06l4.25-4.25a.75.75 0 011.06 1.06L4.81 7h7.44a.75.75 0 010 1.5H4.81l2.97 2.97a.75.75 0 010 1.06z"></path></svg>所有项目</a><a class="title" href="/wiki/OD-mangrove/create-a-company.html"><div class="main" ff="title">红树林目标检测</div><div class="sub cap">Mangrove orthophoto target detection ~</div></a></div></widget>
+<widget class="widget-wrapper search"><div class="widget-body"><div class="search-wrapper" id="search"><form class="search-form"><input type="text" class="search-input" id="search-input" data-filter="/wiki/OD-mangrove/" placeholder="search in OD-mangrove..."><svg t="1670596976048" class="icon search-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2676" width="200" height="200"><path d="M938.2 832.6L723.8 618.1c-2.5-2.5-5.3-4.4-7.9-6.4 36.2-55.6 57.3-121.8 57.3-193.1C773.3 222.8 614.6 64 418.7 64S64 222.8 64 418.6c0 195.9 158.8 354.6 354.6 354.6 71.3 0 137.5-21.2 193.2-57.4 2 2.7 3.9 5.4 6.3 7.8L832.5 938c14.6 14.6 33.7 21.9 52.8 21.9 19.1 0 38.2-7.3 52.8-21.8 29.2-29.1 29.2-76.4 0.1-105.5M418.7 661.3C284.9 661.3 176 552.4 176 418.6 176 284.9 284.9 176 418.7 176c133.8 0 242.6 108.9 242.6 242.7 0 133.7-108.9 242.6-242.6 242.6" p-id="2677"></path></svg></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div></div></widget>
+
+
+<widget class="widget-wrapper toc multi" id="data-toc" collapse="true"><div class="widget-body fs14"><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OD-mangrove/create-a-company.html#start"><span class="toc-text">建立一个公司</span></a></div><div class="doc-tree"><a class="doc-tree-link" href="/wiki/OD-mangrove/"><span class="toc-text">index</span></a></div><div class="doc-tree active"><a class="doc-tree-link active" href="/wiki/OD-mangrove/train-and-test.html"><span class="toc-text">模型训练与测试</span></a><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EpaddleYOLO%E7%9A%84coding-%E6%91%92%E5%BC%83"><span class="toc-text">基于paddleYOLO的coding (摒弃)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%EF%BC%9Adocker-paddle"><span class="toc-text">环境准备：docker+paddle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%87%86%E5%A4%87"><span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9E%8B"><span class="toc-text">配置模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EpaddleDetection%E4%B8%AD%E7%9A%84SOD"><span class="toc-text">基于paddleDetection中的SOD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8%E5%85%B6%E8%AE%AD%E7%BB%83%E3%80%81%E9%AA%8C%E8%AF%81%E3%80%81%E6%8E%A8%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-text">直接调用其训练、验证、推理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83"><span class="toc-text">训练</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E7%90%86"><span class="toc-text">推理</span></a></li></ol></li></ol></li></ol></div></div></widget>
+
+<widget class="widget-wrapper recent"><div class="widget-header cap theme dis-select"><span class="name">最近更新</span></div><div class="widget-body related-posts fs14"><a class="item title" href="/wiki/my-notes/git.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>Git学习</span></a><a class="item title" href="/wiki/my-notes/server-webserver-apache.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>web服务器-Apache</span></a><a class="item title" href="/wiki/my-notes/"><span class="title"><strong>笔记本</strong><span class="dot"></span>my-notes</span></a><a class="item title" href="/wiki/my-notes/set-of-debug-and-pieces-of-knowledge.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>debug集合</span></a><a class="item title" href="/wiki/my-notes/html-css-js.html"><span class="title"><strong>笔记本</strong><span class="dot"></span>HTML+CSS+JS+jQuery+AJAX</span></a></div></widget>
+</div>
+
+
+    </aside>
+    <div class='l_main'>
+      
+
+      
+
+  
+  
+<div class="bread-nav fs12"><div class="left"><div id="breadcrumb"><a class="cap breadcrumb" id="home" href="/">主页</a><span class="sep"></span><a class="cap breadcrumb" id="menu" href="/wiki/">项目</a><span class="sep"></span><a class="cap breadcrumb" id="proj" href="/wiki/OD-mangrove/create-a-company.html">红树林目标检测</a></div><div id="post-meta">
+    <span>更新于&nbsp;<time datetime="2024-01-22T08:03:57.029Z">2024年1月22日</time></span>
+    </div></div></div>
+
+  <article class='md-text content wiki'>
+  <h1 class="article-title"><span>模型训练与测试</span></h1>
+  <h2 id="基于paddleYOLO的coding-摒弃"><a href="#基于paddleYOLO的coding-摒弃" class="headerlink" title="基于paddleYOLO的coding (摒弃)"></a>基于paddleYOLO的coding (摒弃)</h2><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO">PaddleYOLO</a>项目；<a target="_blank" rel="noopener" href="https://paddledetection.readthedocs.io/">官方文档</a></p>
+<details class="tag-plugin colorful folding" color="yellow"><summary><span>源码更改记录表</span></summary><div class="body"><ul><li>.&#x2F;configs:<ul><li><code>A</code>: <ul><li>configs&#x2F;datasets&#x2F;mangrove_coco.yml, </li><li>configs&#x2F;datasets&#x2F;mangrove_voc.yml, </li><li>configs&#x2F;yolov5&#x2F;yolov5_s_80e_ssod_finetune_coco_mangrove.yml</li></ul></li><li><code>M</code>: <ul><li>configs&#x2F;yolov5&#x2F;<em>base</em>&#x2F;yolov5_cspdarknet.yml</li></ul></li></ul></li><li>.&#x2F;dataset:<ul><li><code>A</code>: dataset&#x2F;mangrove&#x2F;</li></ul></li><li>.&#x2F;tools</li></ul></div></details>
+<h3 id="环境准备：docker-paddle"><a href="#环境准备：docker-paddle" class="headerlink" title="环境准备：docker+paddle"></a>环境准备：docker+paddle</h3><div class="tag-plugin copy"><input class="copy-area" id="copy_15" value="docker pull registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6"><button class="copy-btn" onclick="util.copy(&quot;copy_15&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
+<div class="tag-plugin copy"><input class="copy-area" id="copy_16" value="docker run --name paddleGPU -itd -v $PWD/obj_OD:/paddle --gpus=all -p 8040:8040 registry.baidubce.com/paddlepaddle/paddle:2.5.2-gpu-cuda12.0-cudnn8.9-trt8.6 /bin/bash"><button class="copy-btn" onclick="util.copy(&quot;copy_16&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
+<blockquote>
+<p>注：容器里的<code>/paddle/</code>用于挂载和主机通信。另外一定要加<code>--gpus=all</code>参数。8040端口用于paddle的可视化工具。</p>
+</blockquote>
+<h3 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h3><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleYOLO/blob/develop/docs/tutorials/data/PrepareDetDataSet.md">见</a></p>
+<ul>
+<li>进入工作目录<code>/paddle/PaddleYOLO/</code>, 把自定义的voc类型训练数据复制进<code>dataset/mangrove/</code></li>
+<li>新增Dataset配置文件及其对应的数据目录<ul>
+<li>改为规范的voc组织结构：<code>bash dataset/mangrove/data_to_voc.sh</code>, 并配置<code>configs/datasets/mangrove_voc.yml</code><blockquote>
+<p>注意，bug点：<code>name: VOCDataSet</code>要换成<code>!VOCDataSet</code></p>
+</blockquote>
+</li>
+<li>增加规范的coco组织结构：<code>bash dataset/mangrove/data_voc_to_coco.sh</code>, 并配置<code>configs/datasets/mangrove_coco.yml</code></li>
+</ul>
+</li>
+<li>新增模型配置文件：涉及到选择模型，先选一个有预训练模型的：<code>configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
+<li>准备新锚框：<ul>
+<li>因为该项目属于密集的小目标监测，所有的锚框像素范围需要很小才行。</li>
+<li>计算新锚框：<code>python tools/anchor_cluster.py -v false -c configs/yolov5/yolov5_s_80e_ssod_finetune_coco_mangrove.yml</code></li>
+<li>更新到配置文件的锚框部分：<code>configs/yolov5/_base_/yolov5_cspdarknet.yml</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="配置模型"><a href="#配置模型" class="headerlink" title="配置模型"></a>配置模型</h3><blockquote>
+<p>注：默认学习率是适配多GPU训练(8x GPU)，若使用单GPU训练，须对应调整学习率（例如，除以8）。更多使用问题，请参考FAQ<br>细细设置6个配置文件（1主5副）</p>
+</blockquote>
+<h2 id="基于paddleDetection中的SOD"><a href="#基于paddleDetection中的SOD" class="headerlink" title="基于paddleDetection中的SOD"></a>基于paddleDetection中的SOD</h2><p>资料：<a target="_blank" rel="noopener" href="https://github.com/PaddlePaddle/PaddleDetection/tree/release/2.6/configs/smalldet">项目主页</a>，<a target="_blank" rel="noopener" href="https://aistudio.baidu.com/projectdetail/5036782">官方实践</a></p>
+<h3 id="直接调用其训练、验证、推理工具"><a href="#直接调用其训练、验证、推理工具" class="headerlink" title="直接调用其训练、验证、推理工具"></a>直接调用其训练、验证、推理工具</h3><p>系统环境：4090显卡-24G显存。</p>
+<h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><ul>
+<li>工具路径：<code>PaddleDetection/tools/train.py</code></li>
+</ul>
+<h4 id="推理"><a href="#推理" class="headerlink" title="推理"></a>推理</h4><ul>
+<li>推理命令：<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">python /paddle/PaddleDetection/deploy/python/infer.py \<br>--model_dir=/paddle/PaddleDetection/deploy_inference_model/ppyoloe_crn_l_80e_sliced_visdrone_640_025 \<br>--image_dir=<span class="hljs-variable">$test_img_dir_container</span> \<br>--output_dir=/paddle/output/ \<br>--device=GPU \<br>--save_results --save_images False<br>--batch_size 32<br><span class="hljs-comment">## 更多的一些重要参数节选</span><br>--save_results      <span class="hljs-comment"># 把所有预测框存到`output_dir`下的`bbox.json`中</span><br>--save_images True  <span class="hljs-comment"># 默认会把带框的推理图存储下来</span><br>--cpu_threads 1<br>--run_mode paddle   <span class="hljs-comment">#/trt_fp32/trt_fp16/trt_int8</span><br>--threshold 0.5<br>--batch_size 1      <span class="hljs-comment"># 有大量图需要推理时，可增大batch提高并行能力。能增多大取决于显存。但似乎总推理时间并没有减少。</span><br>--slice_infer --overlap_ratio 0.0 0.0  <span class="hljs-comment"># 将不再使用这俩参数</span><br></code></pre></td></tr></table></figure></li>
+<li>推理性能测试<br>见<a href="/wiki/OD-mangrove/index">性能对比</a></li>
+</ul>
+
+  
+  
+<div class="article-footer reveal fs14"></div>
+
+  </article>
+  
+<div class="related-wrap reveal" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">回顾上一篇</div><a href="/wiki/OD-mangrove/">index</a></div><div class="item" id="next"></div></section></div>
+
+  
+
+  <div class='related-wrap md-text reveal' id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>评论区仅供交流，有问题请提 <a target="_blank" rel="noopener" href="https://github.com/JamesRay/JamesRay0713.github.io/issues">issue</a> 反馈。</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+
+      
+<footer class="page-footer reveal fs12"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 JamesRay, All Rights Reserved.</p>
+</div>
+</div></footer>
+
+      <div class='float-panel mobile-only blur' style='display:none'>
+  <button type='button' class='sidebar-toggle mobile' onclick='sidebar.toggle()'>
+    <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15301"><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 2.3 26.8 24.6 47.5 51.6 47.6h416.5v4z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15302"></path><path d="M566.407 808.3c26.9-0.1 49.3-20.8 51.6-47.6-1.9-27.7-23.9-49.7-51.6-51.6h-412.6c-28.2-1.4-52.6 19.5-55.5 47.6 1.9 27.7 23.9 49.7 51.6 51.6h416.5z m309.3-249.9c26.9-0.1 49.3-20.8 51.6-47.6-2.2-26.8-24.6-47.5-51.6-47.6h-721.9c-27.7-2.8-52.5 17.4-55.3 45.1-0.1 0.8-0.1 1.7-0.2 2.5 0.9 27.2 23.6 48.5 50.7 47.6H875.707z m-103.1-245.9c26.9-0.1 49.3-20.8 51.6-47.6-0.4-28.3-23.2-51.1-51.5-51.6h-618.9c-29.5-1.1-54.3 21.9-55.5 51.4v0.2c1.4 27.8 25.2 49.2 53 47.8 0.8 0 1.7-0.1 2.5-0.2h618.8z" p-id="15303"></path></svg>
+  </button>
+</div>
+
+    </div>
+  </div>
+  <div class='scripts'>
+    
+<script type="text/javascript">
+  const stellar = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    loadCSS: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    // 从 butterfly 和 volantis 获得灵感
+    loadScript: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = stellar.config.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    // https://github.com/jerryc127/hexo-theme-butterfly
+    jQuery: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        stellar.loadScript(stellar.plugins.jQuery).then(fn)
+      } else {
+        fn()
+      }
+    }
+  };
+  stellar.version = '1.23.0';
+  stellar.github = 'https://github.com/xaoxuu/hexo-theme-stellar/tree/1.23.0';
+  stellar.config = {
+    date_suffix: {
+      just: '刚刚',
+      min: '分钟前',
+      hour: '小时前',
+      day: '天前',
+      month: '个月前',
+    },
+    root : '/',
+  };
+
+  // required plugins (only load if needs)
+  stellar.plugins = {
+    jQuery: 'https://gcore.jsdelivr.net/npm/jquery@3.6.2/dist/jquery.min.js'
+  };
+
+  if ('local_search') {
+    stellar.search = {};
+    stellar.search.service = 'local_search';
+    if (stellar.search.service == 'local_search') {
+      let service_obj = Object.assign({}, {"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"});
+      stellar.search[stellar.search.service] = service_obj;
+    }
+  }
+
+  // stellar js
+  stellar.plugins.stellar = Object.assign({"sites":"/js/plugins/sites.js","friends":"/js/plugins/friends.js","ghinfo":"/js/plugins/ghinfo.js","timeline":"/js/plugins/timeline.js","linkcard":"/js/plugins/linkcard.js","fcircle":"/js/plugins/fcircle.js","weibo":"/js/plugins/weibo.js","memos":"/js/plugins/memos.js"});
+
+  stellar.plugins.marked = Object.assign("https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js");
+  // optional plugins
+  if ('true' == 'true') {
+    stellar.plugins.lazyload = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js","transition":"blur"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.swiper = Object.assign({"enable":true,"css":"https://unpkg.com/swiper@10.3/swiper-bundle.min.css","js":"https://unpkg.com/swiper@10.3/swiper-bundle.min.js"});
+  }
+  if ('' == 'true') {
+    stellar.plugins.scrollreveal = Object.assign({"enable":null,"js":"https://gcore.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.js","distance":"8px","duration":500,"interval":100,"scale":1});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.preload = Object.assign({"enable":true,"service":"flying_pages","instant_page":"https://gcore.jsdelivr.net/gh/volantis-x/cdn-volantis@4.1.2/js/instant_page.js","flying_pages":"https://gcore.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.fancybox = Object.assign({"enable":true,"js":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js","css":"https://gcore.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css","selector":".swiper-slide img, .gallery img"});
+  }
+  if ('false' == 'true') {
+    stellar.plugins.heti = Object.assign({"enable":false,"css":"https://unpkg.com/heti@0.9.2/umd/heti.min.css","js":"https://unpkg.com/heti@0.9.2/umd/heti-addon.min.js"});
+  }
+  if ('true' == 'true') {
+    stellar.plugins.copycode = Object.assign({"enable":true,"js":"/js/plugins/copycode.js","default_text":"Copy","success_text":"Copied","toast":"复制成功"});
+  }
+</script>
+
+<!-- required -->
+
+  
+<script src="/js/main.js" async></script>
+
+
+
+<!-- optional -->
+
+  <script>
+  function loadJS() {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    loadJS();
+  });
+</script>
+
+
+
+
+
+
+
+<!-- inject -->
+
+
+  </div>
+</body>
+</html>
