@@ -1,0 +1,2115 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f8f8f8">
+  
+  <title>stellar-v1.27.0源码框架浅析 - in~Somnia</title>
+
+  
+  <meta name="description" content="
+  展开
+  折叠
+
+
+stellar&#x2F;
+
+  
+    _config.yml
+  
+  
+    _data
+    
+      
+        icons.yml
+      
+      
+        widgets.yml
+      
+    
+  
+  
+  ...">
+  
+  <meta name="keywords" content="技术,生活">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="in~Somnia" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/网站图标2.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  <link href="https://fonts.loli.net/css2?family=Playball&family=Satisfy&display=swap" rel="stylesheet"><link href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css" rel="stylesheet" media="all">
+</head>
+<body><div class="sitebg"><div class="siteblur"></div></div>
+
+<div class="l_body s:aa content tech" id="start" layout="page" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">in~Somnia</div><div class="sub normal cap">念念不忘~</div><div class="sub hover cap" style="opacity:0"> 必有回响</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg><span style="color: hsl(0 0% 20%)">博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg><span style="color: hsl(0 0% 20%)">文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg><span style="color: hsl(0 0% 20%)">探索</span></a><a class="nav-item" title="社交" href="/social/" style="color:#D733FF"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg><span style="color: hsl(0 0% 20%)">社交</span></a></nav>
+</div>
+<div class="widgets"></div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700665441051" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7724" data-darkreader-inline-fill="" width="200" height="200"><path d="M950.857143 512q0 143.428571-83.714286 258T650.857143 928.571429q-15.428571 2.857143-22.571429-4t-7.142857-17.142858v-120.571428q0-55.428571-29.714286-81.142857 32.571429-3.428571 58.571429-10.285715t53.714286-22.285714 46.285714-38 30.285714-60T792 489.142857q0-69.142857-45.142857-117.714286 21.142857-52-4.571429-116.571428-16-5.142857-46.285714 6.285714t-52.571429 25.142857l-21.714285 13.714286q-53.142857-14.857143-109.714286-14.857143t-109.714286 14.857143q-9.142857-6.285714-24.285714-15.428571T330.285714 262.571429 281.142857 254.857143q-25.142857 64.571429-4 116.571428-45.142857 48.571429-45.142857 117.714286 0 48.571429 11.714286 85.714286t30 60 46 38.285714 53.714285 22.285714 58.571429 10.285715q-22.857143 20.571429-28 58.857143-12 5.714286-25.714286 8.571428t-32.571428 2.857143-37.428572-12.285714T276.571429 728q-10.857143-18.285714-27.714286-29.714286t-28.285714-13.714285l-11.428572-1.714286q-12 0-16.571428 2.571428t-2.857143 6.571429 5.142857 8 7.428571 6.857143l4 2.857143q12.571429 5.714286 24.857143 21.714285t18 29.142858l5.714286 13.142857q7.428571 21.714286 25.142857 35.142857t38.285714 17.142857 39.714286 4 31.714286-2l13.142857-2.285714q0 21.714286 0.285714 50.857143t0.285714 30.857142q0 10.285714-7.428571 17.142858t-22.857143 4q-132.571429-44-216.285714-158.571429T73.142857 512q0-119.428571 58.857143-220.285714T291.714286 132 512 73.142857t220.285714 58.857143T892 291.714286 950.857143 512z" p-id="7725" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="https://gitee.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700810083615" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11744" data-darkreader-inline-fill="" width="200" height="200"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="11745" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #7b2c2f;"></path></svg></a><a class="social" href="mailto:hl1670704310@icloud.com" rel="noopener noreferrer"><svg t="1700665373816" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6718" data-darkreader-inline-fill="" width="200" height="200"><path d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l73.142857 62.000762V780.190476h682.666666V417.645714l73.142857-62.000762zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z m-10.971428 73.142857H181.638095L512 525.58019 842.361905 243.809524z" p-id="6719" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="/social/#comments" rel="noopener noreferrer"><svg t="1700665059859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5632" data-darkreader-inline-fill="" width="200" height="200"><path d="M371.2 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5633" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M512 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5634" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M652.8 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5635" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M377.6 896c-6.4 0-6.4 0-12.8 0-12.8-6.4-19.2-19.2-19.2-32l0-128C211.2 684.8 128 569.6 128 448c0-179.2 172.8-320 384-320s384 140.8 384 320c0 172.8-166.4 313.6-371.2 320l-128 121.6C390.4 896 384 896 377.6 896zM512 192C332.8 192 192 307.2 192 448c0 102.4 76.8 192 192 236.8 12.8 6.4 19.2 19.2 19.2 32l0 76.8 83.2-76.8C492.8 704 505.6 704 512 704c179.2 0 320-115.2 320-256S691.2 192 512 192z" fill="#1afa29" p-id="5636" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top"></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>stellar-v1.27.0源码框架浅析</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><div style="text-align: right;">
+  <button id="expand">展开</button>
+  <button id="collapse">折叠</button>
+</div>
+
+<p><span style="font-size: 24px; font-weight: bold;">stellar&#x2F;</span></p>
+<ul class="tree">
+  <li>
+    <a id="config_yml"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/_config.yml">_config.yml</a>
+  </li>
+  <li>
+    <span id="bcce6b7bf48dfd6116eed87a75bebdbc" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/_data">_data</span>
+    <ul>
+      <li>
+        <a id="6931d20b73d9ea5f94fa2a1292bcab7b"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/_data/icons.yml">icons.yml</a>
+      </li>
+      <li>
+        <a id="3435627972ab704da1bb2dd6be4f3ecc"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/_data/widgets.yml">widgets.yml</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <span id="698b0a53de56564f3478d4c8628a6c38"
+      href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/languages">languages</span>
+    <ul>
+      <li>
+        <a id="1df7158a4ae0de49085241e71c78572d"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/languages/en.yml">en.yml</a>
+      </li>
+      <li>
+        <a id="fb4253632fe2289f2562c093eb6f31d7"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/languages/zh-CN.yml">zh-CN.yml</a>
+      </li>
+      <li>
+        <a id="2528387e2c82825156747fdae4bd4b7a"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/languages/zh-TW.yml">zh-TW.yml</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <span id="1d7245ac677c7582545d3f30b7d0190b" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout">layout   
+      <span style="color: #006e37">
+        存放主题的模板文件, 网站所有页面的布局、呈现方式都在这里定义.
+      </span> 
+    </span>       
+    <ul>
+      <div class="tag-plugin colorful note" ><div class="body"><p>该目录包含:&nbsp;8个<strong>页面模板</strong>用来定义网站里的8种网页类型;&nbsp;1个<strong>布局模板</strong>(<code>layout.ejs</code>)用来给所有页面进行整体布局;&nbsp;1个<strong>局部模板</strong>目录(<code>_partial/</code>);&nbsp;1个<strong>第三方插件模板</strong>目录(<code>_plugins/</code>).</p></div></div>
+      <li>
+        <a id="278efbb752d053f49aa95acafce880a8"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/404.ejs">404.ejs</a>
+      </li>
+      <li>
+        <a id="1e994fbcf525bf7df0ce51aa9f3ac4e5"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/archive.ejs">archive.ejs</a>
+      </li>
+      <li>
+        <a id="5c4186bb6d874fc5c7eed4e08e79199f"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/categories.ejs">categories.ejs</a>
+      </li>
+      <li>
+        <a id="805f9a355af19ca42fa835e0bcc4a7c1"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/index.ejs">index.ejs 
+        </a>
+        <span style="color: #006e37">
+          一个hexo主题里至少要有一个模板文件`index.ejs`, 用来定义网站首页的内容布局.
+        </span> 
+      </li>
+      <li>
+        <a id="6511e08485c5b7220395fc14626be038"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/index_topic.ejs">index_topic.ejs</a>
+      </li>
+      <li>
+        <a id="3bbc54071440bf0c629eace3b3820b28"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/index_wiki.ejs">index_wiki.ejs</a>
+      </li>
+      <li>
+        <a id="60cd60f5ef9e0b88291a015434b2908e"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/layout.ejs">layout.ejs</a>
+        <span style="color: #006e37">
+          ⭐⭐⭐必备的模板, 每个页面模板的html代码的生成, 都从它开始 👉
+        </span> 
+        <ul>
+          <li>
+            <strong>概述</strong>: 可以这样理解, layout模板 ➕ 本目录下任一页面模板 🟰 一个完整的的html页面.
+          </li>
+          <li>
+            <span><strong>它生成了哪些部分</strong> 👉</span>
+            <ul>
+              <li>网页的&lt;head&gt;部分 (调用<code>_partial/head.ejs</code>)</li>
+              <li>背景图、封面-wiki (调用<code>_partial/cover/index.ejs</code>)</li>
+              <li>左侧栏 (调用<code>_partial/sidebar/index_leftbar.ejs</code>)</li>
+              <li>❌页面内容主体(包括5个模块: '导航栏/横幅区; 正文; 文底参考文献/分享区; 上下篇文章链接区; 评论区'), 它不负责</li>
+              <li>page-footer部分 (调用<code>_partial/main/footer.ejs</code>)</li>
+              <li>右侧栏 (调用<code>_partial/sidebar/index_rightbar.ejs</code>)</li>
+              <li>网页的&lt;script&gt;部分 (调用<code>_partial/scripts/</code>)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>页面主体由谁负责</strong>: 本目录下的8个页面模板, 它们的输出传给该layout模板中的<code>body</code>变量.
+        </ul>
+      </li>
+      <li>
+        <a id="468e9d9628631de0010363afa66356f9"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/page.ejs">page.ejs</a>
+      </li>
+      <li>
+        <a id="fe375e834ac26e1abf00b506abfb77cb"
+          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/tags.ejs">tags.ejs</a>
+      </li>
+      <li>
+        <span id="f89c456d886a1a4270600f8286053a5e"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial">_partial
+          <span style="color: #006e37">
+            许多页面可共享的部件的模板集合.
+          </span> 
+        </span>
+        <ul>
+          <div style="font-size: 12px;">下面我用<span style="color: pink">粉色字</span>说明部件的作用区域(两侧、中间、整个页面); 用<span style="color: orange">橙色字</span>说明它被谁调用了.</div>
+          <li>
+            <span id="3cda6599201ef46bce9d0cf2146bef10"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments">comments
+              <i style="color: pink"> 〖中间-5.评论区〗</i>
+              <i style="color: orange"> 〖被8个页面模板〗</i>
+              <i style="color: #006e37"> 作者集成了6种评论区框架. </i>
+            </span>
+            <ul>
+              <li>
+                <span id="f3a0a1d764aa516bdf0b71c3bfb34b17"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/artalk">artalk</span>
+                <ul>
+                  <li>
+                    <a id="457ffce3eeb0395ad5f41dd50328a198"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/artalk/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="44445bf6764bbae6a3a511cb79ceff33"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/artalk/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="16c0a3de719bd89e0dfa354926450463"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/beaudar">beaudar</span>
+                <ul>
+                  <li>
+                    <a id="7f12aa8b39e8477327cfd25fe034d0a6"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/beaudar/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="db26464ef68118ba605dda65cf2aab25"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/beaudar/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="b3c8bd92268e4efe68435a989c293b48"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/giscus">giscus</span>
+                <ul>
+                  <li>
+                    <a id="cb77fd16fc036348912792088e49611b"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/giscus/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="be56d0f1d53262aaad7acfdfe1f54954"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/giscus/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a id="1eaf34f90ffc6f74d2d9fcb316be0b17"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/layout.ejs">layout.ejs</a>
+              </li>
+              <li>
+                <a id="867cf4aac73734dc284db2aab8872fc6"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/script.ejs">script.ejs</a>
+              </li>
+              <li>
+                <span id="8d74d7227b009b3413d469659df332db"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/twikoo">twikoo</span>
+                <ul>
+                  <li>
+                    <a id="779c5d14d860b69eb3723ea37c376ba2"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/twikoo/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="9674f72e859eeac8fdbd851b05645063"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/twikoo/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="4707178fd5863f469f2ae7b9021c51a3"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/utterances">utterances</span>
+                <ul>
+                  <li>
+                    <a id="5cbbab1faa4a6e4c3f2346d599538e0f"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/utterances/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="e888094fcdee25805b8668fe746eeda7"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/utterances/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="6ad2ef43be07bfb1426da96805f2be95"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/waline">waline</span>
+                <ul>
+                  <li>
+                    <a id="a5de60cb3301bff97ca9ffc6e3f1abb2"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/waline/layout.ejs">layout.ejs</a>
+                  </li>
+                  <li>
+                    <a id="2a7259d0e6145052929f21440fadf5b5"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/comments/waline/script.ejs">script.ejs</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="bc4aaea0edee76d0b2ccd29249077ccb"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/cover">cover
+              <i style="color: pink"> 〖整个页面〗</i>
+              <i style="color: orange"> 〖被layout.ejs〗</i>
+              <i style="color: #006e37"> 如: 进入wiki项目后的那个大封面. </i>
+            </span>
+            <ul>
+              <li>
+                <a id="4ecf3420a232727794af0f59b4c9dcc8"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/cover/index.ejs">index.ejs</a>
+              </li>
+              <li>
+                <a id="2237ec4c88cd989f23561c4cadc5637f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/cover/post_cover.ejs">post_cover.ejs</a>
+              </li>
+              <li>
+                <a id="06e72391140b5c29cdeb377841b25acb"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/cover/wiki_cover.ejs">wiki_cover.ejs</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="209945eb344c24b036174077c957802a"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main">main
+              <i style="color: pink"> 〖中间-1,2,3,4,6区〗</i>
+              <i style="color: orange"> 〖被8个页面模板〗</i>
+              <i style="color: #006e37"> 可用于目录类、文章类页面. </i>
+            </span>
+            <ul>
+              <div>
+                <span>实现了以下模块 👉  </span>
+                <ul>
+                  <li>1.顶部导航/横幅区; </li>
+                  <li>2. 正文目录列表卡片的展示(限`目录类`页面的正文);</li>
+                  <li>3. 正文结束的footer区(参考文献、许可证书、分享文章. 限`文章类`页面); </li>
+                  <li>4. 上一篇/下一篇/相关文章区; </li>
+                  <li>❌5. 评论区; (评论区没在`main/`中)</li>
+                  <li>6. 页底版权信息区.</li>
+                </ul>
+              </div>
+              <li>
+                <span id="fb2e370f4ba4e3d12f0c4eacebf02636"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/article">article
+                  <i style="color: pink"> 〖中间-3.footer区; 4.上下文章链接区〗</i>
+                  <i style="color: orange"> 〖被8个页面模板〗</i>
+                </span>
+                <ul>
+                  <li>
+                    <a id="9b8251976597f8c7ca87e50174e0ec7b"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/article/article_footer.ejs">article_footer.ejs</a>
+                  </li>
+                  <li>
+                    <a id="71c9744b32d5fc946d54e7791bd44077"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/article/read_next.ejs">read_next.ejs</a>
+                  </li>
+                  <li>
+                    <a id="df3c4aadb3353f4738458e21319a4bcf"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/article/related_posts.ejs">related_posts.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="1f258863a4d6411bae3141c14b72e3c2"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar">navbar
+                  <i style="color: pink"> 〖中间-1.页顶导航栏/横幅区〗</i>
+                  <i style="color: orange"> 〖被8个页面模板〗</i>
+                </span>
+                <ul>
+                  <li>
+                    <a id="acfcfdfab27ad55c00d723d3ed91acf7"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/article_banner.ejs">article_banner.ejs
+                    </a>
+                    <span style="color: #006e37">〖文章页〗顶部的banner区域 👉</span>
+                    <ul>                      
+                      其显示功能包括 :横幅背景图; <code style="color: orange">面包屑导航</code>; 文章日期; 可能有的头像; 标题; 副标题. 
+                    </ul>
+                  </li>
+                  <li>
+                    <span id="7bb9b81bd26e2b9fb3b7ebe6d1c3007f"
+                      href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/breadcrumb">breadcrumb
+                    <span style="color: #006e37"> 定义面包屑的行为. 被<code>'article_banner.ejs'</code>调用.</span>
+                    </span>
+                    <ul>
+                      <li>
+                        <a id="777ea6c2015a9f98f42a14bc23fd937d"
+                          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/breadcrumb/blog.ejs">blog.ejs</a>
+                      </li>
+                      <li>
+                        <a id="0977814208d78d496edc3180d07206c5"
+                          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/breadcrumb/page.ejs">page.ejs</a>
+                      </li>
+                      <li>
+                        <a id="b853db5448a40dacdfae4c605504bdc9"
+                          target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/breadcrumb/wiki.ejs">wiki.ejs</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a id="87ba62ca7304c79ef2b9c0309a149996"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/dateinfo.ejs">dateinfo.ejs
+                      <span style="color: #006e37"> 定义文章日期. 被<code>article_banner.ejs</code>调用.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a id="d8f4f57d4cf2cecef80ac3b690d8b97b"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/ghinfo.ejs">ghinfo.ejs
+                      <span style="color: #006e37"> 似乎已经弃用.</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a id="a8681e1e183acfaff665b449e23a2819"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/nav_tabs_blog.ejs">nav_tabs_blog.ejs
+                      <span style="color: #006e37"> 〖目录页-post〗顶部的导航区. (即网站首页 <code>"/"</code>).</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a id="a2be9dc29ebf36c98904593d8cc95b23"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/navbar/nav_tabs_wiki.ejs">nav_tabs_wiki.ejs
+                      <span style="color: #006e37"> 〖目录页-wiki〗顶部的导航区. (即wiki首页 <code>"/wiki/"</code>).</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="e8d74a8396923d74255e15ce9eb988f0"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/post_list">post_list
+                  <i style="color: pink"> 〖中间-2.正文: 目录页的文章列表〗</i>
+                  <i style="color: orange"> 〖被8个页面模板〗</i>
+                  <i style="color: #006e37"> 涵盖3种布局的目录:post, wiki, topic, 还有分页菜单.</i>
+                </span>
+                <ul>
+                  <li>
+                    <a id="8531eaee554004b659f15eeddf8277b4"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/post_list/paginator.ejs">paginator.ejs</a>
+                  </li>
+                  <li>
+                    <a id="73172a7506356ea32eeff91219de6b17"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/post_list/post_card.ejs">post_card.ejs</a>
+                  </li>
+                  <li>
+                    <a id="fc1854e95fdaba1ba75e9fa67dfe4832"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/post_list/topic_card.ejs">topic_card.ejs</a>
+                  </li>
+                  <li>
+                    <a id="de74830b9b1c7725ccb61dd4d1bd663a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/post_list/wiki_card.ejs">wiki_card.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a id="dc5ae04619e1001b662fd977626cea94"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/main/footer.ejs">footer.ejs
+                </a>
+                <i style="color: pink"> 〖中间-6.页底版权信息区〗</i>
+                <i style="color: orange"> 〖被layout.ejs〗</i>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="bf8567b75c99ed3edf7dae2559e40828"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts">scripts</span>
+            <ul>
+              <li>
+                <a id="56748d6943e7d22a4ee3a3b3d5187b04"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts/defines.ejs">defines.ejs</a>
+              </li>
+              <li>
+                <a id="e7a159d09b4213c67020c792d86eca72"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts/services.ejs">services.ejs</a>
+              </li>
+              <li>
+                <a id="56baf8f04b36bee5e4d6c3d4e78c557b"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts/sidebar.ejs">sidebar.ejs</a>
+              </li>
+              <li>
+                <a id="39f21e60923e942b4b0f58da11b507b2"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts/utils.ejs">utils.ejs</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="311c6633d3c9194127079b9d31c268ce"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar">sidebar
+              <i style="color: pink"> 〖两侧〗</i>
+              <i style="color: orange"> 〖被layout.ejs〗</i>
+            </span>
+            <ul>
+              <li>
+                <a id="6f7219b6cb269a224ffb701ae3c1462f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar/index_leftbar.ejs">index_leftbar.ejs</a>
+                <span>左侧栏模板, 实现了以下功能 👉</span>
+                <ul>
+                  <li>logo区域 -> 调用<code>logo.ejs</code></li>
+                  <li>搜索框 -> 调用<code>search.ejs</code></li>
+                  <li>菜单按钮 -> 调用<code>menu.ejs</code></li>
+                  <li>任意数量自定义组件 -> 调用<code>../widgets/</code></li>
+                  <li>底部社交链接按钮 -> 调用<code>来自配置项theme.footer.social</code></li>
+                </ul>
+              </li>
+              <li>
+                <a id="381500dc6439ac5ff85193c2fa1e59ee"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar/index_rightbar.ejs">index_rightbar.ejs</a>
+              </li>
+              <li>
+                <a id="2c0279cc397fccd6ab43b641a5420a03"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar/logo.ejs">logo.ejs</a>
+              </li>
+              <li>
+                <a id="9d0d049fd48875c03a8f111bba746082"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar/menu.ejs">menu.ejs</a>
+              </li>
+              <li>
+                <a id="6d064d82272c899b2b9dfae7a8e44c33"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/sidebar/search.ejs">search.ejs</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="19ef816e7996dc181988d4bdb69f21e4"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets">widgets
+              <i style="color: pink"> 〖两侧〗</i>
+              <i style="color: orange"> 〖被`_partial/sidebar/`〗</i>
+              <i style="color: #006e37"> 作者设计的所有小组件的模板集合. </i>
+            </span>
+            <ul>
+              这些模板需要的配置信息来自你的博客项目的<code style="color: orange">source/_data/widgets.yml</code>, 和主题项目的<code style="color: orange">themes/stellar/_data/wigets.yml</code>. 
+              <li>
+                <span id="4ea87403c8e17167d4d368eb474b1f66"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/components">components</span>
+                <ul>
+                  <li>
+                    <a id="ac9ead7de0e4a068d7538821a74412d8"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/components/edit.ejs">edit.ejs</a>
+                  </li>
+                  <li>
+                    <a id="0233f7fdcd2342a520611a1db7745117"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/components/link.ejs">link.ejs</a>
+                  </li>
+                  <li>
+                    <a id="f17cb42d7b04e25107b720b66eefbc91"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/components/linklist.ejs">linklist.ejs</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a id="95606c1d7a2cca9296e11023a225cb58"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/author.ejs">author.ejs</a>
+              </li>
+              <li>
+                <a id="3ba0ab8d1a1e4466bd1f0dd5cbdb98d6"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/ghissues.ejs">ghissues.ejs</a>
+              </li>
+              <li>
+                <a id="f96bb51dbc32f40b60fca541a8f268f2"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/ghrepo.ejs">ghrepo.ejs</a>
+              </li>
+              <li>
+                <a id="bfd53897997e7fe5a5819637fa7ecc58"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/ghuser.ejs">ghuser.ejs</a>
+              </li>
+              <li>
+                <a id="46979c70357014ca2a62e8f0d1f2872a"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/linklist.ejs">linklist.ejs</a>
+              </li>
+              <li>
+                <a id="30913116f571241a9c09678a74b2b660"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/markdown.ejs">markdown.ejs</a>
+              </li>
+              <li>
+                <a id="898db116b157ad24621f6d15d1211d73"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/recent.ejs">recent.ejs</a>
+              </li>
+              <li>
+                <a id="185698f08a0d6ab379af93fce2466a54"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/related.ejs">related.ejs</a>
+              </li>
+              <li>
+                <a id="04e1f0270e29f59faf30d260398addc8"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/search.ejs">search.ejs</a>
+              </li>
+              <li>
+                <a id="ea9082072b6c8738112530af78dea135"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/tagcloud.ejs">tagcloud.ejs</a>
+              </li>
+              <li>
+                <a id="e5e02828923921c0d5f6ba6f9c977eba"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/timeline.ejs">timeline.ejs</a>
+              </li>
+              <li>
+                <a id="91b3d70697a3ee128675050237abbc7a"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/toc.ejs">toc.ejs</a>
+              </li>
+              <li>
+                <a id="61739386ca04fb6a13888e0e9d147981"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/widgets/tree.ejs">tree.ejs</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a id="0fd2fdc185a36e8a033e4888bc7e72b4"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/head.ejs">head.ejs</a>
+            <i style="color: pink"> 〖 〗</i>
+            <i style="color: orange"> 〖被layout.ejs〗</i>
+            <i style="color: #006e37"> html网页的&lt;head&gt;元素. </i>
+          </li>
+          <li>
+            <a id="277945c8ff44dff017259058a65cc6f2"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/menubtn.ejs">menubtn.ejs</a>
+            <i style="color: pink"> 〖两侧〗</i>
+            <i style="color: orange"> 〖被layout.ejs〗</i>
+            <i style="color: #006e37"> 用于移动设备显示左、右侧内容的按钮. </i>
+          </li>
+          <li>
+            <a id="0e2f37b339a495c45f4e0893451d6f87"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_partial/scripts.ejs">scripts.ejs</a>
+            <i style="color: pink"> 〖 〗</i>
+            <i style="color: orange"> 〖被layout.ejs〗</i>
+            <i style="color: #006e37"> 加载脚本. 其诸多加载路径、作用有待进一步研究.</i>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="bf82f52ed03889c954c2d9ea98b289a7"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins">_plugins
+          <span style="color: #006e37">
+            导入第三方插件的模板集合.
+          </span> 
+        </span>
+        <ul>
+          <li>
+            <a id="4a29a50650bd490d926aaf016e35b0f9"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/copycode.ejs">copycode.ejs</a>
+          </li>
+          <li>
+            <a id="53fa1b437a89bdea38ac46a92f0eda3b"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/fancybox.ejs">fancybox.ejs</a>
+          </li>
+          <li>
+            <a id="044f4216e38f66871554fae691fe0487"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/heti.ejs">heti.ejs</a>
+          </li>
+          <li>
+            <a id="9dd6778ab971465ebdbb9562fd66a9b3"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/index.ejs">index.ejs</a>
+          </li>
+          <li>
+            <a id="adc722fab0b7abf99f82c5c43ad4b3fc"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/lazyload.ejs">lazyload.ejs</a>
+          </li>
+          <li>
+            <a id="721e9567ecd7ce91e911f90ad60693ab"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/mathjax.ejs">mathjax.ejs</a>
+          </li>
+          <li>
+            <a id="0ba3015e7f2d8a97024969885419661f"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/mermaid.ejs">mermaid.ejs</a>
+          </li>
+          <li>
+            <a id="538ef663593c96493b907f08b652fa19"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/preload.ejs">preload.ejs</a>
+          </li>
+          <li>
+            <a id="5e60cc3cc301b78847ff745628b04ce0"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/scrollreveal.ejs">scrollreveal.ejs</a>
+          </li>
+          <li>
+            <span id="289543cae679b8e27907ea7d5b0700f0"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/search">search</span>
+            <ul>
+              <li>
+                <a id="db17acf407a7e0540f97da1891d2e0f3"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/search/local_search.ejs">local_search.ejs</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a id="8f49e5b9d666851300124ed1d83119ea"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/swiper.ejs">swiper.ejs</a>
+          </li>
+          <li>
+            <a id="b56a8c592f7e6b11a75145ac8ea2392d"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/layout/_plugins/tianli_gpt.ejs">tianli_gpt.ejs</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <span id="33d8f0ac8cbc4c832c47a82c7a7ef4d3"
+      href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts">scripts
+      <i style="color: #006e37"> js脚本集合. 其诸多加载路径、作用有待进一步研究.</i>
+    </span>
+    <ul>
+      <li>
+        <span id="8a26fbbdeca9f32c21c4062c29c25967"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events">events</span>
+        <ul>
+          <li>
+            <a id="7a4bf023d9ffa3ba7fb17b99e69a2e70"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/index.js">index.js</a>
+          </li>
+          <li>
+            <span id="7144ec926d27660f923d2bc4296eb977"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib">lib</span>
+            <ul>
+              <li>
+                <a id="75e3370dea7568d225fefa762ae2c553"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/authors.js">authors.js</a>
+              </li>
+              <li>
+                <a id="35c74f4ed53057a4b0904d7a1574919a"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/config.js">config.js</a>
+              </li>
+              <li>
+                <a id="44db790dbf18ca8830c127b28d755e44"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/doc_tree.js">doc_tree.js</a>
+              </li>
+              <li>
+                <a id="c4201f508377fc96352f48077489c0df"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/links.js">links.js</a>
+              </li>
+              <li>
+                <a id="8738739b5610bd7e03ab2a40b0160390"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/merge_posts.js">merge_posts.js</a>
+              </li>
+              <li>
+                <a id="034caba00e0da0055db16743dcf9c2a8"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/topic_tree.js">topic_tree.js</a>
+              </li>
+              <li>
+                <a id="14f7be0b213177c2396710e80e97a82e"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/events/lib/utils.js">utils.js</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="59fb96ebe06ad973931742a0262ab910"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/filters">filters</span>
+        <ul>
+          <li>
+            <a id="91a8535fd89cd5b13626ca862e4df904"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/filters/index.js">index.js</a>
+          </li>
+          <li>
+            <span id="44eb05ad367f9e2bc22c4c3cdeffb786"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/filters/lib">lib</span>
+            <ul>
+              <li>
+                <a id="91896463049080eefc63dfcf251d6165"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/filters/lib/img_lazyload.js">img_lazyload.js</a>
+              </li>
+              <li>
+                <a id="cf7bff0212469a00ddfe95085b728167"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/filters/lib/img_onerror.js">img_onerror.js</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="eead196d531af4af925a57fc1d0e90f1"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators">generators
+          <i style="color: #006e37"> 生成器脚本. 生成除`文章页`外的其他目录页.</i>
+        </span>
+        <ul>
+          <li>
+            <a id="24748a2d9e27024077c92616d295cab3"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/404.js">404.js</a>
+          </li>
+          <li>
+            <a id="fbd703530b71e28765b3729e623e3295"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/author.js">author.js</a>
+          </li>
+          <li>
+            <a id="52b3e2cc6ad166f64d560a752f5ac482"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/categories.js">categories.js</a>
+          </li>
+          <li>
+            <a id="040666becb180cb026268dc933a4baed"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/search.js">search.js</a>
+          </li>
+          <li>
+            <a id="510c586ca40e30796b7f95f0cb27d450"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/tags.js">tags.js</a>
+          </li>
+          <li>
+            <a id="42398637867063672a585148654090de"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/topic.js">topic.js</a>
+          </li>
+          <li>
+            <a id="70b066019dfffe4144b7c188b9226f2d"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/generators/wiki.js">wiki.js</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="4d2f3f1535cc38089a2a38d1ec07f960"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers">helpers
+          <i style="color: #006e37"> 辅助脚本.</i>
+        </span>
+        <ul>
+          <li>
+            <a id="672a9087aa9fdb09c967cb8b5ad0db6a"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/category_color.js">category_color.js</a>
+          </li>
+          <li>
+            <a id="3f6abed3276e6d53a01652218fc0c5a1"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/icon.js">icon.js</a>
+          </li>
+          <li>
+            <a id="bd429858eb24cab188a5127bf8ec2858"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/parse_config.js">parse_config.js</a>
+          </li>
+          <li>
+            <a id="888a1fc9aa8d1840beffe7b5e4123d5b"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/related_posts.js">related_posts.js</a>
+          </li>
+          <li>
+            <a id="1c9adc9eda6494360919a83a92f32dd2"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/scrollreveal.js">scrollreveal.js</a>
+          </li>
+          <li>
+            <a id="d0a183ba5c5fa4e8e1b7abcf0bfba799"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/stellar_info.js">stellar_info.js</a>
+          </li>
+          <li>
+            <a id="6e698b5339b5bd0530891e1c62b766d2"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/helpers/utils.js">utils.js</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="8a18022f1046f6d36d93d44fbdd18e67"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags">tags
+          <i style="color: #006e37"> 标签插件脚本. 作者创造了很多有意思的Tag Plugins.</i>
+        </span>
+        <ul>
+          <li>
+            <a id="524d75b578d91a9713ca01f480500c39"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/index.js">index.js</a>
+          </li>
+          <li>
+            <a id="d45957d283907082007abb797046593b"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/inline-labels.js">inline-labels.js</a>
+          </li>
+          <li>
+            <span id="75c267c580a7fb20ec9204df1dd99d7c"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib">lib</span>
+            <ul>
+              <li>
+                <a id="27a17ecc3e5d775111229d6623a2096d"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/about.js">about.js</a>
+              </li>
+              <li>
+                <a id="53705c3c84ca17805c44115eab98736c"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/albums.js">albums.js</a>
+              </li>
+              <li>
+                <a id="239a112d44cc8de2042c5b071466b00b"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/audio.js">audio.js</a>
+              </li>
+              <li>
+                <a id="4a61b8b05020cd307fb8c83bb03360c9"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/banner.js">banner.js</a>
+              </li>
+              <li>
+                <a id="7446bbba759a142211269798feb31718"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/box.js">box.js</a>
+              </li>
+              <li>
+                <a id="056a61b7aad4378a13f65acbbd306ce4"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/button.js">button.js</a>
+              </li>
+              <li>
+                <a id="a60549fa4750f51e28d5ba1dcddb84ae"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/checkbox.js">checkbox.js</a>
+              </li>
+              <li>
+                <a id="d09d8c60f48abac642fc6366738f264c"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/copy.js">copy.js</a>
+              </li>
+              <li>
+                <a id="0044b55ea794096c791c2e3b851dc2f4"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/emoji.js">emoji.js</a>
+              </li>
+              <li>
+                <a id="17c043f8be460398f4cc03d584c58781"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/folders.js">folders.js</a>
+              </li>
+              <li>
+                <a id="b3b496a7d497fcdab0947929174b4565"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/folding.js">folding.js</a>
+              </li>
+              <li>
+                <a id="f921ad690395d11309e6bc30fe38f21e"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/frame.js">frame.js</a>
+              </li>
+              <li>
+                <a id="ab2b883eb9aef53768b0aee3200e692a"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/friends.js">friends.js</a>
+              </li>
+              <li>
+                <a id="21880d5046f5bc6caecd170d6bc3fe61"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/gallery.js">gallery.js</a>
+              </li>
+              <li>
+                <a id="3e52ddb8e919cdf2127511e07dd3b8f5"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/ghcard.js">ghcard.js</a>
+              </li>
+              <li>
+                <a id="73a0eaa65afdc81d695ba6764cf0ff1f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/grid.js">grid.js</a>
+              </li>
+              <li>
+                <a id="1c63ab0cbf0253ff3deb0e1d31f2d4ee"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/hashtag.js">hashtag.js</a>
+              </li>
+              <li>
+                <a id="81d174507ae2ef69546773450d13f83a"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/icon.js">icon.js</a>
+              </li>
+              <li>
+                <a id="bc222d7d7e9d022bfe7c595250914240"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/image.js">image.js</a>
+              </li>
+              <li>
+                <a id="efeb229ea06fa8dc6f1c959a000cf79b"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/link.js">link.js</a>
+              </li>
+              <li>
+                <a id="7b8d4d0dcaafdb22535223bb19fb5bce"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/mark.js">mark.js</a>
+              </li>
+              <li>
+                <a id="15c61d487cdbe72be3036a1a32ef51fa"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/md.js">md.js</a>
+              </li>
+              <li>
+                <a id="ef4bf7c3ab44ce36f46680a287d3a3b9"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/navbar.js">navbar.js</a>
+              </li>
+              <li>
+                <a id="c201f539e39001af7b77f4dd81be64da"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/note.js">note.js</a>
+              </li>
+              <li>
+                <a id="2268f518a1e279144fe54ae2ff9e91a6"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/okr.js">okr.js</a>
+              </li>
+              <li>
+                <a id="51624897f038643da586ba995e19e51d"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/poetry.js">poetry.js</a>
+              </li>
+              <li>
+                <a id="e278de9658c03de6390fb61608718b53"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/posters.js">posters.js</a>
+              </li>
+              <li>
+                <a id="d71915773c788c8d2cc1c90bd7a1ed96"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/quot.js">quot.js</a>
+              </li>
+              <li>
+                <a id="a372255233a6e53c23031351b42517aa"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/sites.js">sites.js</a>
+              </li>
+              <li>
+                <a id="79d660c650b81cada54e9b009ca0ca6d"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/swiper.js">swiper.js</a>
+              </li>
+              <li>
+                <a id="922a6be3ac29d2c27597f5926ecf786e"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/tabs.js">tabs.js</a>
+              </li>
+              <li>
+                <a id="df6d850eb73c24bb010d382f5f2291eb"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/timeline.js">timeline.js</a>
+              </li>
+              <li>
+                <a id="1c8810d79e06cd04f256c9192e5aa625"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/toc.js">toc.js</a>
+              </li>
+              <li>
+                <a id="e36e1883a0a05e75214548d10faac5b3"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/scripts/tags/lib/video.js">video.js</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <span id="247ba458ce7ade1d8b1e7d77117cfe95" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source">source</span>
+    <ul>
+      <li>
+        <span id="3eca74bfbd3ae64cb34166a8851073e2"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css">css</span>
+        <ul>
+          <li>
+            <a id="ce0ff18986942ecacc2722622c72188b"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/main.styl">main.styl</a>
+          </li>
+          <li>
+            <span id="7cdfd0b7e4cc537f5ecb2ce74a4613f2"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common">_common</span>
+            <ul>
+              <li>
+                <a id="f4c3a8857fe607b0351cae551b1dc8ce"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/base.styl">base.styl</a>
+              </li>
+              <li>
+                <a id="198cdcefde2b2e1c7f7514bce961975d"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/blockquote.styl">blockquote.styl</a>
+              </li>
+              <li>
+                <a id="c02d0ea732f556123544ce5078f6ab46"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/blur.styl">blur.styl</a>
+              </li>
+              <li>
+                <a id="e739fb218e3a4c1207813bf081c53faf"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/button.styl">button.styl</a>
+              </li>
+              <li>
+                <a id="fea3f193a1c90069f4766fa858f85cc5"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/cap.styl">cap.styl</a>
+              </li>
+              <li>
+                <a id="9ce031cb88cb56b96f0711b2226d58ac"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/control.styl">control.styl</a>
+              </li>
+              <li>
+                <a id="2177a077efb57defc16f47617af60809"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/device.styl">device.styl</a>
+              </li>
+              <li>
+                <a id="facf2872352fec9977d8f450a941283f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/highlight.styl">highlight.styl</a>
+              </li>
+              <li>
+                <a id="21d0776f4f8a164a156b1c3dca24c680"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/html.styl">html.styl</a>
+              </li>
+              <li>
+                <a id="ec0b52d8aab9493c4627e1826294d21f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/image.styl">image.styl</a>
+              </li>
+              <li>
+                <a id="fa80178c87944389e5544a5b38f76c17"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/input.styl">input.styl</a>
+              </li>
+              <li>
+                <a id="71dfb87555417c9c2d309749d641c5fa"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/layout.styl">layout.styl</a>
+              </li>
+              <li>
+                <a id="df4e091e53731f370cd17771440697b6"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/loading.styl">loading.styl</a>
+              </li>
+              <li>
+                <a id="46dd3bd71645ab895823ed743359e000"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/media.styl">media.styl</a>
+              </li>
+              <li>
+                <a id="3c5cd5c3f5879091382a45877e64ac05"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/pre.styl">pre.styl</a>
+              </li>
+              <li>
+                <a id="580edd8eb08bd870d63c0974babf9cf5"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/span.styl">span.styl</a>
+              </li>
+              <li>
+                <a id="865a09fb9999cc1addaca305c4b88f0d"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/svg.styl">svg.styl</a>
+              </li>
+              <li>
+                <a id="3003e8b26738358a845c9d71b9cf11c1"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/title.styl">title.styl</a>
+              </li>
+              <li>
+                <a id="96c599d851b4d0e08b50a7ffe317641c"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_common/toast.styl">toast.styl</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a id="4c5d8a192b5c31cb88d6feee0c73fe13"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_custom.styl">_custom.styl</a>
+          </li>
+          <li>
+            <span id="2bf147d5b1b333d635acdc462e0974ea"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_defines">_defines</span>
+            <ul>
+              <li>
+                <a id="42569ca079bbb9ec04109646511aaf98"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_defines/const.styl">const.styl</a>
+              </li>
+              <li>
+                <a id="24a8d485a05c2019c60f76569a092efb"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_defines/func.styl">func.styl</a>
+              </li>
+              <li>
+                <a id="8cb4cbd31ba5c1f69ca593cc23c93064"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_defines/theme.styl">theme.styl</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="d594452cccdb25ea611a29cc65c614f6"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout">_layout</span>
+            <ul>
+              <li>
+                <a id="1c625554cf0cf8850ac868b6f07a28aa"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/index.styl">index.styl</a>
+              </li>
+              <li>
+                <a id="4b4db9386d82d6aef449513a94f19e5b"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/layout.styl">layout.styl</a>
+              </li>
+              <li>
+                <a id="4e1f6beb08163f6684011ca4fb002f5f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/list.styl">list.styl</a>
+              </li>
+              <li>
+                <a id="118e01ca1e90be291a1a17cea307ebe1"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/main.styl">main.styl</a>
+              </li>
+              <li>
+                <a id="85994f47be80627a4c25912b9b127b08"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/md.styl">md.styl</a>
+              </li>
+              <li>
+                <span id="3bd3ff6039cc3133b93775a71712943c"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/pages">pages</span>
+                <ul>
+                  <li>
+                    <a id="4535cbb6717514281503c21270cb32cd"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/pages/archives.styl">archives.styl</a>
+                  </li>
+                  <li>
+                    <a id="573d724559a43f7c5218830a15a3d285"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/pages/error.styl">error.styl</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="2c72cfadd966c6b1479b0d4e96a65393"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial">partial</span>
+                <ul>
+                  <li>
+                    <a id="7b8676266f2949af8bc948e73fad67fd"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/article-banner.styl">article-banner.styl</a>
+                  </li>
+                  <li>
+                    <a id="5624c986b6fb46dccf7f3a3138f92ba3"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/article-footer.styl">article-footer.styl</a>
+                  </li>
+                  <li>
+                    <a id="461b1d0319da0aea5ddb64afe3b76000"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/bread-nav.styl">bread-nav.styl</a>
+                  </li>
+                  <li>
+                    <a id="c05b5c49cff8f0b1ab9a33c073eb729f"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/cover.styl">cover.styl</a>
+                  </li>
+                  <li>
+                    <a id="9dfc87f45a509078a0bf062e1de5418c"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/footer.styl">footer.styl</a>
+                  </li>
+                  <li>
+                    <a id="edd7defcffe015581dde524db700b744"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/navbar.styl">navbar.styl</a>
+                  </li>
+                  <li>
+                    <a id="49ff960251a3ea43ba481a969e4a8d8c"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/paginator.styl">paginator.styl</a>
+                  </li>
+                  <li>
+                    <a id="ddf5bb7d479c2401692efa2fc24766b2"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/partial/related.styl">related.styl</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="7d453825aca23a7433cf81085546399a"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar">sidebar</span>
+                <ul>
+                  <li>
+                    <a id="3a54f9c2b17229aab410a2e67b6d4c0a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/footer.styl">footer.styl</a>
+                  </li>
+                  <li>
+                    <a id="1875cb66d67f0878bdad43b0c93273d7"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/logo.styl">logo.styl</a>
+                  </li>
+                  <li>
+                    <a id="79be251182b60e8c560fc9c2cf9e237a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/menu.styl">menu.styl</a>
+                  </li>
+                  <li>
+                    <a id="04093ad248eb3bd9d7c5e7e3f949f932"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/nav-area.styl">nav-area.styl</a>
+                  </li>
+                  <li>
+                    <a id="dbc5140a1187d70488b89ae2a009a3cf"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/search.styl">search.styl</a>
+                  </li>
+                  <li>
+                    <a id="8eb00c22b3b62ffdbac2ccde81b88e85"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/sidebar/sidebar.styl">sidebar.styl</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="6cbcd73d514b77ca892073d3ddb5e5ac"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins">tag-plugins</span>
+                <ul>
+                  <li>
+                    <a id="50dfb8fa40d7d2ecea3523c890e030f9"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/about.styl">about.styl</a>
+                  </li>
+                  <li>
+                    <a id="cd184c1e9fb2264fc203de8917f80e9a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/banner.styl">banner.styl</a>
+                  </li>
+                  <li>
+                    <a id="8095ff2aa5fd744bc264de62d828ea4d"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/button.styl">button.styl</a>
+                  </li>
+                  <li>
+                    <a id="a8810bf3b576d3c60e1cc88be8c6a201"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/checkbox.styl">checkbox.styl</a>
+                  </li>
+                  <li>
+                    <a id="5a6a0ad6148dbb4649aff183e2217c17"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/common.styl">common.styl</a>
+                  </li>
+                  <li>
+                    <a id="8d000148b03401376107c271ed2eed09"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/copy.styl">copy.styl</a>
+                  </li>
+                  <li>
+                    <a id="6072e68489a8e9b8d0cf886bf16c03b8"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/emoji.styl">emoji.styl</a>
+                  </li>
+                  <li>
+                    <a id="bb01a37ec7546273d3e6ee12f99b5bdd"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/folders.styl">folders.styl</a>
+                  </li>
+                  <li>
+                    <a id="06b87debf434ecd677f5408dbdf4430a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/folding.styl">folding.styl</a>
+                  </li>
+                  <li>
+                    <a id="defcaa06748e7b344462958f8b016814"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/frame.styl">frame.styl</a>
+                  </li>
+                  <li>
+                    <a id="37d4e8474931f36c109a38c7a39b3cea"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/friends.styl">friends.styl</a>
+                  </li>
+                  <li>
+                    <a id="bf3224584faa480929185a88cc87e65d"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/gallery.styl">gallery.styl</a>
+                  </li>
+                  <li>
+                    <a id="92f19ea734ec4ce5ddbb34f6c6c24d79"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/ghcard.styl">ghcard.styl</a>
+                  </li>
+                  <li>
+                    <a id="53c1a674be915f699260cf4f2f4c3492"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/grid.styl">grid.styl</a>
+                  </li>
+                  <li>
+                    <a id="d037b5f47effc7bc8dd9d2999b2b1883"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/hashtag.styl">hashtag.styl</a>
+                  </li>
+                  <li>
+                    <a id="a31661d50c26dee167ae427d56c510aa"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/icon.styl">icon.styl</a>
+                  </li>
+                  <li>
+                    <a id="78146f4c028e97eb78805c85ede7530d"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/image.styl">image.styl</a>
+                  </li>
+                  <li>
+                    <a id="cdcf244173ad837a5fe6d6c3ea3bd5ec"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/inline-labels.styl">inline-labels.styl</a>
+                  </li>
+                  <li>
+                    <a id="0f22ddb789276e829b4453d8d848d442"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/link.styl">link.styl</a>
+                  </li>
+                  <li>
+                    <a id="7380dadd50ae4ac79d3edb566eed8d58"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/mark.styl">mark.styl</a>
+                  </li>
+                  <li>
+                    <a id="0f9ede6b7dc776732fd2fbc6aec1a09a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/media.styl">media.styl</a>
+                  </li>
+                  <li>
+                    <a id="1eb0d3e3a1bb9bdbd4258ea44166132a"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/navbar.styl">navbar.styl</a>
+                  </li>
+                  <li>
+                    <a id="06f5908511e44b4d1b2c13771c17324b"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/note.styl">note.styl</a>
+                  </li>
+                  <li>
+                    <a id="3e371c56da8abe53d66d63d723b19f6d"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/okr.styl">okr.styl</a>
+                  </li>
+                  <li>
+                    <a id="a4dd5e1ccc269962b2d1fa7eb4dbe765"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/override.styl">override.styl</a>
+                  </li>
+                  <li>
+                    <a id="91c78fa4c51bec9c434ac4f59377a324"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/poetry.styl">poetry.styl</a>
+                  </li>
+                  <li>
+                    <a id="0ca06cbed058e3d3360f6bc0c689d7f9"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/quot.styl">quot.styl</a>
+                  </li>
+                  <li>
+                    <a id="1a071e661a0fda91a2108860278e1c47"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/sites.styl">sites.styl</a>
+                  </li>
+                  <li>
+                    <a id="aa83fcb0fd9074a45632215d538b4896"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/tabs.styl">tabs.styl</a>
+                  </li>
+                  <li>
+                    <a id="26d93b29f1900f811086f501a46357fe"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/timeline.styl">timeline.styl</a>
+                  </li>
+                  <li>
+                    <a id="03db8ef2fb5fc1d33c7b9c0f7c8b5db2"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/tag-plugins/toc.styl">toc.styl</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span id="09fa49dd574893ee97aea55154aecd06"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets">widgets</span>
+                <ul>
+                  <li>
+                    <a id="40f6b3aaee3db44c90dde0ba7ce6428e"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/components.styl">components.styl</a>
+                  </li>
+                  <li>
+                    <a id="dfedbbed80d3bf27da909fc66b1f562c"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/ghrepo.styl">ghrepo.styl</a>
+                  </li>
+                  <li>
+                    <a id="2ce99eb8197678e57e70d1ba2e123cc0"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/ghuser.styl">ghuser.styl</a>
+                  </li>
+                  <li>
+                    <a id="05bdb60dc8c26920f67e4863ea441082"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/list.styl">list.styl</a>
+                  </li>
+                  <li>
+                    <a id="8e271c21b479b4030dfa334796e3df79"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/markdown.styl">markdown.styl</a>
+                  </li>
+                  <li>
+                    <a id="3cfd469e0e11e6d8c5923d3b3426c306"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/related.styl">related.styl</a>
+                  </li>
+                  <li>
+                    <a id="cb953a77d4386cf6ab75e807cc4aacfe"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/tagcloud.styl">tagcloud.styl</a>
+                  </li>
+                  <li>
+                    <a id="cecd3106a7e70ff2bca8dfbcd19ba522"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/timeline.styl">timeline.styl</a>
+                  </li>
+                  <li>
+                    <a id="823146369623d78abdb0984b31c60573"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/toc.styl">toc.styl</a>
+                  </li>
+                  <li>
+                    <a id="c38fc04de2512cca7e7378c12872c9f4"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/tree.styl">tree.styl</a>
+                  </li>
+                  <li>
+                    <a id="26f28305d5f1a641630f818fac90271e"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_layout/widgets/widgets.styl">widgets.styl</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="c36d06d95d8fd3a058425ca6fdef471e"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins">_plugins</span>
+            <ul>
+              <li>
+                <a id="2e23993c1c2ffb086253b77f4e350607"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/aplayer.styl">aplayer.styl</a>
+              </li>
+              <li>
+                <span id="7b37ec8e1ecbd71292756ce4b36a615d"
+                  href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments">comments
+                  <span style="color: pink">
+                    作者设计的所有小组件的模板集合, 该目录被<code>"sidebar/"</code>使用 👉
+                  </span>  
+                  <span style="color: #006e37">
+                    作者设计的所有小组件的模板集合, 该目录被<code>"sidebar/"</code>使用 👉
+                  </span>  
+                </span>
+                <ul>
+                  <li>
+                    <a id="8c91dbffb376be6c5abc6c87c3d5487d"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments/artalk.styl">artalk.styl</a>
+                  </li>
+                  <li>
+                    <a id="7b91c8f5e3f4a8d60cb5bac16b5badd4"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments/beaudar.styl">beaudar.styl</a>
+                  </li>
+                  <li>
+                    <a id="078c5f8d3b558c44df5a0fd3ec678165"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments/twikoo.styl">twikoo.styl</a>
+                  </li>
+                  <li>
+                    <a id="6ec2c29d6499815bd2b0025aab7e7ac6"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments/utterances.styl">utterances.styl</a>
+                  </li>
+                  <li>
+                    <a id="02b007d68e949df9a49470b1400f6971"
+                      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/comments/waline.styl">waline.styl</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a id="490e7a98084521c9fb8b536a542e9d5f"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/copycode.styl">copycode.styl</a>
+              </li>
+              <li>
+                <a id="04a47fbf25a305ea1553b30cd915fb07"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/fancybox.styl">fancybox.styl</a>
+              </li>
+              <li>
+                <a id="054aa41e17d94594fd84aae23fa23343"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/index.styl">index.styl</a>
+              </li>
+              <li>
+                <a id="5047bdb786922a131eb7f52054aa5b5e"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/katex.styl">katex.styl</a>
+              </li>
+              <li>
+                <a id="33c042ba7199b27af1c6f890c551ff52"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/lazyload.styl">lazyload.styl</a>
+              </li>
+              <li>
+                <a id="5cac0adee17c60924f1c0f3f32924da1"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/mermaid.styl">mermaid.styl</a>
+              </li>
+              <li>
+                <a id="270c48292efa2440a0328f990d1cf3fa"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/scrollreveal.styl">scrollreveal.styl</a>
+              </li>
+              <li>
+                <a id="142541d78c15bd0d2ee86f5ac967550b"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/swiper.styl">swiper.styl</a>
+              </li>
+              <li>
+                <a id="d3782ec7763e3e9cabf9e2cdb31b0184"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/css/_plugins/tianli_gpt.styl">tianli_gpt.styl</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="8a6eee644510bb42a2acbf85ad2c2cfd"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js">js</span>
+        <ul>
+          <li>
+            <a id="45261aefc0de5e86e80c65a48ec1c9ed"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/main.js">main.js</a>
+          </li>
+          <li>
+            <span id="6d4dac3a2fff8c51b9536950fc59fbde"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/plugins">plugins</span>
+            <ul>
+              <li>
+                <a id="c0a40fe4766f78aa89ca026f5f8e2c4c"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/plugins/copycode.js">copycode.js</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="57236e15295ecdd65af03eaf423c90ec"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/search">search</span>
+            <ul>
+              <li>
+                <a id="d2f247a7cf42068f9af424ffbabe2f02"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/search/local-search.js">local-search.js</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <span id="53bb3c11a1d8cb51ff5d7ff10aa581aa"
+              href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services">services</span>
+            <ul>
+              <li>
+                <a id="8cb16627b33848f176bda71b9d53c869"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/fcircle.js">fcircle.js</a>
+              </li>
+              <li>
+                <a id="6f332dbc533096fed3c3808a57847b17"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/friends.js">friends.js</a>
+              </li>
+              <li>
+                <a id="7b7e48ececb4bbfcd39697631d39c162"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/ghinfo.js">ghinfo.js</a>
+              </li>
+              <li>
+                <a id="f455aba96e6401b078ecfe994cfe15c2"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/mdrender.js">mdrender.js</a>
+              </li>
+              <li>
+                <a id="7389d058fa4131f95e83b3e6652c6843"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/memos.js">memos.js</a>
+              </li>
+              <li>
+                <a id="b5df21f3e4c3ea2954dca8a7bde3d01e"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/siteinfo.js">siteinfo.js</a>
+              </li>
+              <li>
+                <a id="a8528e31daec1e8c16cc943ff22ee773"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/sites.js">sites.js</a>
+              </li>
+              <li>
+                <a id="cad92e812344d5299346aa17f8096f84"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/timeline.js">timeline.js</a>
+              </li>
+              <li>
+                <a id="4c89df49bfba82ec5916415f0fd19bdc"
+                  target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/source/js/services/weibo.js">weibo.js</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <span id="3dbac6e0acedc9ea2c814b5434a3f3eb">.github</span>
+    <ul>
+      <li>
+        <span id="36da2c2a1d730cff0e52b470878abeb8">configs</span>
+        <ul>
+          <li>
+            <a id="724b5a212ad86c0be2367b22ca5e415c"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/configs/label-commenter-config.yml">label-commenter-config.yml</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="d5fdcbf0deb3474dfb12e68d5c420fd9"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/ISSUE_TEMPLATE">ISSUE_TEMPLATE</span>
+        <ul>
+          <li>
+            <a id="31dc83f94e50be78104e8338b93cae67"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/ISSUE_TEMPLATE/any-question.yaml">any-question.yaml</a>
+          </li>
+          <li>
+            <a id="b904764cbe20716853785a53d8e93246"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/ISSUE_TEMPLATE/article-share.md">article-share.md</a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <span id="3e0dd03a1839aece4062919c9a0cda3d"
+          href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/workflows">workflows</span>
+        <ul>
+          <li>
+            <a id="b28cb6e3b8469c9e1992994658c7ae50"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/workflows/label-commenter.yml">label-commenter.yml</a>
+          </li>
+          <li>
+            <a id="6e430106124e573b8c3713dbfc6ab4b5"
+              target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.github/workflows/npm-publish.yml">npm-publish.yml</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a id="2c6938dd268e04f8ec0d87c3ecef110a"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.gitignore">.gitignore</a>
+  </li>
+  <li>
+    <a id="cf7d8b7f75a43786433a9ce774c6d2a5"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/.npmignore">.npmignore</a>
+  </li>
+  <li>
+    <a id="8d801b79115871441eefa81a6e71f4b7"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/giscus.json">giscus.json</a>
+  </li>
+  <li>
+    <a id="5095c1ca304e0d21cfa8f98bec635105" target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/LICENSE">LICENSE</a>
+  </li>
+  <li>
+    <a id="23e79587e1736a924b2c9cc80bce99cd"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/npm-publish.sh">npm-publish.sh</a>
+  </li>
+  <li>
+    <a id="219862be2fe5adbb568fde46e9612eb5"
+      target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/package.json">package.json</a>
+  </li>
+  <li>
+    <a id="53eb6e93855ea2998f744d372585bfe5" target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0/README.md">README.md</a>
+  </li>
+</ul>
+
+<script>
+// 添加事件监听器，点击文件夹时切换显示子目录
+document.querySelectorAll('.tree li span').forEach(item => {
+    item.addEventListener('click', function () {
+    const ul = this.nextElementSibling;
+    if (ul) {
+        ul.style.display = ul.style.display === 'none' ? 'block' : 'none';
+        //if (ul.li)
+    }
+    });
+});
+
+
+// 获取展开/折叠按钮
+const expandButton = document.getElementById('expand');
+const collapseButton = document.getElementById('collapse');
+
+// 添加点击事件监听器
+expandButton.addEventListener('click', function () {
+    expandAll(document.querySelector('.tree'));
+});
+
+collapseButton.addEventListener('click', function () {
+    collapseAll(document.querySelector('.tree'));
+});
+
+// 递归函数：展开所有子元素
+function expandAll(element) {
+    element.querySelectorAll('ul').forEach(ul => {
+    ul.style.display = 'block';
+    expandAll(ul);
+    });
+}
+
+// 递归函数：折叠所有子元素
+function collapseAll(element) {
+    element.querySelectorAll('ul').forEach(ul => {
+    ul.style.display = 'none';
+    collapseAll(ul);
+    });
+}
+</script>
+
+
+<blockquote>
+<p>注: <a target="_blank" rel="noopener" href="https://github.com/FairyEver/folder-explorer">Generation tool</a> </p>
+</blockquote>
+
+<div class="article-footer fs14"></div>
+</article>
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 Raymond H., All Rights Reserved.</p>
+</div>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+</aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://api.vlts.cc/site_info/v1?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
