@@ -34,6 +34,7 @@ def quick_sort(data):
     """
     if len(data) <= 1:
         return data
+    if 
     
     
     

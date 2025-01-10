@@ -14,7 +14,8 @@
   <meta name="HandheldFriendly" content="True" >
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="theme-color" content="#f8f8f8">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1e21">
   
   <title>in~Somnia</title>
 
@@ -76,6 +77,8 @@
 <h2 id="前端工具与服务"><a href="#前端工具与服务" class="headerlink" title="前端工具与服务"></a>前端工具与服务</h2><p>包含写文本、图片服务、样式设计、web相关的常用工具等。</p>
 <h3 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h3><ul>
 <li>免费的二级域名： <a target="_blank" rel="noopener" href="https://neocities.org/">https://neocities.org/</a> ，可定义自己的三级域名站点。</li>
+<li>免费动态域名服务器: <a target="_blank" rel="noopener" href="https://dynv6.com/">https://dynv6.com/</a> ，支持ipv6，可把自己的动态IP映射到一个固定的域名上, 也可获取一个免费的域名。</li>
+<li>免费&#x2F;付费DNS托管服务: <a target="_blank" rel="noopener" href="https://www.cloudns.net/index/lang/chs/">cloudns.net</a></li>
 </ul>
 <h3 id="web图像类"><a href="#web图像类" class="headerlink" title="web图像类"></a>web图像类</h3><h4 id="图片镜像缓存服务"><a href="#图片镜像缓存服务" class="headerlink" title="图片镜像缓存服务"></a>图片镜像缓存服务</h4><p>该类服务具有全球、缓存、调整大小、开源的属性。 (<a target="_blank" rel="noopener" href="https://geekerline.com/10538/.html">引用自</a>) 。</p>
 <ul>
@@ -93,7 +96,7 @@
 </blockquote>
 </li>
 <li><p>快速复制：</p>
-<div class="tag-plugin copy"><input class="copy-area" id="copy_28" value="https://images.weserv.nl/?url="><button class="copy-btn" onclick="util.copy(&quot;copy_28&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div> 
+<div class="tag-plugin copy"><input class="copy-area" id="copy_10" value="https://images.weserv.nl/?url="><button class="copy-btn" onclick="util.copy(&quot;copy_10&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div> 
 </li>
 <li><p>更多服务介绍<a href="/post/cdn-img-mirroring-service">请移步</a></p>
 </li>
@@ -141,8 +144,8 @@
 </ul>
 <h2 id="获取资源的API"><a href="#获取资源的API" class="headerlink" title="获取资源的API"></a>获取资源的API</h2><h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><ul>
 <li>获取 unsplash.com 的图片<br>下述的<code>/600x100</code>为可选。<ul>
-<li>获取随机图片：<div class="tag-plugin copy"><span>url</span><input class="copy-area" id="copy_29" value="https://source.unsplash.com/random/600x100"><button class="copy-btn" onclick="util.copy(&quot;copy_29&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
-<li>根据关键词获得随机图片（<code>/featured</code>可删除）： <div class="tag-plugin copy"><span>url</span><input class="copy-area" id="copy_30" value="https://source.unsplash.com/featured/600x100?{keyword}"><button class="copy-btn" onclick="util.copy(&quot;copy_30&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
+<li>获取随机图片：<div class="tag-plugin copy"><span>url</span><input class="copy-area" id="copy_11" value="https://source.unsplash.com/random/600x100"><button class="copy-btn" onclick="util.copy(&quot;copy_11&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
+<li>根据关键词获得随机图片（<code>/featured</code>可删除）： <div class="tag-plugin copy"><span>url</span><input class="copy-area" id="copy_12" value="https://source.unsplash.com/featured/600x100?{keyword}"><button class="copy-btn" onclick="util.copy(&quot;copy_12&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></li>
 </ul>
 </li>
 </ul>

@@ -67,7 +67,7 @@
 }
 pre {
   font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
-  font-size: 0.8125rem;
+  font-size: 100%;
   tab-size: 4;
   -moz-tab-size: 4;
   -o-tab-size: 4;
@@ -306,11 +306,11 @@ a.button.start.gradient {
 code {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
 }
 p>code:not([class]),
 li>code:not([class]) {
-  font-size: 85%;
+  font-size: 90%;
   background: var(--block);
   padding: 0.2em;
   border-radius: 4px;
@@ -339,7 +339,7 @@ pre:not([class]):has(>code) {
 }
 .md-text .highlight figcaption {
   color: var(--text-p2);
-  font-size: 0.8125rem;
+  font-size: 100%;
   font-weight: 500;
   margin-left: 0.5rem;
   display: inline-block;
@@ -707,7 +707,7 @@ input {
 }
 input.copy-area {
   display: block;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-size: 0.8125rem;
   font-weight: 700;
   color: var(--text-p3);
@@ -1292,7 +1292,8 @@ div.toast.show {
 }
 .page-footer a {
   color: var(--text-p2);
-  border-radius: 2px;
+  border-radius: 4px;
+  transition: background 0.2s ease-out;
 }
 .page-footer a:hover {
   color: var(--text);
@@ -1483,7 +1484,7 @@ div.toast.show {
   background-image: url("https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/arrow/f049bbd4e88ec.svg");
 }
 .paginator-wrap .current {
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   background: var(--block);
 }
 .paginator-wrap .extend {
@@ -2245,7 +2246,7 @@ a.tag-plugin.button:hover {
   background: var(--block);
   border-right: 1px solid var(--block-border);
   color: var(--text-p3);
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-size: 0.8125rem;
   font-weight: 700;
   flex-shrink: 0;
@@ -2280,6 +2281,7 @@ a.tag-plugin.button:hover {
   display: block;
   object-fit: contain;
   height: 1.75em;
+  border-radius: 0;
 }
 .tag-plugin.folders {
   margin: var(--gap-p) 0;
@@ -2868,7 +2870,7 @@ p>strong>span.tag-plugin.icon {
   border-bottom-width: 2px;
   background: var(--card);
   padding: 2px 4px 1px 4px;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-weight: 700;
 }
 .md-text psw {
@@ -2890,7 +2892,7 @@ p>strong>span.tag-plugin.icon {
   color: var(--theme);
   line-height: 1;
   font-weight: 700;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
 }
 .md-text h1 sup,
 .md-text h2 sup,
@@ -4168,7 +4170,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   transform: translateX(-50%);
   border-radius: 2px;
   bottom: 2px;
-  background: var(--text-p1);
+  background: currentColor;
 }
 .nav-area {
   margin: 32px var(--gap-margin) 0;
@@ -4560,7 +4562,6 @@ details.toc[open] >div.body section .header+.doc_tree {
   font-weight: 500;
 }
 .widget-wrapper.post-list .widget-body a {
-  line-height: 1;
   font-size: 0.875rem;
   padding: 8px 16px;
   display: block;
@@ -5092,7 +5093,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .post-list #archive .archive-header {
   display: inline-block;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 0.5em;
@@ -5123,7 +5124,7 @@ details.toc[open] >div.body section .header+.doc_tree {
   border-bottom: 1px dashed var(--text-meta);
 }
 .post-list #archive a.post time {
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   margin-right: 1em;
   font-weight: 700;
   flex-shrink: 0;
@@ -5164,7 +5165,7 @@ details.toc[open] >div.body section .header+.doc_tree {
 }
 .post-list #cats a.cat .badge {
   font-weight: 700;
-  font-family: Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif;
+  font-family: "LXGW WenKai Screen", "Segoe UI", -apple-system, Roboto, Ubuntu, "Helvetica Neue", Arial, "WenQuanYi Micro Hei", sans-serif;
   opacity: 0.5;
   font-size: 0.75rem;
 }

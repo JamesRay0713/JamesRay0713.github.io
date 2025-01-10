@@ -1,0 +1,681 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1e21">
+  
+  <title>搭建代理服务器和使用代理工具 - in~Somnia</title>
+
+  
+  <meta name="description" content="对主流代理工具的介绍, 以及代理服务器搭建的教学. ">
+  
+  <meta name="keywords" content="网络,代理">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="in~Somnia" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/网站图标2.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  <link href="https://fonts.loli.net/css2?family=Playball&family=Satisfy&display=swap" rel="stylesheet"><link href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css" rel="stylesheet" media="all">
+</head>
+<body><div class="sitebg"><div class="siteblur"></div></div>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">in~Somnia</div><div class="sub normal cap">念念不忘~</div><div class="sub hover cap" style="opacity:0"> 必有回响</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg><span style="color: hsl(0 0% 20%)">博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg><span style="color: hsl(0 0% 20%)">文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg><span style="color: hsl(0 0% 20%)">探索</span></a><a class="nav-item" title="社交" href="/social/" style="color:#D733FF"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg><span style="color: hsl(0 0% 20%)">社交</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/toolkit01_about_OS_config/"><span class="title">操作系统配置相关</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/proxyTools-and-create-proxyServers/"><span class="title">搭建代理服务器和使用代理工具</span></a><a class="item title" href="/post/network-security/"><span class="title">加解密及安全话题</span></a><a class="item title" href="/post/python-pkg-manager-and-virenv/"><span class="title">python解释器、依赖包和虚拟环境管理</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/python-flask/"><span class="title">flask学习</span></a><a class="item title" href="/post/manual-markdown-syntax/"><span class="title">manual-markdown-syntax</span></a><a class="item title" href="/post/manual-build-website/"><span class="title">手册：搭建博客网站</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700665441051" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7724" data-darkreader-inline-fill="" width="200" height="200"><path d="M950.857143 512q0 143.428571-83.714286 258T650.857143 928.571429q-15.428571 2.857143-22.571429-4t-7.142857-17.142858v-120.571428q0-55.428571-29.714286-81.142857 32.571429-3.428571 58.571429-10.285715t53.714286-22.285714 46.285714-38 30.285714-60T792 489.142857q0-69.142857-45.142857-117.714286 21.142857-52-4.571429-116.571428-16-5.142857-46.285714 6.285714t-52.571429 25.142857l-21.714285 13.714286q-53.142857-14.857143-109.714286-14.857143t-109.714286 14.857143q-9.142857-6.285714-24.285714-15.428571T330.285714 262.571429 281.142857 254.857143q-25.142857 64.571429-4 116.571428-45.142857 48.571429-45.142857 117.714286 0 48.571429 11.714286 85.714286t30 60 46 38.285714 53.714285 22.285714 58.571429 10.285715q-22.857143 20.571429-28 58.857143-12 5.714286-25.714286 8.571428t-32.571428 2.857143-37.428572-12.285714T276.571429 728q-10.857143-18.285714-27.714286-29.714286t-28.285714-13.714285l-11.428572-1.714286q-12 0-16.571428 2.571428t-2.857143 6.571429 5.142857 8 7.428571 6.857143l4 2.857143q12.571429 5.714286 24.857143 21.714285t18 29.142858l5.714286 13.142857q7.428571 21.714286 25.142857 35.142857t38.285714 17.142857 39.714286 4 31.714286-2l13.142857-2.285714q0 21.714286 0.285714 50.857143t0.285714 30.857142q0 10.285714-7.428571 17.142858t-22.857143 4q-132.571429-44-216.285714-158.571429T73.142857 512q0-119.428571 58.857143-220.285714T291.714286 132 512 73.142857t220.285714 58.857143T892 291.714286 950.857143 512z" p-id="7725" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="https://gitee.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700810083615" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11744" data-darkreader-inline-fill="" width="200" height="200"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="11745" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #7b2c2f;"></path></svg></a><a class="social" href="mailto:hl1670704310@icloud.com" rel="noopener noreferrer"><svg t="1700665373816" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6718" data-darkreader-inline-fill="" width="200" height="200"><path d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l73.142857 62.000762V780.190476h682.666666V417.645714l73.142857-62.000762zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z m-10.971428 73.142857H181.638095L512 525.58019 842.361905 243.809524z" p-id="6719" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="/social/#comments" rel="noopener noreferrer"><svg t="1700665059859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5632" data-darkreader-inline-fill="" width="200" height="200"><path d="M371.2 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5633" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M512 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5634" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M652.8 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5635" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M377.6 896c-6.4 0-6.4 0-12.8 0-12.8-6.4-19.2-19.2-19.2-32l0-128C211.2 684.8 128 569.6 128 448c0-179.2 172.8-320 384-320s384 140.8 384 320c0 172.8-166.4 313.6-371.2 320l-128 121.6C390.4 896 384 896 377.6 896zM512 192C332.8 192 192 307.2 192 448c0 102.4 76.8 192 192 236.8 12.8 6.4 19.2 19.2 19.2 32l0 76.8 83.2-76.8C492.8 704 505.6 704 512 704c179.2 0 320-115.2 320-256S691.2 192 512 192z" fill="#1afa29" p-id="5636" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/%E4%BB%A3%E7%90%86/">代理</a></div>
+<div class="flex-row" id="post-meta"><a class="author" href="/author/Raymond~/">Raymond~</a><span class="sep"></span><span class="text created"><time datetime="2024-04-08T10:09:18.000Z">2024年4月8日</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-10-03T03:55:13.308Z">2024年10月3日</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>搭建代理服务器和使用代理工具</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>对主流代理工具的介绍, 以及代理服务器搭建的教学. </p>
+<span id="more"></span>
+
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>科学上网其实很简单, 你无法正常访问外面的网页, 那就让一个proxy server帮你访问, 然后再把访问到的内容回传给你.<br>因此你仅需要:</p>
+<ol>
+<li>代理服务器: 想办法搞到或制作proxy servers;</li>
+<li>代理工具: 管理、配置你的proxy servers.</li>
+</ol>
+<h2 id="proxy-server"><a href="#proxy-server" class="headerlink" title="proxy-server"></a>proxy-server</h2><p>如果你有一个代理服务器, 可称其为<code>节点</code>, 如果你有一组代理服务器, 可称其为<code>订阅</code>或<code>订阅列表</code>.<br>获取节点&#x2F;订阅的方法有很多, 下面3类方法由易到难: </p>
+<ul>
+<li>⭐直接找节点贩子或老牌飞机场购买; </li>
+<li>⭐⭐从GitHub或YouTube上一些大佬的分享里免费获取; </li>
+<li>⭐⭐⭐自己动手搭建, 一般前提是需拥有一台<code>海外VPS</code>.</li>
+</ul>
+<h3 id="※购买节点"><a href="#※购买节点" class="headerlink" title="※购买节点"></a>※购买节点</h3><p><a target="_blank" rel="noopener" href="https://9.234456.xyz/abc.html?t=567">节点&#x2F;订阅提供商合集</a>, 来自<a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN">V2rayN项目</a>的主页介绍.</p>
+<p>我买过的便宜供应商:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://dash.bste.xyz/#/dashboard">BSTE</a>，￥85&#x2F;年，100G&#x2F;月;</li>
+<li><a target="_blank" rel="noopener" href="https://ssy61.com/#/plan">山水云</a>, 来自<a target="_blank" rel="noopener" href="https://blog.090227.xyz/p/%E5%B1%B1%E6%B0%B4%E4%BA%91/">博主</a></li>
+</ul>
+<h3 id="※※免费节点项目-edgetunnel及其fork"><a href="#※※免费节点项目-edgetunnel及其fork" class="headerlink" title="※※免费节点项目-edgetunnel及其fork"></a>※※免费节点项目-edgetunnel及其fork</h3><ul>
+<li>资源: <a target="_blank" rel="noopener" href="https://edgetunnel.github.io/edgetunnel/">项目官方教程</a>; <a target="_blank" rel="noopener" href="https://depp.wang/2024/03/17/cloudflare-worker-vless/">一些解读</a></li>
+</ul>
+<p>该项目利用CloudFlare的<code>Workers/Pages</code>实现白嫖的代理服务器. 评价褒贬不一, 可以作为备用机场.</p>
+<h4 id="来自cmliu的免费节点"><a href="#来自cmliu的免费节点" class="headerlink" title="来自cmliu的免费节点"></a>来自cmliu的免费节点</h4><p>( <a target="_blank" rel="noopener" href="https://github.com/cmliu/edgetunnel">项目主页</a>; <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=59THrmJhmAw">视频教程</a> )<br>作者在项目中已内置了<code>优选IP</code>, 我们只需要在cloud flare中部署作者的项目脚本, 把CF自动生成的域名修改为自定义域, 最后获取到<code>订阅链接</code>, 即可前往代理工具使用其免费节点服务.</p>
+<h5 id="部署教程"><a href="#部署教程" class="headerlink" title="部署教程"></a>部署教程</h5><p>我这里选用了<code>cloudflare</code>的<code>Pages</code>的方法来部署, 步骤见<a target="_blank" rel="noopener" href="https://github.com/cmliu/edgetunnel?tab=readme-ov-file#pages-%E4%B8%8A%E4%BC%A0-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%B3%95-%E6%9C%80%E4%BD%B3%E6%8E%A8%E8%8D%90-%E8%A7%86%E9%A2%91%E6%95%99%E7%A8%8B">这里的1-2</a>. 此时我的节点服务的域名是<code>ray2ray.pages.dev</code>, 订阅链接是<code>https://&lt;hash-value&gt;.ray2ray.pages.dev/&lt;UUID&gt;</code>.</p>
+<h5 id="教程进阶1-改用自定义域"><a href="#教程进阶1-改用自定义域" class="headerlink" title="教程进阶1-改用自定义域"></a>教程进阶1-改用自定义域</h5><p>该部分为可选操作, 但强烈建议. 目的是把订阅链接中自动生成的域名改为自定义域名. 流程如下: </p>
+<ol>
+<li>获取免费域名: 进入<a target="_blank" rel="noopener" href="https://dynv6.com/">网站</a>→ 点击创建Zone→ <code>Name</code>自定义, 作为三级域; <code>ipv4 address</code>光标放进去, 网站会自动补全一个ip地址; <code>ipv6 address</code>可以空着. 最后我将得到一个三级域名<code>raymond0713.dynv6.net</code>.</li>
+<li>给域名创建一条解析记录record: 进入<code>Records</code>→ <code>Add Records</code>→ 选择<code>CNAME</code>→ <code>Name</code>部分自定义一个四级域; <code>Data</code>部分填写我的cloudflare pages域名<code>ray2ray.pages.dev.</code>(根域名的<code>.</code>不要忘了)→ 保存. 此时我得到了一个四级域名<code>ladder.raymond0713.dynv6.net</code>.</li>
+<li>在CF的<code>Pages</code>添加自定义域: 进入相应<code>Pages</code>→ 进入自定义域→ 填入你的四级域名→ 开始CNAME设置→ 直接<code>检查DNS记录</code>→ 完成. 此时这个四级域名就可以访问<code>ray2ray.pages.dev</code>了.</li>
+<li>在代理工具中使用新的订阅链接:<code>https://ladder.raymond0713.dynv6.net/&lt;UUID&gt;</code></li>
+</ol>
+<h5 id="教程进阶2-一些变量的修改"><a href="#教程进阶2-一些变量的修改" class="headerlink" title="教程进阶2-一些变量的修改"></a>教程进阶2-一些变量的修改</h5><p>作者cmliu的js脚本中, 有一些变量是可以通过<code>CF-Pages的配置环境变量</code>来修改的, 这样方便CF-Pages的快速部署. 下述环境变量名中, 除了<code>UUID</code>都可缺省.</p>
+<blockquote>
+<p>注: 修改过变量后要重新部署才生效.</p>
+</blockquote>
+<ul>
+<li><code>UUID</code><br>更换UUID, 也许会对降低节点的延迟有帮助.</li>
+<li><code>PROXYIP</code>  代理IP&#x2F;反代IP<br>由于我们部署的应用程序无法访问托管在CloudFlare的CDN站点, 因此需要设置其代理节点. 该变量支持多ProxyIP, 用逗号作间隔.<figure class="highlight yml"><figcaption><span>可用的代理IP有:</span></figcaption><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-number">23.162</span><span class="hljs-number">.136</span><span class="hljs-number">.169</span><br><span class="hljs-number">47.254</span><span class="hljs-number">.66</span><span class="hljs-number">.75</span><br><span class="hljs-string">2a01:4f8:c2c:123f:64:5:ac40:6c0a</span>    <span class="hljs-comment"># 用ipv6时要加`[]`</span><br><span class="hljs-string">2a00:1098:2c::5:ac40:6d0a</span><br><span class="hljs-string">proxyip.fxxk.dedyn.io</span><br><span class="hljs-string">cdn.xn--b6gac.eu.org</span><br><span class="hljs-string">cdn-all.xn--b6gac.eu.org</span><br><span class="hljs-string">edgetunnel.anycast.eu.org</span><br><span class="hljs-string">workers.cloudflare.cyou</span><br></code></pre></td></tr></table></figure></li>
+<li><code>SOCKS5</code></li>
+</ul>
+<h3 id="永久免费HeroKu部署"><a href="#永久免费HeroKu部署" class="headerlink" title="永久免费HeroKu部署"></a>永久免费HeroKu部署</h3><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=xEewUeWDNeI">实践TODO</a></p>
+<h2 id="proxy-tool"><a href="#proxy-tool" class="headerlink" title="proxy-tool"></a>proxy-tool</h2><blockquote>
+<p>资料: <a target="_blank" rel="noopener" href="https://github.com/VPN-Subcription-Links/ClashX-V2Ray-TopFreeProxy">仓库-社区</a></p>
+</blockquote>
+<h3 id="server-tool"><a href="#server-tool" class="headerlink" title="server-tool"></a>server-tool</h3><p>这里介绍一个代理服务器的UI工具:<a target="_blank" rel="noopener" href="https://jiasupanda.com/x-ui">X-ui</a></p>
+<h3 id="v2ray"><a href="#v2ray" class="headerlink" title="v2ray"></a>v2ray</h3><h3 id="clash"><a href="#clash" class="headerlink" title="clash"></a>clash</h3><h4 id="clash-for-windows"><a href="#clash-for-windows" class="headerlink" title="clash-for-windows"></a>clash-for-windows</h4><p>所有<code>订阅url</code>的配置文件都放在<code>C:\Users\ray\.config\clash\profiles</code>.</p>
+<h4 id="clash-for-linux"><a href="#clash-for-linux" class="headerlink" title="clash-for-linux"></a>clash-for-linux</h4><blockquote>
+<p>不知道什么原因, clash原作者的<a target="_blank" rel="noopener" href="https://github.com/Dreamacro/clash">仓库</a>被爆破了, <a target="_blank" rel="noopener" href="https://web.archive.org/">归档网站</a>存下了其2023&#x2F;10月的<a target="_blank" rel="noopener" href="https://web.archive.org/web/20231003034356/https://github.com/Dreamacro/clash">仓库快照(≤ v1.18.0)</a>.</p>
+</blockquote>
+<p>clash本身不是代理服务器, 而是管理我们的代理服务器(<code>节点</code>)的, 并兼具<code>规则路由</code>、<code>流量分流</code>等功能. </p>
+<p>使用clash进行代理的前提是, 你已经自建了一些<code>节点</code>, 或者购买了<code>订阅列表</code>.  </p>
+<p>默认情况下, 它在本机端口<code>127.0.0.1:7890</code>处理所有<code>HTTP/HTPS</code>请求, 然后根据规则转发到<code>节点</code>.  </p>
+<h5 id="是否需要安装"><a href="#是否需要安装" class="headerlink" title="是否需要安装"></a>是否需要安装</h5><p>要知道, 你的机器正常访问外网的本质是, 你有一台<code>代理服务器</code>, 它可以在本机安装, 也可以在你能访问到的其他机器上安装. 因此你可根据实际情况考虑是否需要安装clash.  </p>
+<ul>
+<li><p><strong>安装</strong>: 一般情况下, 你需要在<code>本机</code>安装运行clash, 来实现用<code>127.0.0.1:7890</code>转发请求.</p>
+</li>
+<li><p><strong>不必安装</strong>: 如果你<code>局域网内某主机A</code>已经安装运行了clash, 且打开了<code>ALLOW LAN</code>设置, 你只需在本机设置环境变量<code>http_proxy=$A_ip:7890</code>即可.  </p>
+<blockquote>
+<ul>
+<li>在wsl2中, 由于与 Windows 主机共享网络, A_ip是<code>127.0.0.1</code>; </li>
+<li>在docker容器中, A_ip是Docker网络桥接的默认网关, 即<code>172.17.0.1</code>;</li>
+<li>在普通的局域网中, 可在主机A里面用<code>ipconfig</code>或<code>ifconfig</code>查看A_ip.</li>
+</ul>
+<p>⚠️ 端口只暴露在内网, 可不必关注安全问题.
+  </p>
+</blockquote>
+</li>
+<li><p><strong>不必安装</strong>: 如果你有一台<code>有公网IP的主机B</code>已经安装运行了clash, 你只需在本机设置环境变量<code>http_proxy=$B_ip:7890</code>即可.</p>
+<blockquote>
+<p>⚠️ 端口暴露在公网, 一定要关注安全和滥用问题. </p>
+</blockquote>
+<p>  这里给出两种安全使用的方案:  </p>
+<ol>
+<li><em>clash配置用户和密码</em>:<br> 在<code>$HOME/.config/clash/config.yaml</code>中设置授权用户和密码: <figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml">        <span class="hljs-attr">authentication:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;user1:pass1&quot;</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">...</span><br>        <span class="hljs-string">```</span>        <br>        <span class="hljs-string">这样,</span> <span class="hljs-string">你本地的环境变量需改为`http_proxy=http://user1:pass1@$B_ip:7890`,</span> <span class="hljs-string">`https_proxy`同理.</span><br><br>    <span class="hljs-number">2</span><span class="hljs-string">.</span> <span class="hljs-string">*ssh本地转发隧道*:</span>  <br>        <span class="hljs-string">如果你还不放心本机和主机B之间的网络通信的安全性,</span> <span class="hljs-string">那就用ssh的本地转发功能,</span> <span class="hljs-string">把`本机的自定义端口映射到主机B的7890端口`.</span> <span class="hljs-string">仅需在你当前机器上执行两步:</span>  <br><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">`ssh</span> <span class="hljs-string">-qCNf</span> <span class="hljs-string">-L</span> <span class="hljs-number">7890</span><span class="hljs-string">:127.0.0.1:7890</span> <span class="hljs-string">$公网user@$公网ip</span> <span class="hljs-string">-i</span> <span class="hljs-string">$path_pri_key`</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">`export</span> <span class="hljs-string">http_proxy=http://127.0.0.1:7890`,</span> <span class="hljs-string">`export</span> <span class="hljs-string">https_proxy=http://127.0.0.1:7890`</span><br>        <br>        <span class="hljs-string">&gt;</span> <span class="hljs-string">⚠️</span> <span class="hljs-string">注意:</span> <span class="hljs-string">命令中的`127.0.0.1`是公网ip机器里的`127.0.0.1`,</span> <span class="hljs-string">不是本机的`127.0.0.1`.</span> <span class="hljs-string">也正是如此,</span> <span class="hljs-string">你**没必要**去公网ip机器的防火墙上特地放开7890端口.</span><br>        <span class="hljs-string">&gt;</span> <span class="hljs-string">如果你想让这功能开机自启,</span> <span class="hljs-string">也可将上述命令补充后写进`.zshrc`或`~/.bashrc`.</span><br>        <br><br><span class="hljs-string">下面介绍需要安装与配置时的操作步骤.</span>  <br><br><span class="hljs-comment">##### 下载与安装</span><br><br><span class="hljs-string">```bash</span><br><span class="hljs-string">wget</span> <span class="hljs-string">http://assets.taddream.site/downloads/clash-archived/clash-linux-amd64-v1.18.0.gz</span><br><span class="hljs-string">gzip</span> <span class="hljs-string">-dc</span> <span class="hljs-string">clash-linux-amd64-v1.18.0.gz</span> <span class="hljs-string">&gt;</span> <span class="hljs-string">clash</span><br><span class="hljs-string">sudo</span> <span class="hljs-string">mv</span> <span class="hljs-string">clash</span> <span class="hljs-string">/usr/local/bin/</span><br><span class="hljs-string">sudo</span> <span class="hljs-string">chmod</span> <span class="hljs-string">+x</span> <span class="hljs-string">/usr/local/bin/clash</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<p>若上述的url无法访问, 请使用<a target="_blank" rel="noopener" href="https://web.archive.org/web/20231003084307mp_/https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v1.18.0.gz">源归档url(需科学上网)</a>.  </p>
+<h5 id="配置-1-下载ip数据库"><a href="#配置-1-下载ip数据库" class="headerlink" title="配置-1-下载ip数据库"></a>配置-1-下载ip数据库</h5><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 这里的目录是clash默认的路径.</span><br>CLASH_CONF_DIR=<span class="hljs-variable">$HOME</span>/.config/clash<br><span class="hljs-built_in">mkdir</span> <span class="hljs-variable">$CLASH_CONF_DIR</span><br>wget http://assets.taddream.site/downloads/proxy-tools/Country.mmdb -O <span class="hljs-variable">$CLASH_CONF_DIR</span>/Country.mmdb<br><span class="hljs-built_in">touch</span> <span class="hljs-variable">$CLASH_CONF_DIR</span>/config.yaml<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ <code>config.yaml</code>是默认配置文件路径, 这样在使用<code>clash</code>命令时就可以不必使用<code>-f</code>手动指定配置文件路径.<br>⚠️ 这里的<code>ip数据库</code>url (Country.mmdb)来自我的七牛镜像, 其原下载地址在<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/Dreamacro/maxmind-geoip@release/Country.mmdb">这儿</a>.  </p>
+</blockquote>
+<h5 id="配置-2-1-手动创建配置文件"><a href="#配置-2-1-手动创建配置文件" class="headerlink" title="配置-2-1-手动创建配置文件"></a>配置-2-1-手动创建配置文件</h5><blockquote>
+<p>缺点: 当<code>订阅url</code>更新, 你得手动更新配置文件.</p>
+</blockquote>
+<p>clash的配置文件有什么?<br>有clash基础设置, 有代理节点列表, 有规则列表…</p>
+<p>手动制作clash配置文件的方法是: </p>
+<ul>
+<li>在你心仪的机场购买代理服务, 获取<code>订阅url</code>;</li>
+<li>在你其他机器上的<code>clash-GUI版</code>解析你购买的<code>订阅url</code>(下图step1-3), 然后在step4处右键<code>edit</code>复制完整配置内容: <figure style="text-align: center;"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://images.weserv.nl/?url=assets.taddream.site/posts/用clash-GUI解析订阅url.png" alt="用clash-GUI解析订阅url" width=80%><figcaption><em></em></figcaption></figure></li>
+<li>把内容粘贴到本机的配置文件(<code>$HOME/.config/clash/config.yaml</code>)中.</li>
+</ul>
+<details class="tag-plugin colorful folding" ><summary><span>配置文件格式形如:</span></summary><div class="body"><figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">mixed-port:</span> <span class="hljs-number">7890</span><br><span class="hljs-attr">allow-lan:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">bind-address:</span> <span class="hljs-string">&#x27;*&#x27;</span><br><span class="hljs-attr">mode:</span> <span class="hljs-string">rule</span><br><span class="hljs-attr">log-level:</span> <span class="hljs-string">info</span><br><span class="hljs-attr">external-controller:</span> <span class="hljs-string">&#x27;127.0.0.1:9090&#x27;</span><br><span class="hljs-attr">dns:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">ipv6:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">default-nameserver:</span> [<span class="hljs-number">223.5</span><span class="hljs-number">.5</span><span class="hljs-number">.5</span>, <span class="hljs-number">119.29</span><span class="hljs-number">.29</span><span class="hljs-number">.29</span>]<br>    <span class="hljs-attr">enhanced-mode:</span> <span class="hljs-string">fake-ip</span><br>    <span class="hljs-attr">fake-ip-range:</span> <span class="hljs-number">198.18</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">/16</span><br>    <span class="hljs-attr">use-hosts:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">nameserver:</span> [<span class="hljs-string">&#x27;https://doh.pub/dns-query&#x27;</span>, <span class="hljs-string">&#x27;https://dns.alidns.com/dns-query&#x27;</span>]<br>    <span class="hljs-attr">fallback:</span> [<span class="hljs-string">&#x27;https://doh.dns.sb/dns-query&#x27;</span>, <span class="hljs-string">&#x27;https://dns.cloudflare.com/dns-query&#x27;</span>, <span class="hljs-string">&#x27;https://dns.twnic.tw/dns-query&#x27;</span>, <span class="hljs-string">&#x27;tls://8.8.4.4:853&#x27;</span>]<br>    <span class="hljs-attr">fallback-filter:</span> &#123; <span class="hljs-attr">geoip:</span> <span class="hljs-literal">true</span>, <span class="hljs-attr">ipcidr:</span> [<span class="hljs-number">240.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">/4</span>, <span class="hljs-number">0.0</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-string">/32</span>] &#125;<br><span class="hljs-attr">proxies:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">name:</span> <span class="hljs-string">&#x27;🇭🇰 香港-01_解锁&#x27;</span>, <span class="hljs-attr">type:</span> <span class="hljs-string">ss</span>, <span class="hljs-attr">server:</span> <span class="hljs-string">hk01.ssyhi.xyz</span>, <span class="hljs-attr">port:</span> <span class="hljs-number">50200</span>, <span class="hljs-attr">cipher:</span> <span class="hljs-string">chacha20-ietf-poly1305</span>, <span class="hljs-attr">password:</span> <span class="hljs-string">80b6ea6a-af66-4956-ab6e-c328c79c9f52</span>, <span class="hljs-attr">udp:</span> <span class="hljs-literal">true</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">name:</span> <span class="hljs-string">&#x27;🇭🇰 香港-02_解锁&#x27;</span>, <span class="hljs-attr">type:</span> <span class="hljs-string">ss</span>, <span class="hljs-attr">server:</span> <span class="hljs-string">hk02.ssyhi.xyz</span>, <span class="hljs-attr">port:</span> <span class="hljs-number">50201</span>, <span class="hljs-attr">cipher:</span> <span class="hljs-string">chacha20-ietf-poly1305</span>, <span class="hljs-attr">password:</span> <span class="hljs-string">80b6ea6a-af66-4956-ab6e-c328c79c9f52</span>, <span class="hljs-attr">udp:</span> <span class="hljs-literal">true</span> &#125;<br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">name:</span> <span class="hljs-string">&#x27;🇭🇰 香港-03_解锁&#x27;</span>, <span class="hljs-attr">type:</span> <span class="hljs-string">ss</span>, <span class="hljs-attr">server:</span> <span class="hljs-string">hk03.ssyhi.xyz</span>, <span class="hljs-attr">port:</span> <span class="hljs-number">50202</span>, <span class="hljs-attr">cipher:</span> <span class="hljs-string">chacha20-ietf-poly1305</span>, <span class="hljs-attr">password:</span> <span class="hljs-string">80b6ea6a-af66-4956-ab6e-c328c79c9f52</span>, <span class="hljs-attr">udp:</span> <span class="hljs-literal">true</span> &#125;<br><span class="hljs-attr">proxy-groups:</span><br>    <span class="hljs-bullet">-</span> &#123; <span class="hljs-attr">name:</span> <span class="hljs-string">山水云</span>, <span class="hljs-attr">type:</span> <span class="hljs-string">select</span>, <span class="hljs-attr">proxies:</span> [<span class="hljs-string">group_name</span>, <span class="hljs-string">&#x27;proxy_name&#x27;</span>, <span class="hljs-string">&#x27;🇭🇰 香港-06_解锁&#x27;</span>, <span class="hljs-string">...</span>] &#125;<br>    <br><span class="hljs-attr">rules:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;DOMAIN,s4.ssysub1.xyz,DIRECT&#x27;</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;DOMAIN-SUFFIX,services.googleapis.cn,山水云&#x27;</span> <br></code></pre></td></tr></table></figure></div></details>
+
+<h5 id="配置-2-2-脚本生成配置文件"><a href="#配置-2-2-脚本生成配置文件" class="headerlink" title="配置-2-2-脚本生成配置文件"></a>配置-2-2-脚本生成配置文件</h5><p>我们的预期是, 给脚本输入<code>订阅url</code>, 就能自动得到<code>config.yaml</code>.</p>
+<blockquote>
+<p>优点: 可设计自动化脚本, 让<code>config.yaml</code>随着<code>订阅url</code>同步更新.</p>
+</blockquote>
+<blockquote>
+<p>参考资料: <a target="_blank" rel="noopener" href="https://cndaqiang.github.io/2020/07/17/clash/">cndaqiang</a></p>
+</blockquote>
+<p>详细步骤请跳转<a href="#subconverter">这里</a>的<code>安装</code>和<code>使用-方法2</code>.</p>
+<h5 id="启动和系统配置"><a href="#启动和系统配置" class="headerlink" title="启动和系统配置"></a>启动和系统配置</h5><p>进入<code>~/.bashrc</code>文件，添加以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> http_proxy=http://127.0.0.1:7890<br><span class="hljs-built_in">export</span> https_proxy=http://127.0.0.1:7890<br><span class="hljs-comment"># export all_proxy=socks5://127.0.0.1:7891  # 当某些程序(如游戏、P2P程序...)不支持 HTTP 代理的时候使用.</span><br></code></pre></td></tr></table></figure>
+<p>重启终端, 最后启动<code>clash</code>: </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">clash   <span class="hljs-comment"># 最简单, 默认配置文件路径在`~/.config/clash/config.yaml`</span><br><span class="hljs-comment"># clash -f /path/to/your/config.yaml  # 自定义配置文件路径</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="测试并愉快使用"><a href="#测试并愉快使用" class="headerlink" title="测试并愉快使用"></a>测试并愉快使用</h5><p>执行<code>curl -LI https://www.google.com</code>, 终端返回含<code>200</code>的header信息, 说明代理生效.</p>
+<h2 id="实用工具"><a href="#实用工具" class="headerlink" title="实用工具"></a>实用工具</h2><h3 id="subconverter"><a href="#subconverter" class="headerlink" title="subconverter"></a>subconverter</h3><p><a target="_blank" rel="noopener" href="https://github.com/tindy2013/subconverter">subconverter</a>是在各种<code>订阅格式</code>之间进行转换的实用程序.</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>下述安装包url为我自建镜像, <a target="_blank" rel="noopener" href="https://github.com/tindy2013/subconverter/releases">这里</a>是官方源站.  </p>
+<p>给subconverter命令添加软链接, 即可全局使用该命令.  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> <span class="hljs-variable">$HOME</span>/packages<br>wget http://assets.taddream.site/downloads/proxy-tools/transfor-tools/subconverter_linux64.tar.gz<br>tar -zxvf subconverter_linux64.tar.gz<br>sudo <span class="hljs-built_in">ln</span> -s <span class="hljs-variable">$HOME</span>/packages/subconverter/subconverter /usr/local/bin/subconverter<br></code></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><blockquote>
+<p>订阅之间的转换, 详细教程请<a target="_blank" rel="noopener" href="https://github.com/tindy2013/subconverter/blob/master/README-cn.md#%E7%AE%80%E6%98%93%E7%94%A8%E6%B3%95">参考</a>. 这里只介绍<code>订阅url → clash配置文件</code>的场景.</p>
+</blockquote>
+<h5 id="方法1-利用subconverter的http服务"><a href="#方法1-利用subconverter的http服务" class="headerlink" title="方法1-利用subconverter的http服务"></a>方法1-利用subconverter的http服务</h5><blockquote>
+<p>适合搭建转换服务器,供所有的机器使用. </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 启动subconverter服务, 默认端口是`25500`</span><br>subconverter<br><span class="hljs-comment"># 调用其API, 其中:</span><br>  <span class="hljs-comment"># %TARGET% 是目标格式, 如: &quot;clash&quot;(必须)</span><br>  <span class="hljs-comment"># %URL% 是订阅url(必须, 且需要经过 URLEncode 处理)</span><br>  <span class="hljs-comment"># %CONFIG% 是配置文件路径(非必须)</span><br>curl -s http://127.0.0.1:25500/sub?target=%TARGET%&amp;url=%URL%&amp;config=%CONFIG% &gt; ~/.config/clash/config.yaml<br></code></pre></td></tr></table></figure>
+<p>其中最后一条命令中关于<code>%URL%</code>的制作, 示例如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">suburl=<span class="hljs-string">&quot;https://dy.ssysub9.xyz/api/v1/client/subscribe?token=mytoken&quot;</span><br>suburl_encode=$(<span class="hljs-built_in">echo</span> <span class="hljs-variable">$suburl</span> | sed <span class="hljs-string">&#x27;s/:/%3A/g&#x27;</span> | sed <span class="hljs-string">&#x27;s/\//%2F/g&#x27;</span> | sed <span class="hljs-string">&#x27;s/?/%3F/g&#x27;</span> | sed <span class="hljs-string">&#x27;s/=/%3D/g&#x27;</span> | sed <span class="hljs-string">&#x27;s/&amp;/%26/g&#x27;</span>)<br>curl -s <span class="hljs-string">&quot;http://127.0.0.1:25500/sub?target=clash&amp;url=<span class="hljs-variable">$&#123;suburl_encode&#125;</span>&quot;</span> &gt; ~/.config/clash/config.yaml<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>也可以使用<a target="_blank" rel="noopener" href="https://www.urlencoder.org/">urlencode</a>的在线工具来生成上述<code>suburl_encode</code>变量. </p>
+</blockquote>
+<p>最终效果: 得到的配置文件中有 Proxy, Proxy Group, Rule三个部分. 而根据<a href="#%E9%85%8D%E7%BD%AE-2-1-%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">这里</a>展示的配置文件格式, 我们还缺少了mixed-port, allow-lan, mode, external-controller, dns等配置, 看来还需手动补充. 不知道是不是我操作问题.</p>
+<h5 id="方法2-利用subconverter的命令行工具"><a href="#方法2-利用subconverter的命令行工具" class="headerlink" title="方法2-利用subconverter的命令行工具"></a>方法2-利用subconverter的命令行工具</h5><blockquote>
+<p>适合在本地制作自动化脚本.</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">SC_HOME=<span class="hljs-variable">$HOME</span>/packages/subconverter<br><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">EOF &gt;&gt; $SC_HOME/generate.ini</span><br><span class="hljs-string">[ssy2clash]</span><br><span class="hljs-string">path=config.yml</span><br><span class="hljs-string">target=clash</span><br><span class="hljs-string">url=https://dy.ssysub9.xyz/api/v1/client/subscribe?token=mytoken</span><br><span class="hljs-string">EOF</span><br>subconverter -g --artifact <span class="hljs-string">&quot;ssy2clash&quot;</span><br><span class="hljs-built_in">cp</span> <span class="hljs-variable">$CLASH_CONF_DIR</span>/config.yaml <span class="hljs-variable">$CLASH_CONF_DIR</span>/config.yaml.bak<br><span class="hljs-built_in">cp</span> <span class="hljs-variable">$SC_HOME</span>/config.yml <span class="hljs-variable">$CLASH_CONF_DIR</span>/config.yaml<br></code></pre></td></tr></table></figure>
+<p>上述脚本的执行逻辑是: </p>
+<ul>
+<li><code>subconverter/generate.ini</code>是用于<code>格式转换命令</code>前的配置, 在其中追加一个自定义的配置类型<code>[ssy2clash]</code>:<ul>
+<li><code>path</code>是生成转换后的文件的路径, 与当前文件同目录.</li>
+<li><code>target</code>是目标格式, 如: “clash”(必须)</li>
+<li><code>url</code>是订阅url(必须, 这里就不必经过 URLEncode 处理), 也可以是自己的文件.</li>
+</ul>
+</li>
+<li>执行格式转换命令,</li>
+<li>把结果复制到clash的配置路径下(事前备份).</li>
+</ul>
+<p>在此之后, 定期执行以下命令即可实现订阅的更新:  </p>
+<div class="tag-plugin copy"><span>$</span><input class="copy-area" id="copy_7" value="cd ~/packages/subconverter && subconverter -g --artifact &quot;ssy2clash&quot; && cp $HOME/packages/subconverter/config.yml $HOME/.config/clash/config.yaml"><button class="copy-btn" onclick="util.copy(&quot;copy_7&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div>
+
+
+
+
+<div class="article-footer fs14">
+    <section id="share">  
+      <p>本文由<a href="https://taddream.site/">Raymond~</a>创作, 基于<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">CC BY-NC-SA 4.0</a>协议, 转载请注明出处. 分享文章: 
+
+      <span class="link" style="display: inline;">
+        <input class="copy-area" readonly="" id="copy-link" value="https://taddream.site/post/proxyTools-and-create-proxyServers/" style="display: none;">
+      </span>       
+      <a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" / style="width: 1.5em; height: 1.5em; display: inline-block; margin-right: 10px;"></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" / style="width: 1.5em; height: 1.5em; display: inline-block; margin-right: 10px;"></a>
+      
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/proxyTools-and-create-proxyServers/"/>
+        </div>
+        
+      </p>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/post/manual-markdown-syntax/">manual-markdown-syntax</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/manual-debug/">手册：debug</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 Raymond H., All Rights Reserved.</p>
+</div>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="true"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F"><span class="toc-text">序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proxy-server"><span class="toc-text">proxy-server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%BB%E8%B4%AD%E4%B9%B0%E8%8A%82%E7%82%B9"><span class="toc-text">※购买节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%BB%E2%80%BB%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%E9%A1%B9%E7%9B%AE-edgetunnel%E5%8F%8A%E5%85%B6fork"><span class="toc-text">※※免费节点项目-edgetunnel及其fork</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A5%E8%87%AAcmliu%E7%9A%84%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9"><span class="toc-text">来自cmliu的免费节点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B"><span class="toc-text">部署教程</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%99%E7%A8%8B%E8%BF%9B%E9%98%B61-%E6%94%B9%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F"><span class="toc-text">教程进阶1-改用自定义域</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%99%E7%A8%8B%E8%BF%9B%E9%98%B62-%E4%B8%80%E4%BA%9B%E5%8F%98%E9%87%8F%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-text">教程进阶2-一些变量的修改</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B0%B8%E4%B9%85%E5%85%8D%E8%B4%B9HeroKu%E9%83%A8%E7%BD%B2"><span class="toc-text">永久免费HeroKu部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proxy-tool"><span class="toc-text">proxy-tool</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#server-tool"><span class="toc-text">server-tool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v2ray"><span class="toc-text">v2ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clash"><span class="toc-text">clash</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#clash-for-windows"><span class="toc-text">clash-for-windows</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#clash-for-linux"><span class="toc-text">clash-for-linux</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85"><span class="toc-text">是否需要安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1-%E4%B8%8B%E8%BD%BDip%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-text">配置-1-下载ip数据库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-2-1-%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置-2-1-手动创建配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-2-2-%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置-2-2-脚本生成配置文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%92%8C%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"><span class="toc-text">启动和系统配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E5%B9%B6%E6%84%89%E5%BF%AB%E4%BD%BF%E7%94%A8"><span class="toc-text">测试并愉快使用</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7"><span class="toc-text">实用工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#subconverter"><span class="toc-text">subconverter</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%951-%E5%88%A9%E7%94%A8subconverter%E7%9A%84http%E6%9C%8D%E5%8A%A1"><span class="toc-text">方法1-利用subconverter的http服务</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%B9%E6%B3%952-%E5%88%A9%E7%94%A8subconverter%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="toc-text">方法2-利用subconverter的命令行工具</span></a></li></ol></li></ol></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://api.vlts.cc/site_info/v1?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>

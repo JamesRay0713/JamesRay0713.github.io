@@ -1,0 +1,1009 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.27.0" theme-name="Stellar" theme-version="1.27.0">
+  
+  <meta name="generator" content="Hexo 7.0.0">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+  
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#f9fafb">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1e21">
+  
+  <title>python解释器、依赖包和虚拟环境管理 - in~Somnia</title>
+
+  
+  <meta name="description" content="关于python的解释器、包管理和虚拟环境环境等, 这里有你想要的.  ">
+  
+  <meta name="keywords" content="python">
+
+  <!-- feed -->
+  
+    <link rel="alternate" href="/atom.xml" title="in~Somnia" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/main.css?v=1.27.0">
+
+  
+    <link rel="shortcut icon" href="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/网站图标2.png">
+  
+
+  
+    
+<link rel="stylesheet" href="https://gcore.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/atom-one-dark.min.css">
+
+  
+
+  <link href="https://fonts.loli.net/css2?family=Playball&family=Satisfy&display=swap" rel="stylesheet"><link href="https://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css" rel="stylesheet" media="all">
+</head>
+<body><div class="sitebg"><div class="siteblur"></div></div>
+
+<div class="l_body s:aa content tech" id="start" layout="post" ><aside class="l_left"><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/social/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="https://images.weserv.nl/?url=assets.taddream.site/build_site_images/蚪狐狸头像.png" onerror="javascript:this.classList.add('error');this.src='https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/image/2659360.svg';"></a><a class="title" href="/"><div class="main" ff="title">in~Somnia</div><div class="sub normal cap">念念不忘~</div><div class="sub hover cap" style="opacity:0"> 必有回响</div></a></div></header>
+
+<div class="nav-area">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+<nav class="menu dis-select"><a class="nav-item active" title="博客" href="/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5.879 2.879C5 3.757 5 5.172 5 8v8c0 2.828 0 4.243.879 5.121C6.757 22 8.172 22 11 22h2c2.828 0 4.243 0 5.121-.879C19 20.243 19 18.828 19 16V8c0-2.828 0-4.243-.879-5.121C17.243 2 15.828 2 13 2h-2c-2.828 0-4.243 0-5.121.879M8.25 17a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75M9 12.25a.75.75 0 0 0 0 1.5h6a.75.75 0 0 0 0-1.5zM8.25 9A.75.75 0 0 1 9 8.25h6a.75.75 0 0 1 0 1.5H9A.75.75 0 0 1 8.25 9" clip-rule="evenodd"/><path fill="currentColor" d="M5.235 4.058C5 4.941 5 6.177 5 8v8c0 1.823 0 3.058.235 3.942L5 19.924c-.975-.096-1.631-.313-2.121-.803C2 18.243 2 16.828 2 14v-4c0-2.829 0-4.243.879-5.121c.49-.49 1.146-.707 2.121-.803zm13.53 15.884C19 19.058 19 17.822 19 16V8c0-1.823 0-3.059-.235-3.942l.235.018c.975.096 1.631.313 2.121.803C22 5.757 22 7.17 22 9.999v4c0 2.83 0 4.243-.879 5.122c-.49.49-1.146.707-2.121.803z" opacity=".5"/></svg><span style="color: hsl(0 0% 20%)">博客</span></a><a class="nav-item" title="文档" href="/wiki/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M14.25 4.48v3.057c0 .111 0 .27.02.406a.936.936 0 0 0 .445.683a.96.96 0 0 0 .783.072c.13-.04.272-.108.378-.159L17 8.005l1.124.534c.106.05.248.119.378.16a.958.958 0 0 0 .783-.073a.936.936 0 0 0 .444-.683c.021-.136.021-.295.021-.406V3.031c.113-.005.224-.01.332-.013C21.154 2.98 22 3.86 22 4.933v11.21c0 1.112-.906 2.01-2.015 2.08c-.97.06-2.108.179-2.985.41c-1.082.286-1.99 1.068-3.373 1.436c-.626.167-1.324.257-1.627.323V5.174c.32-.079 1.382-.203 1.674-.371c.184-.107.377-.216.576-.323m5.478 8.338a.75.75 0 0 1-.546.91l-4 1a.75.75 0 0 1-.364-1.456l4-1a.75.75 0 0 1 .91.546" clip-rule="evenodd"/><path fill="currentColor" d="M18.25 3.151c-.62.073-1.23.18-1.75.336a8.2 8.2 0 0 0-.75.27v3.182l.75-.356l.008-.005a1.13 1.13 0 0 1 .492-.13c.047 0 .094.004.138.01c.175.029.315.1.354.12l.009.005l.749.356V3.647z"/><path fill="currentColor" d="M12 5.214c-.334-.064-1.057-.161-1.718-.339C8.938 4.515 8.05 3.765 7 3.487c-.887-.234-2.041-.352-3.018-.412C2.886 3.007 2 3.9 2 4.998v11.146c0 1.11.906 2.01 2.015 2.079c.97.06 2.108.179 2.985.41c.486.129 1.216.431 1.873.726c1.005.451 2.052.797 3.127 1.034z" opacity=".5"/><path fill="currentColor" d="M4.273 12.818a.75.75 0 0 1 .91-.545l4 1a.75.75 0 1 1-.365 1.455l-4-1a.75.75 0 0 1-.545-.91m.909-4.545a.75.75 0 1 0-.364 1.455l4 1a.75.75 0 0 0 .364-1.455z"/></svg><span style="color: hsl(0 0% 20%)">文档</span></a><a class="nav-item" title="探索" href="/explore/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 12a8 8 0 1 1-16 0a8 8 0 0 1 16 0" opacity=".5"/><path fill="currentColor" d="M17.712 5.453c1.047-.193 2.006-.259 2.797-.152c.77.103 1.536.393 1.956 1.064c.446.714.312 1.542-.012 2.258c-.33.728-.918 1.499-1.672 2.268c-1.516 1.547-3.836 3.226-6.597 4.697c-2.763 1.472-5.495 2.484-7.694 2.92c-1.095.217-2.098.299-2.923.201c-.8-.095-1.6-.383-2.032-1.075c-.47-.752-.296-1.63.07-2.379c.375-.768 1.032-1.586 1.872-2.403L4 12.416c0 .219.083.71.168 1.146c.045.23.09.444.123.596c-.652.666-1.098 1.263-1.339 1.756c-.277.567-.208.825-.145.925c.072.116.305.305.937.38c.609.073 1.44.018 2.455-.183c2.02-.4 4.613-1.351 7.28-2.772c2.667-1.42 4.85-3.015 6.23-4.423c.694-.707 1.15-1.334 1.377-1.836c.233-.515.167-.75.107-.844c-.07-.112-.289-.294-.883-.374c-.542-.072-1.272-.041-2.163.112L16.87 5.656c.338-.101.658-.17.842-.203"/></svg><span style="color: hsl(0 0% 20%)">探索</span></a><a class="nav-item" title="社交" href="/social/" style="color:#D733FF"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m13.629 20.472l-.542.916c-.483.816-1.69.816-2.174 0l-.542-.916c-.42-.71-.63-1.066-.968-1.262c-.338-.197-.763-.204-1.613-.219c-1.256-.021-2.043-.098-2.703-.372a5 5 0 0 1-2.706-2.706C2 14.995 2 13.83 2 11.5v-1c0-3.273 0-4.91.737-6.112a5 5 0 0 1 1.65-1.651C5.59 2 7.228 2 10.5 2h3c3.273 0 4.91 0 6.113.737a5 5 0 0 1 1.65 1.65C22 5.59 22 7.228 22 10.5v1c0 2.33 0 3.495-.38 4.413a5 5 0 0 1-2.707 2.706c-.66.274-1.447.35-2.703.372c-.85.015-1.275.022-1.613.219c-.338.196-.548.551-.968 1.262" opacity=".5"/><path fill="currentColor" d="M10.99 14.308c-1.327-.978-3.49-2.84-3.49-4.593c0-2.677 2.475-3.677 4.5-1.609c2.025-2.068 4.5-1.068 4.5 1.609c0 1.752-2.163 3.615-3.49 4.593c-.454.335-.681.502-1.01.502c-.329 0-.556-.167-1.01-.502"/></svg><span style="color: hsl(0 0% 20%)">社交</span></a></nav>
+</div>
+<div class="widgets">
+
+
+<widget class="widget-wrapper post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/post/toolkit01_about_OS_config/"><span class="title">操作系统配置相关</span></a><a class="item title" href="/post/toolkit02-about-network-connection/"><span class="title">网络连接相关</span></a><a class="item title" href="/post/manual-debug/"><span class="title">手册：debug</span></a><a class="item title" href="/post/proxyTools-and-create-proxyServers/"><span class="title">搭建代理服务器和使用代理工具</span></a><a class="item title" href="/post/network-security/"><span class="title">加解密及安全话题</span></a><a class="item title" href="/post/python-pkg-manager-and-virenv/"><span class="title">python解释器、依赖包和虚拟环境管理</span></a><a class="item title" href="/post/manual-manage-blog/"><span class="title">手册：管理hexo-stellar博客</span></a><a class="item title" href="/post/python-flask/"><span class="title">flask学习</span></a><a class="item title" href="/post/manual-markdown-syntax/"><span class="title">manual-markdown-syntax</span></a><a class="item title" href="/post/manual-build-website/"><span class="title">手册：搭建博客网站</span></a></div></widget>
+</div>
+<footer class="footer dis-select"><div class="social-wrap"><a class="social" href="https://github.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700665441051" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7724" data-darkreader-inline-fill="" width="200" height="200"><path d="M950.857143 512q0 143.428571-83.714286 258T650.857143 928.571429q-15.428571 2.857143-22.571429-4t-7.142857-17.142858v-120.571428q0-55.428571-29.714286-81.142857 32.571429-3.428571 58.571429-10.285715t53.714286-22.285714 46.285714-38 30.285714-60T792 489.142857q0-69.142857-45.142857-117.714286 21.142857-52-4.571429-116.571428-16-5.142857-46.285714 6.285714t-52.571429 25.142857l-21.714285 13.714286q-53.142857-14.857143-109.714286-14.857143t-109.714286 14.857143q-9.142857-6.285714-24.285714-15.428571T330.285714 262.571429 281.142857 254.857143q-25.142857 64.571429-4 116.571428-45.142857 48.571429-45.142857 117.714286 0 48.571429 11.714286 85.714286t30 60 46 38.285714 53.714285 22.285714 58.571429 10.285715q-22.857143 20.571429-28 58.857143-12 5.714286-25.714286 8.571428t-32.571428 2.857143-37.428572-12.285714T276.571429 728q-10.857143-18.285714-27.714286-29.714286t-28.285714-13.714285l-11.428572-1.714286q-12 0-16.571428 2.571428t-2.857143 6.571429 5.142857 8 7.428571 6.857143l4 2.857143q12.571429 5.714286 24.857143 21.714285t18 29.142858l5.714286 13.142857q7.428571 21.714286 25.142857 35.142857t38.285714 17.142857 39.714286 4 31.714286-2l13.142857-2.285714q0 21.714286 0.285714 50.857143t0.285714 30.857142q0 10.285714-7.428571 17.142858t-22.857143 4q-132.571429-44-216.285714-158.571429T73.142857 512q0-119.428571 58.857143-220.285714T291.714286 132 512 73.142857t220.285714 58.857143T892 291.714286 950.857143 512z" p-id="7725" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="https://gitee.com/JamesRay0713" target="_blank" rel="external nofollow noopener noreferrer"><svg t="1700810083615" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11744" data-darkreader-inline-fill="" width="200" height="200"><path d="M512 1024C229.222 1024 0 794.778 0 512S229.222 0 512 0s512 229.222 512 512-229.222 512-512 512z m259.149-568.883h-290.74a25.293 25.293 0 0 0-25.292 25.293l-0.026 63.206c0 13.952 11.315 25.293 25.267 25.293h177.024c13.978 0 25.293 11.315 25.293 25.267v12.646a75.853 75.853 0 0 1-75.853 75.853h-240.23a25.293 25.293 0 0 1-25.267-25.293V417.203a75.853 75.853 0 0 1 75.827-75.853h353.946a25.293 25.293 0 0 0 25.267-25.292l0.077-63.207a25.293 25.293 0 0 0-25.268-25.293H417.152a189.62 189.62 0 0 0-189.62 189.645V771.15c0 13.977 11.316 25.293 25.294 25.293h372.94a170.65 170.65 0 0 0 170.65-170.65V480.384a25.293 25.293 0 0 0-25.293-25.267z" fill="#C71D23" p-id="11745" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #7b2c2f;"></path></svg></a><a class="social" href="mailto:hl1670704310@icloud.com" rel="noopener noreferrer"><svg t="1700665373816" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6718" data-darkreader-inline-fill="" width="200" height="200"><path d="M926.47619 355.644952V780.190476a73.142857 73.142857 0 0 1-73.142857 73.142857H170.666667a73.142857 73.142857 0 0 1-73.142857-73.142857V355.644952l73.142857 62.000762V780.190476h682.666666V417.645714l73.142857-62.000762zM853.333333 170.666667a74.044952 74.044952 0 0 1 26.087619 4.778666 72.704 72.704 0 0 1 30.622477 22.186667 73.508571 73.508571 0 0 1 10.678857 17.67619c3.169524 7.509333 5.12 15.652571 5.607619 24.210286L926.47619 243.809524v24.380952L559.469714 581.241905a73.142857 73.142857 0 0 1-91.306666 2.901333l-3.632762-2.925714L97.52381 268.190476v-24.380952a72.899048 72.899048 0 0 1 40.155428-65.292191A72.97219 72.97219 0 0 1 170.666667 170.666667h682.666666z m-10.971428 73.142857H181.638095L512 525.58019 842.361905 243.809524z" p-id="6719" fill="#1afa29" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a><a class="social" href="/social/#comments" rel="noopener noreferrer"><svg t="1700665059859" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5632" data-darkreader-inline-fill="" width="200" height="200"><path d="M371.2 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5633" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M512 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5634" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M652.8 454.4m-51.2 0a0.8 0.8 0 1 0 102.4 0 0.8 0.8 0 1 0-102.4 0Z" fill="#1afa29" p-id="5635" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #47be4f;"></path><path d="M377.6 896c-6.4 0-6.4 0-12.8 0-12.8-6.4-19.2-19.2-19.2-32l0-128C211.2 684.8 128 569.6 128 448c0-179.2 172.8-320 384-320s384 140.8 384 320c0 172.8-166.4 313.6-371.2 320l-128 121.6C390.4 896 384 896 377.6 896zM512 192C332.8 192 192 307.2 192 448c0 102.4 76.8 192 192 236.8 12.8 6.4 19.2 19.2 19.2 32l0 76.8 83.2-76.8C492.8 704 505.6 704 512 704c179.2 0 320-115.2 320-256S691.2 192 512 192z" fill="#1afa29" p-id="5636" data-darkreader-inline-fill="" style="--darkreader-inline-fill: #2a944a;"></path></svg></a></div></footer>
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/blog/categories/python/">python</a></div>
+<div class="flex-row" id="post-meta"><a class="author" href="/author/Raymond~/">Raymond~</a><span class="sep"></span><span class="text created"><time datetime="2024-10-02T16:22:17.595Z">2024年10月3日</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2024-09-11T11:34:32.333Z">2024年9月11日</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>python解释器、依赖包和虚拟环境管理</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>关于python的解释器、包管理和虚拟环境环境等, 这里有你想要的.  </p>
+<span id="more"></span>
+
+<p>接触python一段时间你会发现, 如果缺乏经验, 系统中多个python的版本冲突、不同项目对同一个依赖包的版本需求不一致等问题, 可能会产生未知的报错, 浪费你大量的时间. 另外python的运行效率有时也不尽人意……</p>
+<p>为了提高生产力, 我们可以:</p>
+<ul>
+<li>选择更高性能的python解释器</li>
+<li>做好虚拟环境管理和包管理, 避免版本冲突</li>
+</ul>
+<h2 id="python解释器"><a href="#python解释器" class="headerlink" title="python解释器"></a>python解释器</h2><p>Python是一种<code>解释型语言</code>，这意味着编写的代码需要通过解释器来读取和执行。</p>
+<h3 id="常见的解释器"><a href="#常见的解释器" class="headerlink" title="常见的解释器"></a>常见的解释器</h3><ul>
+<li><p>CPython: 由 Python 的创始人及其团队开发. 是<code>最广泛使用</code>的、默认的 Python 解释器，支持所有标准库和第三方库. 是用 <code>C语言编写</code>的. </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://doc.pypy.org/en/latest/introduction.html">PyPy</a>: 是一个<code>高性能</code>的Python解释器，采用Just-In-Time(JIT)编译技术，可以将Python代码动态编译为机器码。<br>PyPy 通常比 CPython 运行更快，尤其是在计算密集型任务上。</p>
+</li>
+<li><p>JPython: 运行在 Java 虚拟机 (JVM) 上的 Python 解释器。可以无缝调用 Java 类和方法，适合与 Java 生态系统集成。</p>
+</li>
+<li><p>…</p>
+</li>
+</ul>
+<h3 id="PyPy3"><a href="#PyPy3" class="headerlink" title="PyPy3"></a>PyPy3</h3><h4 id="你是否需要它"><a href="#你是否需要它" class="headerlink" title="你是否需要它"></a>你是否需要它</h4><ul>
+<li>其优点: 更高的代码执行速度 (特别是计算密集型任务); 内存的优化; 对长时间运行的程序的友好…</li>
+<li>其局限: 在第三方库方面, 它在尽可能兼容 CPython, 但没有完全兼容!</li>
+</ul>
+<p>或许你可以在特定项目中使用它, 比如在一个<code>虚拟环境</code>里安装使用它. 平时还是用默认的CPython. </p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>官方给出了<a target="_blank" rel="noopener" href="https://doc.pypy.org/en/latest/install.html">多种方法</a>, 这里建议<code>conda法</code>.<br>即在等你拥有了conda之后, 直接新建虚拟环境以安装它:  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">conda create -c conda-forge -n mypypy3 pypy python=3.9<br>conda activate mypypy3<br>conda install scipy <span class="hljs-comment"># 例子</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>把所有python命令的<code>python</code>字样替换为<code>pypy3、pypy3.x、pypy3x</code>即可.  </p>
+<h2 id="虚拟环境和包管理"><a href="#虚拟环境和包管理" class="headerlink" title="虚拟环境和包管理"></a>虚拟环境和包管理</h2><p>Python开发中, 必不可少的是要做好版本管理，即在开发前要配置好包管理工具和虚拟环境管理工具, 可供选择的工具有<code>pip</code>、<code>venv</code>、<code>virtualenv</code>、<code>pipenv</code>、 <code>conda</code>、<code>mamba</code>、<code>poetry</code>、<code>Pixi</code>等. </p>
+<h3 id="工具比较"><a href="#工具比较" class="headerlink" title="工具比较"></a>工具比较</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">pip</th>
+<th align="center">venv</th>
+<th align="center">virtualenv</th>
+<th align="center">pipenv</th>
+<th align="center">conda</th>
+<th align="center">mamba</th>
+<th align="center">poetry</th>
+<th>Pixi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>是pkg工具</strong></td>
+<td align="center">√</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>能解决包冲突</strong></td>
+<td align="center">×</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">×</td>
+<td align="center">√</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>是virenv工具</strong></td>
+<td align="center"></td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td align="center">√</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>安装方法</strong></td>
+<td align="center">内置</td>
+<td align="center">内置</td>
+<td align="center">pip安装</td>
+<td align="center">pip安装</td>
+<td align="center"><a target="_blank" rel="noopener" href="https://docs.anaconda.com/free/miniconda/">下载</a></td>
+<td align="center">conda安装</td>
+<td align="center">pipx安装</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>其他</strong></td>
+<td align="center">支持最广泛的包和库</td>
+<td align="center"></td>
+<td align="center">比venv更强些</td>
+<td align="center">结合并简化了pip和virtualenv</td>
+<td align="center">强大, 支持多语言包</td>
+<td align="center">所有conda命令都可以被平替</td>
+<td align="center">强大, 统一了<code>包、虚拟环境、项目</code>的管理, python界的npm</td>
+<td></td>
+</tr>
+<tr>
+<td align="center"><strong>优缺点</strong></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">缺: 不支持<code>pip</code>的所有包</td>
+<td align="center">优: 是conda的改进和加速</td>
+<td align="center">缺: 无法主动下载python解释器; 和npm一样, 项目目录和虚拟环境无法解耦.</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>这些工具各有优缺点, 比如 <code>Poetry</code> 适合那些需要确保依赖一致性和隔离性的项目，而 <code>Conda</code> 则适合需要在多个项目之间共享环境的场景. 目前以我的观点来看, 可总结为:<br>$$一个conda环境可被多个项目使用;<br>\一个项目可有多个poetry环境, 但反过来不行 $$</p>
+<p>下面将只关注<code>pip</code>、<code>conda</code>和<code>poetry</code>等在不同系统环境下的安装使用. </p>
+<h3 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h3><ul>
+<li><strong>安装python</strong>: 进入<a target="_blank" rel="noopener" href="https://www.python.org/downloads/">python下载的官网</a>, 按需选择<code>OS</code>和<code>python3版本</code>, 根据提示下载并安装python的包. 完成后python内自带pip.  </li>
+<li><strong>配置</strong>: 在国内, 你可能需要更换<code>pip源</code>, 以期在执行<code>pip install</code>时有更快的下载速度.<br>请进入<code>~/.pip/pip.conf</code>文件（没有则创建），写入以下内容, 按需<strong>删掉</strong> (是<code>删</code>不是<code>注释</code>) 你不需要的源:  <figure class="highlight ini"><table><tr><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[global]</span><br><span class="hljs-attr">index-url</span> = https://pypi.org/simple/                    <span class="hljs-comment"># 官方源</span><br><span class="hljs-comment">#index-url = https://pypi.tuna.tsinghua.edu.cn/simple    # 清华源</span><br><span class="hljs-comment">#index-url = https://mirrors.aliyun.com/pypi/simple/    # 阿里源	</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>注: 国内源有可能package未收录，这时候也要换回<code>国外官方源</code>，如：<code>pip install  -r requirements.txt -i https://pypi.org/simple/</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="conda-包和环境管理器"><a href="#conda-包和环境管理器" class="headerlink" title="conda-包和环境管理器"></a>conda-包和环境管理器</h3><p>Conda 是一个强大且灵活的包和环境管理工具，其优势是: </p>
+<ul>
+<li>多语言支持</li>
+<li>跨平台一致性</li>
+<li>数据科学和机器学习项目</li>
+<li>复杂依赖管理</li>
+<li>隔离项目环境</li>
+<li>团队协作</li>
+</ul>
+<p>有<code>Anaconda</code>和<a target="_blank" rel="noopener" href="https://docs.anaconda.com/miniconda/"><code>Miniconda</code></a>之分, 后者是轻量级版本, 建议安装. </p>
+<blockquote>
+<ul>
+<li>下面是miniconda的安装与使用. </li>
+<li>如果你更愿意使用<code>mamba</code>来替代conda, <a href="#mamba">详见</a>. </li>
+<li>值得说明的是, 最新版的 Conda已经集成了 <code>libmamba</code> 作为其求解器，就已经可以享受 <code>libmamba</code> 带来的性能提升了。</li>
+</ul>
+</blockquote>
+<h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><h5 id="Windows、Linux、MacOS"><a href="#Windows、Linux、MacOS" class="headerlink" title="Windows、Linux、MacOS"></a>Windows、Linux、MacOS</h5><ul>
+<li><p>可移步<a target="_blank" rel="noopener" href="https://docs.anaconda.com/miniconda/miniconda-install/">官网</a>按需选择不同<code>OS</code>进行安装, 我这里只介绍<code>Linux下清华镜像库中安装脚本</code>的使用:  </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> ~/packages &amp;&amp; <span class="hljs-built_in">cd</span> ~/packages<br><span class="hljs-comment"># 下载</span><br>wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh<br><span class="hljs-comment"># 脚本安装</span><br>bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/Miniconda3    <span class="hljs-comment"># 用zsh可能有未知的错误，b是静默安装</span><br><span class="hljs-comment"># 初始化</span><br>conda init<br><span class="hljs-built_in">source</span> ~/.bashrc<br><span class="hljs-comment"># 验证</span><br>conda -V<br></code></pre></td></tr></table></figure>
+<p>这之后, 我们会在相应的shell的配置文件中(如<code>~/.bashrc</code>)看到类似下面的配置: <a name="conda-init-content"></a> </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span><br><span class="hljs-comment"># !! Contents within this block are managed by &#x27;conda init&#x27; !!</span><br>__conda_setup=<span class="hljs-string">&quot;<span class="hljs-subst">$(&#x27;/home/raymond/miniconda3/bin/conda&#x27; &#x27;shell.bash&#x27; &#x27;hook&#x27; 2&gt; /dev/null)</span>&quot;</span><br><span class="hljs-keyword">if</span> [ $? -eq 0 ]; <span class="hljs-keyword">then</span><br>    <span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-variable">$__conda_setup</span>&quot;</span><br><span class="hljs-keyword">else</span><br>    <span class="hljs-keyword">if</span> [ -f <span class="hljs-string">&quot;/home/raymond/miniconda3/etc/profile.d/conda.sh&quot;</span> ]; <span class="hljs-keyword">then</span><br>        . <span class="hljs-string">&quot;/home/raymond/miniconda3/etc/profile.d/conda.sh&quot;</span><br>    <span class="hljs-keyword">else</span><br>        <span class="hljs-built_in">export</span> PATH=<span class="hljs-string">&quot;/home/raymond/miniconda3/bin:<span class="hljs-variable">$PATH</span>&quot;</span><br>    <span class="hljs-keyword">fi</span><br><span class="hljs-keyword">fi</span><br><span class="hljs-built_in">unset</span> __conda_setup<br><span class="hljs-keyword">if</span> [ -f <span class="hljs-string">&quot;/home/ray/miniforge3/etc/profile.d/mamba.sh&quot;</span> ]; <span class="hljs-keyword">then</span><br>    . <span class="hljs-string">&quot;/home/ray/miniforge3/etc/profile.d/mamba.sh&quot;</span><br><span class="hljs-keyword">fi</span><br><span class="hljs-comment"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span><br></code></pre></td></tr></table></figure>
+<p>如果你想在新shell(e.g. zsh) 中也用上conda, 你需要将上述的脚本复制到新shell的配置文件(e.g. <code>~/.zshrc</code>) 中, 其中<code>&#39;shell bash&#39;</code>换成<code>&#39;shell zsh&#39;</code>即可.</p>
+<p>这就成功安装了.  </p>
+</li>
+<li><p>如果是在Windows的OS中, 安装好后, 记得查看下<code>conda安装目录</code>及其下的<code>./Scripts/</code>是否已加入到你系统的<code>$PATH</code>中就好了.</p>
+</li>
+</ul>
+<h5 id="win11-git-SDK"><a href="#win11-git-SDK" class="headerlink" title="win11-git-SDK"></a>win11-git-SDK</h5><p>SDK是Windows下的仿Linux环境, 其终端是<code>git-bash</code>.<br>经过实践, 采用Linux的方式在<code>git-bash</code>中安装, 其安装过程、此后的使用过程, 都会有一些难以解决的小问题. </p>
+<p>因此建议, 直接在<code>Windows</code>中进行可视化安装. 这样不仅<code>CMD</code>能用conda, <code>git-bash</code>也能通过Windows的<code>$PATH</code>变量, 获取到conda的完整功能.   </p>
+<ol>
+<li>官网下载, 双击安装</li>
+<li><strong>初始化</strong>: 进入<code>git-bash</code>, 把<a href="#conda-init-content">这段脚本</a>添加到<code>~/.bashrc</code>再重启shell即可.</li>
+<li><strong>验证</strong>: 执行<code>conda --version</code>或<code>conda info</code></li>
+</ol>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>重要配置就是<strong>更换国内源</strong>, 但如果你系统内<code>配置了代理</code>, 则不必换源.</p>
+<p>进入<code>~/.condarc</code>文件 (没有则创建) , 写入以下内容:  </p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">channels:</span> <br>  <span class="hljs-bullet">-</span> <span class="hljs-string">defaults</span><br><span class="hljs-attr">show_channel_urls:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">default_channels:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="hljs-attr">custom_channels:</span><br>  <span class="hljs-attr">conda-forge:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br>  <span class="hljs-attr">msys2:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br>  <span class="hljs-attr">bioconda:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br>  <span class="hljs-attr">menpo:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span> <br>  <span class="hljs-attr">pytorch:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br>  <span class="hljs-attr">simpleitk:</span> <span class="hljs-string">https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></code></pre></td></tr></table></figure>
+
+
+<h4 id="安装加配置-Linux下的自动化脚本"><a href="#安装加配置-Linux下的自动化脚本" class="headerlink" title="安装加配置-Linux下的自动化脚本"></a>安装加配置-Linux下的自动化脚本</h4><p>将下述命令保存为脚本文件并执行, 重载终端, 即可在抬头显示<code>(base)</code>.</p>
+<details class="tag-plugin colorful folding" ><summary><span>脚本内容</span></summary><div class="body"><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 安装. 可根据需求, 去tuna官网中查找合适的`file`(我这里用的是py3.9版本)，或直接用最新版`Miniconda3-latest-Linux-$arch.sh`</span><br><span class="hljs-built_in">arch</span>=$(<span class="hljs-built_in">uname</span> -m)<br>file=<span class="hljs-string">&quot;Miniconda3-py39_23.5.2-0-Linux-<span class="hljs-variable">$arch</span>.sh&quot;</span><br>conda_dir=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/Miniconda3&quot;</span><br>wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/<span class="hljs-variable">$file</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;- - - - - miniconda-install.sh downloaded.&quot;</span><br>bash <span class="hljs-variable">$file</span> -b -p <span class="hljs-variable">$conda_dir</span><br><span class="hljs-built_in">rm</span> <span class="hljs-variable">$file</span><br>    <span class="hljs-comment"># 因为是静默安装，要手动初始化conda。</span><br><span class="hljs-variable">$conda_dir</span>/bin/conda init<br>    <span class="hljs-comment"># 但其init命令无法识别shell，只会自动对bash初始化。而此时我们是在zsh里执行的上一步，还需将初始化脚本复制到.zshrc。</span><br>matched_content=$(awk <span class="hljs-string">&#x27;/# &gt;&gt;&gt; conda initialize &gt;&gt;&gt;/,/# &lt;&lt;&lt; conda initialize &lt;&lt;&lt;$/&#x27;</span> ~/.bashrc)<br>modified_content=$(<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$matched_content</span>&quot;</span> | sed <span class="hljs-string">&#x27;s/shell\.bash/shell.zsh/&#x27;</span>)<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$modified_content</span>&quot;</span> &gt;&gt; ~/.zshrc<br>    <span class="hljs-comment"># 更新终端后，你能看到(base)的抬头了</span><br><span class="hljs-comment">#source ~/.zshrc  # 脚本执行的环境是bash，无法执行.zshrc</span><br><br>    <span class="hljs-comment"># 配置 conda的清华源</span><br>condarc_path=~/.condarc<br><span class="hljs-keyword">if</span> [ ! -f <span class="hljs-string">&quot;<span class="hljs-variable">$condarc_path</span>&quot;</span> ]; <span class="hljs-keyword">then</span><br>  <span class="hljs-built_in">touch</span> <span class="hljs-string">&quot;<span class="hljs-variable">$condarc_path</span>&quot;</span><br><span class="hljs-keyword">fi</span><br><span class="hljs-built_in">cat</span> &lt;&lt;<span class="hljs-string">EOL &gt; &quot;$condarc_path&quot;</span><br><span class="hljs-string">channels:</span><br><span class="hljs-string">  - defaults</span><br><span class="hljs-string">show_channel_urls: true</span><br><span class="hljs-string">default_channels:</span><br><span class="hljs-string">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="hljs-string">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free</span><br><span class="hljs-string">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="hljs-string">custom_channels:</span><br><span class="hljs-string">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="hljs-string">EOL</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;- - - - - miniconda3 is already installed.&quot;</span><br></code></pre></td></tr></table></figure></div></details>
+
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h4><p><strong>如何进入环境</strong></p>
+<ul>
+<li>Windows下: <ul>
+<li>打开powershell, 会自动进入<code>base</code></li>
+<li>打开cmd, 需要执行<code>conda activate</code>以手动进入</li>
+</ul>
+</li>
+<li>Linux下: 自动进入<code>base</code></li>
+<li>git-SDK下: 自动进入<code>base</code>, 如果没有, 则在git-bash.exe&#x2F;bash.exe中执行<code>source activate/deactivate</code>以手动&#x2F;退出进入环境</li>
+</ul>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>conda创建环境</td>
+<td><code>conda create -n test1 [--clone base] | [python=3.7] [other pkgs]</code></td>
+</tr>
+<tr>
+<td>conda激活&#x2F;灭活环境</td>
+<td><code>conda activate test1</code>，<code>conda deactivate</code></td>
+</tr>
+<tr>
+<td>列出所有环境</td>
+<td><code>conda env list </code></td>
+</tr>
+<tr>
+<td>删除指定环境</td>
+<td><code>conda remove -n *** --all</code></td>
+</tr>
+<tr>
+<td>导出&#x2F;导入环境</td>
+<td><code>conda env export &gt; environment.yaml</code>，<code>conda env create -f environment.yaml</code></td>
+</tr>
+<tr>
+<td>从文件安装</td>
+<td><code>conda install --yes --file requirements.txt</code>，<code>pip install -r requirments.txt</code></td>
+</tr>
+<tr>
+<td>安装时临时指定源</td>
+<td><code>conda install -c conda-forge -c bioconda package_name</code>，<code>pip install package_name -i https://pypi.org/simple/</code></td>
+</tr>
+</tbody></table>
+<p>常用：<div class="tag-plugin copy"><span>$</span><input class="copy-area" id="copy_8" value="conda create -n test1 python=3.9"><button class="copy-btn" onclick="util.copy(&quot;copy_8&quot;,&quot;复制成功&quot;)"><svg class="icon copy-btn" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M5.75 1a.75.75 0 00-.75.75v3c0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75v-3a.75.75 0 00-.75-.75h-4.5zm.75 3V2.5h3V4h-3zm-2.874-.467a.75.75 0 00-.752-1.298A1.75 1.75 0 002 3.75v9.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 13.25v-9.5a1.75 1.75 0 00-.874-1.515.75.75 0 10-.752 1.298.25.25 0 01.126.217v9.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-9.5a.25.25 0 01.126-.217z"></path></svg></button></div></p>
+<h3 id="mamba-平替conda"><a href="#mamba-平替conda" class="headerlink" title="mamba-平替conda"></a>mamba-平替conda</h3><p><a target="_blank" rel="noopener" href="https://mamba.readthedocs.io/">Mamba</a> (<a target="_blank" rel="noopener" href="https://github.com/mamba-org/mamba">github-repo</a>) 是一个由 Conda 社区开发的工具，用于改进和加速 Conda 的包管理和环境管理功能。它与 Conda 完全兼容，但在性能和用户体验方面进行了优化。</p>
+<p>最新版的 Conda也已经集成了 <code>libmamba</code> 作为其求解器, 是否需要单独安装 <code>Mamba</code>就看你所需吧.</p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><p>☹️ <a target="_blank" rel="noopener" href="https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html">官方</a>已不再建议在conda中安装的方式了: <code>conda install mamba -n base -c conda-forge</code>. </p>
+<p>😉 官方推荐<code>Miniforge安装</code>的方式, 详见下面<a href="#miniforge">章节</a>.  </p>
+<h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><p>与 Conda 的命令非常相似，只需将所有命令的<code>conda</code>字样替换为<code>mamba</code>即可.  </p>
+<h4 id="miniforge"><a href="#miniforge" class="headerlink" title="miniforge"></a>miniforge</h4><p><a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge">Miniforge</a>是一种最小化的 Conda 分发工具 (就像<code>miniconda</code>)，旨在为用户提供一个轻量级的 Conda 环境. </p>
+<p>Miniforge拥有<code>mamba</code>支持, 且只以<code>Conda-Forge</code>作为默认频道. </p>
+<h5 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h5><p>其安装脚本还有支持<code>pypy3</code>的可选项. 在<a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge">GitHub-repo</a>有详细的安装使用方法.  </p>
+<p>⚠️ 关于配置<code>国内镜像源</code>: 没必要!<br>  经测试, 官方的<code>conda-forge</code>频道速度不慢的, 如果你想更快, 请直接在系统里<code>配置代理</code>, 无痛使用国外源.<br>⚠️ 关于<code>channel配置</code>: 保持默认, 不要修改!<br>  即确保<code>conda-forge</code>是唯一的默认通道(用<code>conda info</code>命令查看), 不建议使用 Anaconda default channels.<br>⚠️ 关于<code>虚拟环境</code>: 不准使用<code>base</code>!<br>  官方建议, <code>base</code>内不要安装任何东西, 请新建虚拟环境进行生产.  </p>
+<p>下面提供3种场景的安装总结:  </p>
+<ul>
+<li><p>Linux: </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 这里选用带pypy3的安装脚本.</span><br>curl -L -O <span class="hljs-string">&quot;https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge-pypy3-<span class="hljs-subst">$(uname)</span>-<span class="hljs-subst">$(uname -m)</span>.sh&quot;</span><br>bash Miniforge-pypy3-$(<span class="hljs-built_in">uname</span>)-$(<span class="hljs-built_in">uname</span> -m).sh<br><span class="hljs-comment"># 然后进入交互式安装.</span><br><span class="hljs-comment"># 安装完毕. 如果`miniforge`安装目录没在系统变量中, 请手动加入</span><br>conda或mamba init<br><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>windows:<br>下载安装包, 双击后按引导即可.  </p>
+<p>⚠️ 引导中的<code>Add Miniforge3 to my PATH environment variable</code>不建议勾选, 因为会和其他软件存在潜在的冲突. 那么如何使用<code>conda</code>命令呢? 从开始菜单中的<code>Miniforge Prompt</code>中进入即可. </p>
+<blockquote>
+<p>你若还是想把miniforge的<code>安装目录</code>及其<code>Scripts</code>子目录加入Windows的系统变量<code>PATH</code>, 以便<code>CMD/powershell</code>使用, 这应该也可以, 我暂未发现什么问题.  </p>
+</blockquote>
+</li>
+<li><p>git-SDK:<br>sdk能读取到Windows的文件系统, 所以就在Windows中安装好即可.</p>
+<p>❓ 但你会发现, 即使你把<code>miniforge/</code>和<code>miniforge/Scripts</code>加入到git-SDK环境下的PATH, 你也无法在<code>git-bash</code>中正常使用<code>conda init</code>和<code>conda activate</code>等命令.  </p>
+<p>😉 解决办法: 直接把<a href="#conda-init-content">初始化代码</a>粘贴在git-bash的shell配置文件中(即<code>~/.bashrc</code>), 重启shell即可. 注意修改代码中的”路径”和”shell.?sh”字样.</p>
+</li>
+</ul>
+<h5 id="使用-3"><a href="#使用-3" class="headerlink" title="使用"></a>使用</h5><p>像正常使用<code>conda/mamba</code>一样, 另外你刚安装好的<code>pypy</code>可随时使用.  </p>
+<h3 id="poetry-包管理之神"><a href="#poetry-包管理之神" class="headerlink" title="poetry-包管理之神"></a>poetry-包管理之神</h3><p><code>poetry</code>是python包管理、环境管理的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/663735038">唯一真神</a>. 它能像js的<code>npm</code>一样管理python的项目、依赖包和环境.  同时其安装、使用、配置等都比较复杂, 学习成本稍微高些.  </p>
+<ul>
+<li>相关资料: <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42871919/article/details/137125544">入门指南</a>; <a target="_blank" rel="noopener" href="https://python-poetry.org/docs/">官方教程</a>; <a target="_blank" rel="noopener" href="https://github.com/python-poetry/poetry">github-repo</a></li>
+<li>主要功能: 管理第三方模块的安装与卸载; 管理虚拟环境; 管理虚拟环境的依赖; 管理打包与发布. </li>
+<li>与conda的区别: <ul>
+<li>包管理上: <ul>
+<li>有更先进的依赖解析与管理;  </li>
+<li>没有<code>channel</code>的概念, 默认下只从<code>PyPI</code>里下载包;</li>
+</ul>
+</li>
+<li>环境管理上: <ul>
+<li>在新建环境时, 无法自主下载指定版本的python解释器;</li>
+<li>不能脱离项目目录创造虚拟环境 (无法解耦环境与项目).</li>
+</ul>
+</li>
+<li>项目管理上:<br>如果你的项目有打包、分发、跨平台使用的需要, 建议老老实实享受poetry的各种便利, 不要搞<a href="#conda%E4%B8%8Epoetry%E5%90%88%E4%BD%93">合体</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><p>有pip, pipx, 脚本(官方推荐)等安装方法, 可移步<a target="_blank" rel="noopener" href="https://python-poetry.org/docs/">官网</a>按需选择. 下面只介绍脚本方法.  </p>
+<ul>
+<li>WSL2、Linux、MacOS:<br><code>curl -sSL https://install.python-poetry.org | python3 -</code></li>
+<li>Windows:<br>powershell中, <code>(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -</code></li>
+</ul>
+<blockquote>
+<p>注: 在Windows下, <code>poetry</code>命令的存放路径是<code>C:\Users\***\.local\bin\</code>; 在Linux下是<code>~/.local/bin/</code>. </p>
+</blockquote>
+<ul>
+<li>win11-git-SDK:  <details class="tag-plugin colorful folding" ><summary><span></span></summary><div class="body"><p>~ <strong>实践踩坑</strong>:   </p><ul><li><strong>报错场景</strong>: <code>git-SDK</code>环境内置了<code>python3.11</code>, 我在<code>git-bash</code>中执行了pipx的安装方式, 会产生一些无法解决的报错. </li><li><strong>报错原因</strong>: SDK环境下的<code>MSYS2</code>系统本身的问题, 具体未知. </li><li><strong>备注</strong>: 该报错场景需要进一步复现检验.</li></ul><p>~ <strong>解决方法1</strong>: 😐放弃git-SDK环境下自带的<code>python</code>解释器安装poetry的方法, 回头拥抱<code>CMD/powerShell</code>环境.<br>~ <strong>解决方法2</strong>: 😊先<a href="#win11-git-SDK">安装conda</a>, 然后退出<code>conda-base</code>虚拟环境, 再执行上<code>pipx安装法</code>.</p><blockquote><ul><li>似乎不退出<code>base</code>虚拟环境也可执行<code>pipx法</code>, 以后验证下;  </li><li>暂不清楚方法2的有效的成因. 但要注意的是, 这种情况我们需要移步学习<a href="#conda%E4%B8%8Epoetry%E5%90%88%E4%BD%93">conda与poetry合体</a>.</li></ul></blockquote></div></details></li>
+</ul>
+<h4 id="使用-4"><a href="#使用-4" class="headerlink" title="使用"></a>使用</h4><blockquote>
+<ul>
+<li><code>一个项目目录</code>可以创建<code>多个虚拟环境</code> (依托系统已有的多个python解释器)</li>
+</ul>
+</blockquote>
+<ol>
+<li><p>创建项目  </p>
+<ul>
+<li>init法 (对现有目录初始化):<br><code>cd target_dir; poetry init</code>, 经过交互式问答, 最终得到<code>pyproject.toml</code>文件.</li>
+<li>new法 (创建新目录):<br><code>poetry new proj_name</code>, 会自动创建一个<code>proj_name</code>目录, 其组织架构如下:  <figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">proj_name<br>├── proj_name <span class="hljs-comment"># 真正的项目目录</span><br>│   └── __init__.py<br>├── pyproject.toml<br>├── README.md<br>└── tests<br>    └── __init__.py <br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>配置(可选), <a href="#%E9%85%8D%E7%BD%AEpoetry">见</a></p>
+</li>
+<li><p>创建虚拟环境  </p>
+<blockquote>
+<p>⚠️ 前提: <a href="#conda%E4%B8%8Epoetry%E5%90%88%E4%BD%93">合体</a>场景就别使用创建功能了.<br>⚠️ 前提: 确保你已退出了其他的虚拟环境; 设置好poetry中关于虚拟环境的2个全局配置(<code>virtualenvs.create</code>和<code>virtualenvs.in-project</code> ).  </p>
+</blockquote>
+<ol>
+<li><p>自动创建方法:<br>当使用<code>poetry install/shell/add/show</code>等命令时就可以自动创建.</p>
+<blockquote>
+<p>⚠️ 要开启<code>virtualenvs.create</code>配置, 自动方法才有效.</p>
+</blockquote>
+</li>
+<li><p>手动创建方法: (<strong>可以指定python版本</strong>)</p>
+<ol>
+<li>系统中已经有了你想要的python版本;<blockquote>
+<p>⚠️ 这里的<code>python版本</code>可以是其他虚拟环境中的python (e.g. <code>conda的base</code>), 也可以是添加到了环境变量的python.</p>
+</blockquote>
+</li>
+<li>在项目的<code>.toml</code>中对齐python版本号;</li>
+<li><code>poetry env use [python-name]</code>, python-name是你步骤2指定版本的python可执行文件名, 或绝对路径.</li>
+<li>验证: <code>poetry env info</code>, 里面有<code>Virtualenv</code>和<code>Base</code>两大模块.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>进入虚拟环境<br>使用<code>poetry shell</code>, 你的终端就在虚拟环境里了;<br>或者使用<code>poetry run &#39;command&#39;</code>, 可以不必进入虚拟环境, 却能使用虚拟环境.</p>
+<blockquote>
+<p>⚠️ 当虚拟环境无法进入, 即<code>poetry shell</code>失败:  </p>
+<ul>
+<li>尝试<code>重启终端</code>;</li>
+<li>尝试手动激活: 找到虚拟环境目录下的<code>activate</code>文件, 执行<code>source /path/to/current-venv/bin/activate</code>;</li>
+<li>再不济就用<code>poetry run</code>吧.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>安装依赖: </p>
+<ul>
+<li>法1, 用add最简单: <code>poetry add package_name</code>;<blockquote>
+<p><code>add</code>的<code>--group dev</code>, 依赖可分组, 这里把将要添加的模块放到<code>开发组</code>. </p>
+</blockquote>
+</li>
+<li>法2, 直接在<code>.toml</code>中手动指定依赖名及其版本号, 再用<code>poetry lock</code>更新<code>.lock</code>文件、再用<code>poetry install</code>真正安装依赖.</li>
+</ul>
+</li>
+</ol>
+<h4 id="配置poetry"><a href="#配置poetry" class="headerlink" title="配置poetry"></a>配置poetry</h4><ul>
+<li><p><strong>查看所有配置</strong>: <code>poetry config --list</code></p>
+</li>
+<li><p><strong>开启&#x2F;关闭虚拟环境的创建</strong>:<br><a href="#conda%E4%B8%8Epoetry%E5%90%88%E4%BD%93">conda+poetry场景</a>下就关闭该功能.<br><code>poetry config virtualenvs.create false</code></p>
+</li>
+<li><p><strong>把虚拟环境目录放在项目目录里</strong>:<br><code>poetry config virtualenvs.in-project true</code>,<br>如果不进行该配置, 虚拟环境将默认集中存放于<code>~\AppData\Local\pypoetry\Cache\virtualenvs</code>(Windows)下, 或<code>~/.cache/pypoetry/virtualenvs</code>(Linux)下.</p>
+</li>
+<li><p><strong>配置多个源</strong>:  </p>
+<p>只需在项目的<code>pyproject.toml</code>文件中添加如下代码:  </p>
+<pre><code class="toml">[[tool.poetry.source]]
+name = &quot;tsinghua&quot;
+url = &quot;https://pypi.tuna.tsinghua.edu.cn/simple&quot;
+priority = &quot;primary&quot;
+</code></pre>
+<blockquote>
+<p>当然如果系统有代理, 就没必要配国内源了.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="常用命令-1"><a href="#常用命令-1" class="headerlink" title="常用命令"></a>常用命令</h4><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>poetry new proj_name</code></td>
+<td>创建一个新项目</td>
+</tr>
+<tr>
+<td><code>poetry add package_name</code></td>
+<td>添加一个新的依赖. 它会同时完成<code>.toml</code>, <code>.lock</code>, <code>虚拟环境</code>三者的更新.</td>
+</tr>
+<tr>
+<td><code>poetry install [--no-root]</code></td>
+<td>- 安装所有依赖. 它会依照<code>.lock</code>文件来更新<code>虚拟环境</code>, 同时把当前项目作为一个本地package, 安装到当前虚拟环境的<code>base环境</code>的<code>site-packages</code>中;<br><br> - <code>no-root</code>是只想安装依赖项而不安装当前项目, 适用于只有<code>.toml</code>文件没有具体项目的情况.</td>
+</tr>
+<tr>
+<td><code>poetry show [-t] [pkg]</code></td>
+<td>显示当前项目的依赖. -t是树形结构. pkg是显示特定的包</td>
+</tr>
+<tr>
+<td><code>poetry update [pkg]</code></td>
+<td>更新所有, 或指定的依赖</td>
+</tr>
+<tr>
+<td><code>poetry remove package_name</code></td>
+<td>移除一个依赖</td>
+</tr>
+<tr>
+<td><code>poetry run python file.py</code></td>
+<td>运行一个Python文件</td>
+</tr>
+<tr>
+<td><code>poetry run command</code></td>
+<td>在虚拟环境中运行命令</td>
+</tr>
+<tr>
+<td><code>poetry shell</code></td>
+<td>进入虚拟环境</td>
+</tr>
+<tr>
+<td><code>poetry build</code></td>
+<td>构建项目</td>
+</tr>
+<tr>
+<td><code>poetry publish</code></td>
+<td>发布项目</td>
+</tr>
+<tr>
+<td><code>poetry config --list</code></td>
+<td>查看配置</td>
+</tr>
+<tr>
+<td><code>poetry config --unset key</code></td>
+<td>删除配置</td>
+</tr>
+<tr>
+<td><code>poetry config key value</code></td>
+<td>设置配置</td>
+</tr>
+<tr>
+<td><code>poetry search package_name</code></td>
+<td>搜索包</td>
+</tr>
+<tr>
+<td><code>poetry lock</code></td>
+<td>锁定依赖 (常见于手动更新了<code>.toml</code>文件后)</td>
+</tr>
+<tr>
+<td><code>poetry export -f requirements.txt -o requirements.txt</code></td>
+<td>导出依赖到requirements.txt</td>
+</tr>
+<tr>
+<td><code>poetry export -f requirements.txt --without-hashes -o requirements.txt</code></td>
+<td>导出依赖到requirements.txt(不包含哈希值)</td>
+</tr>
+<tr>
+<td><code>poetry env list [--full-path]</code></td>
+<td>列出所有虚拟环境</td>
+</tr>
+<tr>
+<td><code>poetry env remove env_name</code></td>
+<td>删除虚拟环境</td>
+</tr>
+<tr>
+<td><code>poetry env use env_name</code></td>
+<td>创建、使用虚拟环境</td>
+</tr>
+<tr>
+<td><code>poetry env info</code></td>
+<td>显示虚拟环境信息</td>
+</tr>
+<tr>
+<td><code>poetry env export -f requirements.txt -o requirements.txt</code></td>
+<td>导出虚拟环境到requirements.txt</td>
+</tr>
+</tbody></table>
+<h3 id="conda与poetry合体"><a href="#conda与poetry合体" class="headerlink" title="conda与poetry合体"></a>conda与poetry合体</h3><p>当你想脱离项目目录, 直接像conda一样创建全局的虚拟环境时, 你会发现poetry竟然做不到! 所以好多人建议把他俩结合使用.  </p>
+<h4 id="合体原理和规则"><a href="#合体原理和规则" class="headerlink" title="合体原理和规则"></a>合体原理和规则</h4><p>在一个项目目录里, poetry有两个工作: 维护<code>.toml</code>和<code>.lock</code>文件进行包管理 (就像<code>requirements.txt</code>) ; 维护虚拟环境.</p>
+<p>有趣的是, 当poetry没有&#x2F;没被允许创建虚拟环境时, 它会主动使用当前的(虚拟)环境, 用<code>poetry env info</code>即可查看.</p>
+<p>所以我们规定, <code>conda只用于vir-env管理, poetry只用于包管理</code>. 这种情况下应避免使用<code>poetry run/shell</code>等命令.</p>
+<h4 id="合体方法"><a href="#合体方法" class="headerlink" title="合体方法"></a>合体方法</h4><ol>
+<li>退出conda的激活环境</li>
+<li>关闭poetry的创建虚拟环境功能: <code>poetry config virtualenvs.create false</code>, 以后poetry的<code>run, shell, env</code>等命令也都别再使用了.</li>
+<li>在任意目录下创建个poetry的配置文件(pyproject.toml): <code>poetry init</code><blockquote>
+<p>如果你想让poetry的使用不再局限于某一个<code>项目目录</code>, 可直接在<code>家目录</code>下进行初始化.</p>
+</blockquote>
+</li>
+<li>创建一个conda环境并激活: <code>conda create -n myenv python=3.9</code>, <code>conda activate myenv</code><blockquote>
+<p>poetry自动识别当前虚拟环境, 此时你可以用<code>poetry env info</code>查看当前环境信息了.</p>
+</blockquote>
+</li>
+<li>自此, 你就可以在这个环境里愉快地使用poetry来管理依赖了: <code>poetry add/remove</code>等.</li>
+</ol>
+<h3 id="pixi"><a href="#pixi" class="headerlink" title="pixi"></a>pixi</h3><p>pixi是一个建立在 Conda 生态系统基础上的跨平台、多语言包管理器和工作流工具。</p>
+<blockquote>
+<p>参考资料: <a target="_blank" rel="noopener" href="https://pixi.sh/latest/">官网</a>, <a target="_blank" rel="noopener" href="https://github.com/prefix-dev/pixi/">github-repo</a>, <a target="_blank" rel="noopener" href="https://pixi.sh/latest/reference/cli">命令手册</a>, <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/70851048/does-it-make-sense-to-use-conda-poetry">从这里得知pixi</a></p>
+</blockquote>
+<p>略… 来日再研究</p>
+<h3 id="hatch"><a href="#hatch" class="headerlink" title="hatch"></a>hatch</h3><p>Hatch 是一个现代化的 Python 项目管理工具，旨在简化和优化 Python 项目的管理和开发流程。它提供了从创建项目、管理依赖、构建和发布包到管理多环境的全方位支持。</p>
+<p>其主要功能特点有: 项目创建和初始化; 依赖包管理; 多环境管理; 构建和发布; 插件系统; 集成工具…..</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://hatch.pypa.io/latest/">官网</a>, <a target="_blank" rel="noopener" href="https://github.com/pypa/hatch">github-repo</a></p>
+</blockquote>
+<p>略… 来日再研究</p>
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><h3 id="setup-py迁移到pyproject-toml"><a href="#setup-py迁移到pyproject-toml" class="headerlink" title="setup.py迁移到pyproject.toml"></a>setup.py迁移到pyproject.toml</h3><p><code>setup.py</code>是标准的和广泛采用的<code>项目配置文件</code>, 但</p>
+
+<div class="article-footer fs14">
+    <section id="share">  
+      <p>本文由<a href="https://taddream.site/">Raymond~</a>创作, 基于<a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">CC BY-NC-SA 4.0</a>协议, 转载请注明出处. 分享文章: 
+
+      <span class="link" style="display: inline;">
+        <input class="copy-area" readonly="" id="copy-link" value="https://taddream.site/post/python-pkg-manager-and-virenv/" style="display: none;">
+      </span>       
+      <a class="social share-item wechat" onclick="util.toggle(&quot;qrcode-wechat&quot)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/b32ef3da1162a.svg" / style="width: 1.5em; height: 1.5em; display: inline-block; margin-right: 10px;"></a><a class="social share-item link" onclick="util.copy(&quot;copy-link&quot;, &quot;复制成功&quot;)"><img class="lazy"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/social/8411ed322ced6.svg" / style="width: 1.5em; height: 1.5em; display: inline-block; margin-right: 10px;"></a>
+      
+        <div class="qrcode" id="qrcode-wechat" style="opacity:0;height:0">
+          <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&data=https://taddream.site/post/python-pkg-manager-and-virenv/"/>
+        </div>
+        
+      </p>
+    </section>
+    </div>
+</article>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/post/network-security/">加解密及安全话题</a></div></section></div>
+
+
+
+
+  <div class="related-wrap md-text" id="comments">
+    <section class='header cmt-title cap theme'>
+      <p>快来参与讨论吧~</p>
+
+    </section>
+    <section class='body cmt-body giscus'>
+      
+
+<svg class="loading" style="vertical-align:middle;fill:currentColor;overflow:hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2709"><path d="M832 512c0-176-144-320-320-320V128c211.2 0 384 172.8 384 384h-64zM192 512c0 176 144 320 320 320v64C300.8 896 128 723.2 128 512h64z" p-id="2710"></path></svg>
+
+<div id="giscus" src="https://giscus.app/client.js" data-repo="JamesRay0713/blog-comments" data-repo-id="R_kgDOKwYNKA" data-category="Announcements" data-category-id="DIC_kwDOKwYNKM4CbIpQ" data-mapping="pathname" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous"></div>
+
+    </section>
+  </div>
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><div style="text-align:center">
+
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Framework-Hexo-A3D1D1?logo=hexo" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://xaoxuu.com/wiki/stellar/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Theme-stellar-81C0C0" alt="Static Badge"></a> <a target="_blank" rel="noopener" href="https://vercel.com/"><img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/Deploy-vercel-5CADAD?logo=vercel" alt="Static Badge"></a> <img class="lazy" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-src="https://img.shields.io/badge/License-CC_BY--NC--SA_4.0-5CADAD" alt="Static Badge"><br>Copyright © 2023-2024 Raymond H., All Rights Reserved.</p>
+</div>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right">
+<div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="true"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-text">python解释器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="toc-text">常见的解释器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PyPy3"><span class="toc-text">PyPy3</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%A0%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E5%AE%83"><span class="toc-text">你是否需要它</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-text">使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%92%8C%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-text">虚拟环境和包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E6%AF%94%E8%BE%83"><span class="toc-text">工具比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pip"><span class="toc-text">pip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda-%E5%8C%85%E5%92%8C%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-text">conda-包和环境管理器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Windows%E3%80%81Linux%E3%80%81MacOS"><span class="toc-text">Windows、Linux、MacOS</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#win11-git-SDK"><span class="toc-text">win11-git-SDK</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%8A%A0%E9%85%8D%E7%BD%AE-Linux%E4%B8%8B%E7%9A%84%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC"><span class="toc-text">安装加配置-Linux下的自动化脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-1"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mamba-%E5%B9%B3%E6%9B%BFconda"><span class="toc-text">mamba-平替conda</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-2"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-2"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#miniforge"><span class="toc-text">miniforge</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-3"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-3"><span class="toc-text">使用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poetry-%E5%8C%85%E7%AE%A1%E7%90%86%E4%B9%8B%E7%A5%9E"><span class="toc-text">poetry-包管理之神</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-4"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-4"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEpoetry"><span class="toc-text">配置poetry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4-1"><span class="toc-text">常用命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conda%E4%B8%8Epoetry%E5%90%88%E4%BD%93"><span class="toc-text">conda与poetry合体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E4%BD%93%E5%8E%9F%E7%90%86%E5%92%8C%E8%A7%84%E5%88%99"><span class="toc-text">合体原理和规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%88%E4%BD%93%E6%96%B9%E6%B3%95"><span class="toc-text">合体方法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pixi"><span class="toc-text">pixi</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hatch"><span class="toc-text">hatch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7"><span class="toc-text">相关工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup-py%E8%BF%81%E7%A7%BB%E5%88%B0pyproject-toml"><span class="toc-text">setup.py迁移到pyproject.toml</span></a></li></ol></li></ol></div><div class="widget-footer">
+
+<a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c0-4.714 0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464C22 4.93 22 7.286 22 12c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel blur'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+<script type="text/javascript">
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/`,
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"codeblock":true,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+  };
+  const deps = {
+    jquery: `https://cdn.bootcdn.net/ajax/libs/jquery/3.7.1/jquery.min.js`,
+    marked: `https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js`
+  }
+  
+
+</script>
+
+<script type="text/javascript">
+  const utils = {
+    // 懒加载 css https://github.com/filamentgroup/loadCSS
+    css: (href, before, media, attributes) => {
+      var doc = window.document;
+      var ss = doc.createElement("link");
+      var ref;
+      if (before) {
+        ref = before;
+      } else {
+        var refs = (doc.body || doc.getElementsByTagName("head")[0]).childNodes;
+        ref = refs[refs.length - 1];
+      }
+      var sheets = doc.styleSheets;
+      if (attributes) {
+        for (var attributeName in attributes) {
+          if (attributes.hasOwnProperty(attributeName)) {
+            ss.setAttribute(attributeName, attributes[attributeName]);
+          }
+        }
+      }
+      ss.rel = "stylesheet";
+      ss.href = href;
+      ss.media = "only x";
+      function ready(cb) {
+        if (doc.body) {
+          return cb();
+        }
+        setTimeout(function () {
+          ready(cb);
+        });
+      }
+      ready(function () {
+        ref.parentNode.insertBefore(ss, before ? ref : ref.nextSibling);
+      });
+      var onloadcssdefined = function (cb) {
+        var resolvedHref = ss.href;
+        var i = sheets.length;
+        while (i--) {
+          if (sheets[i].href === resolvedHref) {
+            return cb();
+          }
+        }
+        setTimeout(function () {
+          onloadcssdefined(cb);
+        });
+      };
+      function loadCB() {
+        if (ss.addEventListener) {
+          ss.removeEventListener("load", loadCB);
+        }
+        ss.media = media || "all";
+      }
+      if (ss.addEventListener) {
+        ss.addEventListener("load", loadCB);
+      }
+      ss.onloadcssdefined = onloadcssdefined;
+      onloadcssdefined(loadCB);
+      return ss;
+    },
+
+    js: (src, opt) => new Promise((resolve, reject) => {
+      var script = document.createElement('script');
+      if (src.startsWith('/')){
+        src = ctx.root + src.substring(1);
+      }
+      script.src = src;
+      if (opt) {
+        for (let key of Object.keys(opt)) {
+          script[key] = opt[key]
+        }
+      } else {
+        // 默认异步，如果需要同步，第二个参数传入 {} 即可
+        script.async = true
+      }
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    }),
+
+    jq: (fn) => {
+      if (typeof jQuery === 'undefined') {
+        utils.js(deps.jquery).then(fn)
+      } else {
+        fn()
+      }
+    },
+    
+    onLoading: (el) => {
+      if (el) {
+        $(el).append('<div class="loading-wrap"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" stroke-opacity=".3" d="M12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="1.3s" values="60;0"/></path><path stroke-dasharray="15" stroke-dashoffset="15" d="M12 3C16.9706 3 21 7.02944 21 12"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0"/><animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12"/></path></g></svg></div>');
+      }
+    },
+    onLoadSuccess: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap').remove();
+      }
+    },
+    onLoadFailure: (el) => {
+      if (el) {
+        $(el).find('.loading-wrap svg').remove();
+        $(el).find('.loading-wrap').append('<svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="60" stroke-dashoffset="60" d="M12 3L21 20H3L12 3Z"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.5s" values="60;0"/></path><path stroke-dasharray="6" stroke-dashoffset="6" d="M12 10V14"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="6;0"/></path></g><circle cx="12" cy="17" r="1" fill="currentColor" fill-opacity="0"><animate fill="freeze" attributeName="fill-opacity" begin="0.8s" dur="0.4s" values="0;1"/></circle></svg>');
+        $(el).find('.loading-wrap').addClass('error');
+      }
+    },
+    request: (el, url, callback, onFailure) => {
+      let retryTimes = 3;
+      utils.onLoading(el);
+      function req() {
+        return new Promise((resolve, reject) => {
+          let status = 0; // 0 等待 1 完成 2 超时
+          let timer = setTimeout(() => {
+            if (status === 0) {
+              status = 2;
+              timer = null;
+              reject('请求超时');
+              if (retryTimes == 0) {
+                onFailure();
+              }
+            }
+          }, 5000);
+          fetch(url).then(function(response) {
+            if (status !== 2) {
+              clearTimeout(timer);
+              resolve(response);
+              timer = null;
+              status = 1;
+            }
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error('Network response was not ok.');
+          }).then(function(data) {
+            retryTimes = 0;
+            utils.onLoadSuccess(el);
+            callback(data);
+          }).catch(function(error) {
+            if (retryTimes > 0) {
+              retryTimes -= 1;
+              setTimeout(() => {
+                req();
+              }, 5000);
+            } else {
+              utils.onLoadFailure(el);
+              onFailure();
+            }
+          });
+        });
+      }
+      req();
+    },
+  };
+</script>
+
+<script>
+  const sidebar = {
+    leftbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    rightbar: () => {
+      if (l_body) {
+        l_body.toggleAttribute('rightbar');
+        l_body.removeAttribute('leftbar');
+      }
+    },
+    dismiss: () => {
+      if (l_body) {
+        l_body.removeAttribute('leftbar');
+        l_body.removeAttribute('rightbar');
+      }
+    },
+    toggleTOC: () => {
+      document.querySelector('#data-toc').classList.toggle('collapse');
+    }
+  }
+</script>
+
+<!-- required -->
+<script src="/js/main.js?v=1.27.0" async></script>
+
+<!-- optional -->
+
+  <script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const els = document.querySelectorAll("#comments #giscus");
+    if (els.length === 0) return;
+    els.forEach((el, i) => {
+      try {
+        el.innerHTML = '';
+      } catch (error) {
+        console.error(error);
+      }
+      var script = document.createElement('script');
+      script.async = true;
+      for (let key of Object.keys(el.attributes)) {
+        let attr = el.attributes[key];
+        if (['class', 'id'].includes(attr.name) === false) {
+          script.setAttribute(attr.name, attr.value);
+        }
+      }
+      el.appendChild(script);
+    });
+  });
+</script>
+
+
+
+
+<script defer>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.services = Object.assign({}, JSON.parse(`{"mdrender":{"js":"/js/services/mdrender.js"},"siteinfo":{"js":"/js/services/siteinfo.js","api":"https://api.vlts.cc/site_info/v1?url={href}"},"ghinfo":{"js":"/js/services/ghinfo.js"},"sites":{"js":"/js/services/sites.js"},"friends":{"js":"/js/services/friends.js"},"timeline":{"js":"/js/services/timeline.js"},"fcircle":{"js":"/js/services/fcircle.js"},"weibo":{"js":"/js/services/weibo.js"},"memos":{"js":"/js/services/memos.js"}}`));
+    for (let id of Object.keys(ctx.services)) {
+      const js = ctx.services[id].js;
+      if (id == 'siteinfo') {
+        ctx.cardlinks = document.querySelectorAll('a.link-card[cardlink]');
+        if (ctx.cardlinks?.length > 0) {
+          utils.js(js, { defer: true }).then(function () {
+            setCardLink(ctx.cardlinks);
+          });
+        }
+      } else {
+        const els = document.getElementsByClassName(`ds-${id}`);
+        if (els?.length > 0) {
+          utils.jq(() => {
+            if (id == 'timeline' || 'memos' || 'marked') {
+              utils.js(deps.marked).then(function () {
+                utils.js(js, { defer: true });
+              });
+            } else {
+              utils.js(js, { defer: true });
+            }
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    ctx.search = {
+      path: `/search.json`,
+    }
+    utils.js('/js/search/local-search.js', { defer: true });
+  });
+</script><script>
+  window.FPConfig = {
+    delay: 0,
+    ignoreKeywords: [],
+    maxRPS: 5,
+    hoverDelay: 25
+  };
+</script>
+<script defer src="https://cdn.bootcdn.net/ajax/libs/flying-pages/2.1.2/flying-pages.min.js"></script><script defer src="https://cdn.bootcdn.net/ajax/libs/vanilla-lazyload/17.8.4/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazy",
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    window.lazyLoadInstance?.update();
+  });
+</script><script>
+  ctx.fancybox = {
+    selector: `.timenode p>img`,
+    css: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.min.css`,
+    js: `https://cdn.bootcdn.net/ajax/libs/fancyapps-ui/5.0.22/fancybox/fancybox.umd.min.js`
+  };
+  var selector = '[data-fancybox]:not(.error)';
+  if (ctx.fancybox.selector) {
+    selector += `, ${ctx.fancybox.selector}`
+  }
+  var needFancybox = document.querySelectorAll(selector).length !== 0;
+  if (!needFancybox) {
+    const els = document.getElementsByClassName('ds-memos');
+    if (els != undefined && els.length > 0) {
+      needFancybox = true;
+    }
+  }
+  if (needFancybox) {
+    utils.css(ctx.fancybox.css);
+    utils.js(ctx.fancybox.js, { defer: true }).then(function () {
+      Fancybox.bind(selector, {
+        hideScrollbar: false,
+        Thumbs: {
+          autoStart: false,
+        },
+        caption: (fancybox, slide) => {
+          return slide.triggerEl.alt || null
+        }
+      });
+    })
+  }
+</script><script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const swiper_api = document.getElementById('swiper-api');
+    if (swiper_api != undefined) {
+      utils.css(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.css`);
+      utils.js(`https://unpkg.com/swiper@10.3.1/swiper-bundle.min.js`, { defer: true }).then(function () {
+        const effect = swiper_api.getAttribute('effect') || '';
+        var swiper = new Swiper('.swiper#swiper-api', {
+          slidesPerView: 'auto',
+          spaceBetween: 8,
+          centeredSlides: true,
+          effect: effect,
+          loop: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+      })
+    }
+  });
+</script><link rel="stylesheet" href="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css" integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js" integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+<script defer src="https://gcore.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"onload="renderMathInElement(document.body);"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.codeElements = document.querySelectorAll('.code');
+    if (window.codeElements.length > 0) {
+      ctx.copycode = {
+        default_text: `Copy`,
+        success_text: `Copied`,
+        toast: `复制成功`,
+      };
+      utils.js('/js/plugins/copycode.js');
+    }
+  });
+</script>
+
+
+<!-- inject -->
+
+</div></body></html>
